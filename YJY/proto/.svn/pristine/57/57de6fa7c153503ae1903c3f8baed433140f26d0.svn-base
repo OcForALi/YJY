@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+option java_package = "com.yijianyi.protocol";
+option java_outer_classname = "InterfaceProto";
+
+import public "comm/Err.proto";
+import public "comm/Area.proto";
+import public "comm/Comm.proto";
+import public "comm/Lbs.proto";
+import public "CMD.proto";
+import public "CommonData.proto";
+
+/**
+ * 返回错误信息
+ */
+message AppError {
+    APP_ERROR_CODE errorCode     = 1;
+    string msg        = 2;
+};
+
+//请求包头
+message ReqHead {
+    string YUA			= 1;
+    string GUID			= 2;
+    string SID			= 3;
+    Terminal terminal	= 4;
+    NET_TYPE netType	= 5;
+    PkgInfo pkginfo		= 6;
+};
+
+message RequestItem {
+	APP_COMMAND command = 1;     // 服务端命令号
+	uint32 encrypt       = 2;    //加密方式[1:未加密，2：DES加密]
+	bytes binBody       = 3;     // 请求数据
+}
+
+message AppRequest {
+	ReqHead head		 = 1;
+	LbsData gpsInfo	  	 = 2;	//lbs原始信息
+    uint32 requestId     = 3;	//请求序列号，需要在Response中返回
+    uint32 version       = 4; 	//表明当前协议的版本号
+    repeated RequestItem reqs     = 5;
+};
+
+
+//回包包头
+message RspHead {
+    string GUID 	   = 1;		//在需要客户端重置GUID的时候返回
+    string SID 		   = 2;		//在需要客户端更换SID的时候保存
+};
+
+message ResponseItem {
+	APP_COMMAND command     = 1;  // 服务端命令号
+	uint32 encrypt          = 2;  //加密方式[1:未加密，2：DES加密]
+	AppError err            = 3;
+	bytes binBody           = 4;
+}
+
+message AppResponse {
+    RspHead head		 = 1;
+    AppError errInfo     = 2;	//框架级别的错误码，只有当该错误码为APP_ERROR_CODE.AEC_SUCCESS的时候，binBody中的数据才有意义
+    uint32 requestId     = 3;	//请求序列号，与对应的请求中的RequestId相同
+    uint64 sysTimeStamp  = 4;	// 服务器时间戳
+    repeated ResponseItem  rsps   = 5;     // 返回数据
+};
+
+//Ping 请求  原样返回请求字符串
+message PingReq{
+	string str 		   = 1;
+}
+message PingRsp{
+	string str 		   = 1;
+}
+
+message UploadImageRsp{
+	uint32 code	=1;
+	string msg 	=2;
+	uint64 imgId	=3;
+}
+
+//统计上报
+message StatReportReq{
+	repeated StatReportItem items	= 1;
+}
+
+message StatReportRsp{
+	uint32 ret			= 1;    //版本号
+}

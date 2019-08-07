@@ -1,0 +1,1521 @@
+syntax = "proto3";
+
+option java_package = "com.yijianyi.protocol";
+option java_outer_classname = "SaasModelPROTO";
+import "CommonData.proto";
+import "Model.proto";
+
+message HGBaseInfo{
+	uint64 id = 1;// 护工id
+	string phone = 2;// 手机号
+	string pwd = 3;//
+	uint32 state = 4;// 护工的状态  1- 在职 2-离职
+	string fullName = 5;// 全名
+	uint32 sex = 6;// 0未设置 1男 2 女
+	string birthday = 7;// 生日
+	string pic = 8;// 个人照片
+	string nativeplace = 9;// 籍贯
+	string province = 10;// 省份
+	string city = 11;// 城市
+	string district = 12;// 区
+	string address = 13;// 详细居住地址
+	string language= 14;// 多种语言用,分割
+	string religion = 15;// 宗教
+	string nation = 16;// 民族
+	string height = 17;// 身高cm
+	string weight = 18;// 体重kg
+	uint32 marriage = 19;// 婚姻状态 0-未知 1-未婚 2-已婚 3-离异
+	uint32 education = 20;// 教育程度 0-未知 1-不识字  2-小学  3-初中 4-高中 5-中专 6-大专 7-本科 8-研究生 9-博士
+
+	string idcard = 21;// 身份证号码
+	string idcardpic = 22;// 身份证正面照
+	string idcardpic2 = 23;// 身份证反面照片
+	string idcardpic3 = 24;// 身份证手持照片
+	uint64 idcardExpiredDate = 25;// 身份证有效期
+
+	string healthCertificate = 26;// 健康证
+	string nursingCertificate = 27;// 护理证
+
+	uint64 createCompany = 28;// 创建公司 10000-易简医
+	uint64 createTime = 29;// 创建时间
+	uint32 createType = 30;// 1.自己注册 2.公司添加
+	string createChannel = 31;// 创建渠道
+	uint64 createStaffId = 32;// 创建员工的id
+	string createStaffName = 33;// 创建员工的姓名
+	string rongToken = 34; // 融云Token
+	string jpushRegistid = 35; // 极光推送设备ID
+	uint32 activeState = 36; //用户活跃状态 1 - 未登录 2 - 登录
+	uint64 careerStartTime = 37; // 护工工作开始时间, 用于计算工龄
+	string emergencyContact = 38; // 紧急联系人
+	string emergencyContactPhone = 39; // 紧急联系人手机号
+	string building = 40; // 居住地
+	uint32 onService = 41;	//0-空闲 1-专陪服务中 2-多陪服务中
+	string mpQRCode = 42;	// 公众号二维码地址
+	string signPic = 43;	// 签名图片
+	repeated string otherCertificate = 44;	// 其他证件
+	string goodAtProject = 45;		// 擅长项目
+	uint32 serviceNum = 46;			// 已服务人数
+	string bankName = 47;			// 开户支行
+	string bankNO = 48;				// 银行卡号
+	uint32 jobTitle = 49;			// 职称 0-无 1-护士主任 2-护士 3-护师 4-护士副主任
+	string serviceOrg = 50;			// 服务机构
+	string medicalReport = 51;		// 体检报告
+	string certification = 52;		// 资格证
+}
+
+
+message OrgModel {
+    uint64 id = 1;          // 机构ID
+    string orgName = 2;         // 机构名称
+    uint32 orgType = 3;         // 机构类型 机构类型  1-医院 2-养老院
+    uint32 detailedType = 4;	// 详细类型  orgType = 1时   1-妇幼医院 2-肿瘤医院 3-整形美容 4-耳鼻喉科医院 5-眼科医院 6-皮肤病医院 7-中医院 8-综合医院 9-专科医院    orgType = 2时 未确定
+    uint32 orgLevel = 5;            // 等级 0-未知 1-一丙 2-一乙 3-一甲 4-二丙 5-二乙 6-二甲 7-三丙 8-三乙 9-三甲
+    string telephone = 6;			// 座机号码
+    string phone = 7;				// 手机号,非必填
+    uint32 operateMode = 8;			// 运营方式 1-国营 2-合伙制 3-股份制 4-中外合资合作 5-股份合作 6-私人 7-集体 8-未知
+    string officialWebsite = 9;		// 官方网站
+    string province = 10;            // 省份
+    string city = 11;            // 城市
+    string district = 12;            // 区
+    string address = 13;         // 详细地址
+    string building = 14;		// 地址 从高德或百度选中的地址（带经纬度信息）
+    uint32 gpsType = 15;         // 经纬度类型 1-百度  2-高德
+    double lng = 16;         // 经度
+    double lat = 17;         // 纬度
+    uint32 state = 18;		// 机构的状态 0 在线  -1已删除
+    uint64 createTime = 19;          // 创建时间
+    uint32 createType = 20;          // 1-自己注册  2-公司添加
+    string createChannel = 21;           // 创建渠道
+    uint64 createStaffId = 22;           // 创建员工ID
+    string createStaffName = 23;         // 创建员工名称
+    uint64 provinceId = 24;	//
+    uint64 cityId = 25;	//
+    uint64 countyId = 26;
+    string firstCaseName = 27; // 机构名每个汉字的首字母
+    string fullPinYin = 28; // 机构名汉字全拼
+    repeated string tags = 29;	// 标签
+    uint32 serviceNum = 30;		// 服务人数
+}
+
+message BranchModel {
+    uint64 id = 1;          	// 科室ID
+    uint64 orgId = 2;           // 机构ID
+    string branchName = 3;      // 科室名称
+    uint64 createTime = 4 ;     // 创建时间
+    uint32 createType = 5;      // 1-自己注册  2-公司添加
+    string createChannel = 6;   // 创建渠道
+    uint64 createStaffId = 7;   // 创建员工ID
+    string createStaffName = 8; // 创建员工名称
+    uint32 state = 9;			// 科室的状态  -1 已删除   0在线
+    OrgModel org = 10;          // 对应的机构
+    string mpQRCode = 11;		//公众号二维码地址
+}
+
+message Company {
+    uint64 id = 1;          // 公司ID
+    string companyName = 2;         //  公司名称
+    uint64 adminId = 3; 			//  主管理员id
+    string adminPhone = 4;			//  主管理员手机号
+    string legalManName = 5;		//  法人姓名
+    string province = 6;			//  省份
+    string city = 7;				//  城市
+    string address = 8;				//  地址
+    uint32 state = 9;			//  科室的状态 -1已删除  0正在审核 1审核通过
+    string businessLicence = 10;	//  营业执照照片
+    string legalManLicence = 11;	//法人证件
+    string officialWebsite = 12;	//官方网站
+    string linkman = 13;			//联系人
+    uint64 createTime = 14;          // 创建时间
+    uint32 createType = 15;          // 1-自己注册  2-公司添加
+    string createChannel = 16;           // 创建渠道
+    uint64 createStaffId = 17;           // 创建员工ID
+    string createStaffName = 18;         // 创建员工名称
+    string county = 19;		//县的id
+    uint64 provinceId = 20;	// 省份的id
+    uint64 cityId = 21;	// 省份的id
+    uint64 countyId = 22;	// 县的id
+}
+
+message CompanyOrg {
+    uint64 id = 1 ;          // 关联关系的id
+    uint64 companyId = 2;           // 公司ID
+    uint64 orgId = 3;           // 机构ID
+    uint64 branchId = 4;            // 科室ID
+    uint64 prepayAmount = 5;            // 预付金 单位分
+    uint64 createTime = 6;          // 创建时间
+    uint32 createType = 7;          // 1-自己注册  2-公司添加
+    string createChannel = 8;           // 创建渠道
+    uint64 createStaffId = 9;           // 创建员工ID
+    string createStaffName = 10;         // 创建员工名称
+    OrgModel org = 11;                          // 对应的机构
+    BranchModel branch = 12;                 // 对应的科室
+    Company company = 13;               // 对应的公司
+    repeated uint64 dudaoId = 14;	// 督导id
+    uint64 chairmanId = 15;// 主任id
+    string chairmanName = 16;// 主任姓名
+    string chairmanPhone = 17;//主任手机号
+    uint32 isAll = 18;// 0 -未定义 1 - 承包 2 - 非承包
+    string branchName = 19;// 科室名称
+    uint32 havaEntranceCard = 20; // 是否有门禁卡 0 没有 1 有
+    uint64 entranceCardPrice = 21; // 门禁卡价格
+    string mpQRCode = 22;			// 公众号二维码地址
+    uint32 changeServiceConfig = 23;	// 变更服务配置 1-变更后当天费用各收一半 2-变更后当天费用收变更后套餐 3-变更后超时时间 4-变更当天手动选择
+    uint32 dudaoChargeConfig = 24;		// 督导收费配置 1-不可收费 2-可收费
+    uint32 lastDayFeeConfig = 26;		// 最后一天收费标准 1-超时收费 2-三个时间段收费 3-收头不收尾
+    string kfPhone = 27;				// 客服电话
+    uint32 measurementConfig = 28;		// 该机构是否在客户端享受 0-显示 1-不显示
+    uint32 isShowClientExtra = 29;		// 该科室是否在客户端门禁卡 0-显示 1-不显示
+	uint32 changeBranchConfig = 30;		// 转科是否收取预付款 1-不收 2-收
+	uint32 showPhone = 31;				// 企业端是否展示手机号 0-都不展示 1-督导可以看到 2-护工可以看到 3-督导护工都可以看到
+}
+
+message RoomModel {
+	uint64 roomId = 1 ;			// 房间ID
+	uint64 companyId = 2;			// 公司ID
+	uint64 orgId = 3;			// 机构ID
+	uint64 branchId = 4;			// 科室ID
+	string roomNo = 5;			// 房号
+	uint32 state  = 6;			//  房间的状态 -1 已删除 0 正常
+	uint64 createTime = 7;			// 创建时间
+	uint32 createType = 8;			// 1-自己注册  2-公司添加
+	string createChannel = 9;			// 创建渠道
+	uint64 createStaffId = 10;			// 创建员工ID
+	string createStaffName = 11;			// 创建员工名称
+}
+
+message BedModel {
+	uint64 bedId = 1;			// 床ID
+	uint64 companyId = 2;			// 公司ID
+	uint64 orgId = 3;			// 机构ID
+	uint64 branchId = 4;			// 科室ID
+	uint64 roomId = 5;			// 房间ID
+	string bedNo = 6;			// 床号
+	uint32 state = 7;			// 床位的状态,-1 已删除 0正常
+	uint64 createTime = 8;			// 创建时间
+	uint32 createType = 9;			// 1-自己注册  2-公司添加
+	string createChannel = 10;			// 创建渠道
+	uint64 createStaffId = 11;			// 创建员工ID
+	string createStaffName = 12;			// 创建员工名称
+}
+
+
+message Price {
+	uint64 priceId = 1;				// 价格配置ID
+	uint64 companyBranchId = 2;		// 公司科室ID
+	uint64 companyId = 3;			// 公司ID
+	uint64 orgId = 4;				// 机构ID
+	uint64 branchId = 5;			// 科室ID
+	int32 state = 6;
+	uint32 longTermInsurance = 7; 	// 是否可用长护险 1-可用 2不可用
+	uint32 serviceType = 8;			// 服务类型 1-1:1  2-1:N  99 机构套餐附加项目  101 居家照护 102家庭护士 103 康复护理 104 中医理疗 105 金牌月嫂 106 就医陪护 107 心理慰藉 108 产后恢复 109 育婴幼教 110 临终关怀 199 居家套餐附加项
+	string serviceItem = 9;			// 服务项目
+	uint32 serviceUnit = 10;		// 服务单位 1-次 2-小时 3-天
+	int64 price = 11;				// 定价 单位分
+	string description = 12;		// 服务项目描述
+	uint64 createTime = 13;			// 创建时间
+	uint32 createType = 14;			// 1-自己注册  2-公司添加
+	string createChannel = 15;		// 创建渠道
+	uint64 createStaffId = 16;		// 创建员工ID
+	string createStaffName = 17;	// 创建员工名称
+	string priceStr = 18;			// 定价字符串
+	uint32 isrequired = 19;			// 是否必选  1-不必选 2-必选
+	uint32 defaultStatus = 20;		// 机构服务状态 0-非默认，1-默认
+	int64 hgRebatePrice = 21;		// 职工优惠价定价 单位分
+	int64 hgKinsRebatePrice = 22;	// 职工家属优惠价定价 单位分
+	int64 prepayFee = 23;			// 服务定价的预付金 -1即没有配置，按科室的预付金
+	string prepayFeeStr = 24;		// 服务定价的预付金 -1即没有配置，按科室的预付金
+	string totalPrice = 25;			// 机构预付金和门禁卡押金的和
+	string consentText = 26;		// 知情同意书内容
+	uint32 showScope = 27;			// 0-全部 1-用户端 2-企业端
+	uint32 serviceSubjoinType = 28;	// 附加项类型 0-普通附加项 1-金额调整 2-陪人床
+	uint32 subjoinGroupingType = 29;// 附加项子类型 1-专陪 2-多陪 3-夜陪
+	
+	uint32 adlMinScore = 30;		// 长护险服务最低adl分数
+	uint32 adlMaxScore = 31;		// 长护险服务最高adl分数
+	uint64 subsidy = 32;			// 补贴标准（分）
+	uint32 isTendApply = 33;		// 是否需要照护计划 0-不需要 1-需要
+	string fitPeople = 34;			// 使用人群
+	string serviceContent = 35;		// 服务内容
+	string serviceProcess = 36;		// 服务流程
+	string serviceState = 37;		// 服务说明
+	string billingNotice = 38;		// 计费须知
+	string serviceIntro = 39;		// 服务简介
+	string qas = 40;				// 常见问题（问答）（json串存入字段）
+}
+
+// 护工银行卡信息
+message HGBankCard {
+	uint64 id = 1;				// 主键
+	string cardNo = 2;			// 银行卡号
+	string bank = 3;			// 开户行
+	string city = 4;			// 开户城市
+	string branch = 5;			// 开户支行
+	string pic1 = 6;			// 银行卡正面照片
+	string pic2 = 7;			// 银行卡反面照片
+	uint64 expiredDate = 8;		// 身份证有效期，过期时间
+	uint32 state = 9;			// 银行卡的状态,0 正在使用 -1 已删除
+	uint64 hgId	= 10;			// 护工的id
+	uint64 companyId = 11;		// 公司ID
+	uint64 createTime = 12;		// 创建时间
+	uint32 createType = 13;		// 1-护工自己注册  2-公司添加
+	string createChannel = 14;	// 创建渠道
+	uint64 createStaffId = 15;	// 创建员工ID
+	string createStaffName = 16;// 创建员工名称
+}
+
+// 护工公司关联信息
+message CompanyHG{
+	uint64 companyId = 1; 	// 公司id
+	uint64 orgId = 2; // 机构id
+	uint64 hgId		 = 3;	// 护工id
+	string hgno 	 = 4;	// 护工工号
+	uint32 hgType 	 = 5;	// 类型 1护工 2护士 3督导 4 副主任 5主任  6质检 7质检主任 8运营 9客服 10健康经理 11管理员
+	uint32 workType = 6;	// 护工的类型 1- 多陪 2 - 专陪 3 - 两种混合
+	repeated uint64 branchIds = 7; // 科室id
+	uint64 joinTime	 = 8;	// 入职时间
+	uint64 createTime = 9;		// 创建时间
+	uint64 createStaffId = 10;	// 创建员工ID
+	string createStaffName = 11;// 创建员工名称
+	repeated uint64 superiorId = 12; 	//直属上级id
+	uint32 onduty = 13;			// 是否值班中 0-未值班 1-值班中
+	uint32 roleType = 14;		// 角色类型 0-平台 1-居家 2-机构 3-自照
+	repeated uint32 serviceTypes = 15; // 可提供服务
+	repeated uint64 orgIdsNew = 16; // 新权限机构id, 多个用","分开
+	repeated uint64 branchIdsNew = 17; // 新权限科室id, 多个用","分开
+}
+
+// 识别身份信息的proto
+message IDCardInfo{
+	string issued_by = 1;		// 某某公安局发行
+	uint64 idcardExpiredDate = 2;	// 身份证过期时间 该属性叫valid_date  2011.05.13-2021.05.13
+	uint32 side = 3;			// 正反面 1  正面  2 反面
+	uint32 sex = 4;				// 性别 1- 男 2-女  json中该属性叫gender
+	string fullName = 5;		// 全名 json中该属性叫name
+	string idcard = 6;			// 身份证号码 json中该属性叫做id_card_number
+	string birthday = 7;		// 生日 格式 1982-07-12
+	string nativeplace = 8;		// 籍贯 json中该属性叫address
+	string nation = 9;			// 民族 json中该属性叫race
+	uint32 age = 10;
+}
+
+//  角色
+message RoleModel {
+	uint64 roleId = 1;		//  角色id
+	uint64 companyId = 2;	//  公司id
+	string roleName = 3;	//  角色名称
+	uint64 createTime = 4;	//  创建时间
+	uint64 createStaffId = 5;
+	string createStaffName = 6;
+}
+
+//  员工角色
+message CompanyHGRole {
+	uint64 companyId = 1;	//  公司id
+	uint64 orgId = 2;		//  机构id
+	uint64 branchId = 3;	//  科室id
+	uint64 hgId = 4;		//  护工id
+	uint64 roleId = 5;		//  角色id
+	uint64 createTime = 6;	//  创建时间
+	uint64 createStaffId = 7;
+	string createStaffName = 8;
+	string roleName = 9;	// 角色名
+}
+
+//  权限配置
+message RightConfig {
+	uint64 id = 1;		// id
+	uint64 companyId = 2;			//  公司id
+	uint64 roleId = 3;				//  角色id
+	repeated uint64 hgIdList = 4;	//  护工id集合
+	uint32 scopeType = 5;			//  1-全公司  2-指定机构 3-指定科室 4-指定员工
+	repeated uint64 scopeList = 6;	//  特定部门ID列表
+	repeated string rightList = 7;	//  权限列表
+	uint64 createTime = 8;			//  创建时间
+	uint64 createStaffId = 9;
+	string createStaffName = 10;
+}
+
+
+//用户地址
+message UserAddress {
+	uint64 addrId = 1;
+	uint64 userId = 2;
+	string province = 3;
+	string city = 4;
+	string cityCode = 5;		// 城市编码
+	string district = 6;		// 区
+	string adCode = 7;			// 高德城市编码
+	string street = 8;
+	string building = 9;		// 小区
+	string addrDetail = 10;		// 详细地址
+	string businessName = 11;	// 商区
+	string businessCode = 12;	// 商区编码
+	string phone = 13;
+	string contacts = 14;
+	string phone2 = 15;
+	string contacts2 = 16;
+	uint32 gpsType = 17;		// 经纬度类型 1-百度 2-高德
+	double lng = 18;
+	double lat = 19;
+	string createTime = 20;
+	uint32 createType = 21;
+	string createChannel = 22;	// 创建渠道
+	uint64 createStaffId = 23;
+	string createStaffName = 24;
+	uint64 defaultUse = 25;
+	uint32 enabled = 26;
+}
+
+message UserAddressVO{
+	uint64 addrId = 1;
+	uint64 userId = 2;
+	string province = 3;
+	string city = 4;
+	string district = 5;		// 区
+	string building = 6;		// 小区
+	string addrDetail = 7;		// 详细地址
+	string addressInfo = 8;
+	uint32 defaultUse = 9;
+	double lng = 10;			// 经度
+	double lat = 11;			// 纬度
+	string adCode = 12;			// 高德城市编码
+	string contacts = 13;		// 联系人
+	string phone = 14;			// 联系电话
+}
+
+//用户银行卡
+message UserBank {
+	uint64 id = 1;				// 用户银行卡id
+	uint64 userId = 2;			// 用户id
+	string cardholderName = 3;	// 持卡人姓名
+	string bankName = 4;		// 银行名称
+	string cardNO = 5;			// 银行卡号
+	string bankBranch = 6;		// 银行支行
+	uint32 bankType = 7;		// 银行卡类型：0-储蓄卡，1-信用卡
+	string updateTime = 8;		// 更新时间
+	string createTime = 9; 		// 创建时间
+}
+
+//用户银行卡显示
+message UserBankVO {
+	UserBank bank = 1;
+	string cardNOStr = 2;		// 银行卡号（只显示后4位）
+	string bankTypeStr = 3;		// 银行卡类型
+}
+
+//用户亲属关系
+message Kinsfolk {
+	uint64 kinsfolkId = 1;
+	uint64 userId = 2;
+	string phone = 3;
+	string fullName = 4;
+	uint32 sex = 5;
+	string birthday = 6;
+	string pic = 7;
+	string nativeplace = 8;
+	string province = 9;
+	string city = 10;
+	string district = 11;
+	string address = 12;
+	repeated uint32 language = 13;  // 1 - 普通话  2 - 粤语 3 - 客家话 4 - 潮汕话
+	string religion = 14;
+	string nation = 15;
+	string height = 16;
+	string weight = 17;
+	uint32 education = 18;
+	uint32 marriage = 19;
+	string idcard = 20;
+	string idcardpic = 21;
+	string idcardpic2 = 22;
+	string idcardpic3 = 23;
+	string idcardExpiredDate = 24;
+	string createTime = 25;
+	uint32 createType = 26;
+	string createChannel = 27;	// 创建渠道
+	uint64 createStaffId = 28;
+	string createStaffName = 29;
+	string relation = 30;				//与用户的关系
+	uint32 age = 31;
+	string contactsPhone = 32;  		// 第一联系人手机号
+	string contacts = 33;       		// 第一联系人
+	string contactsRelation = 34; 		// 与第一联系人关系
+	string contacts2Phone = 35; 		// 第二联系人手机号
+	string contacts2 = 36;				// 第二联系人
+	string contacts2Relation = 37;		// 与第二联系人关系
+	string physicalState = 38;          // 身体状况描述
+	string medicalNO = 39;				// 医院就诊卡号
+	uint32 actAbility = 40;             // 行动能力 1-自理 2-半失能 3-失能
+	uint64 defaultUse = 41;				// 默认亲属
+	int32 enable = 42;					// -1-已删除 0-默认
+	string remark = 43;					// 备注信息
+	uint32 medicareType = 44;			// 医保类型
+	string healthCareNO = 45;			// 医保卡号
+	uint32 dwelling = 46;				// 居住状况1-独居 2-与配偶/伴侣居住 3-与子女居住 4-与父母居住 5-与配偶和子女居住 6-与兄弟姐妹居住 7-与其他亲属居住 8-与非亲属关系的人居住 9-养老机构
+	uint32 professionType = 47;			// 职业类别 1-政府机关人员 2-事业单位人员 3-企业职工 4-个体户 5-自由职业 6-无业
+	repeated string income = 48;		// 收入来源 1-机关事业单位离退休金 2-城乡居民养老保险 3-供养人员补贴 4-低保金 5-子女抚养/补贴 6-亲友自助 7-其他
+	uint32 childrenStatus1 = 49;		// 子女状况 儿子个数
+	uint32 childrenStatus2 = 50;		// 子女状况 女儿个数
+	repeated string infoChannel = 51;	// 信息采集渠道 本人 、家属 、病历 、医院诊断 、健康档案 、其他
+	repeated string assessMan = 52;		// 参与评估人员 本人 、子女 、亲属 、朋友 、居委会工作人员 、其他
+	string housingType = 53;			// 住房性质 自有产权房 、租赁住房 、借住 、廉租房 、公租房 、其他
+	uint32 nurseType = 54;				// 医疗类别 1-公费医疗 2-职工医保 3-居民医保 4-商业医疗保险 5-自费 6-其他
+	uint64 evalId = 55;					// 评估点id
+	string healthCareImg = 56;				//医保卡信息照片
+	string kinsfolkImg = 57;				//参保人照片
+	uint32 staffType = 58;					//人员类型 0-未设置 1-在职 2-退休
+	uint32 papersType = 59;					//证件类型 0-身份证 1-护照 2-港澳通行证
+}
+
+message UserAccount{
+	uint64 userId = 1;  		// 用户id
+	uint64 companyId = 2;  		// 公司id
+	uint64 account = 3; 		// 账户金额 单位 分
+	uint64 present = 4; 		// 赠送账户 单位 分
+	uint64 totalAccount = 5; 	// 历史总金额(只增不减)
+	uint64 integral = 6; 		// 积分
+	uint64 totalIntegral = 7; 	// 历史总积分(只增不减)
+	uint64 createTime = 8; 		// 创建时间
+}
+
+message UserAccountRecord{
+	uint64 id = 1;
+	uint64 userId = 2;
+	uint64 companyId = 3;  		// 公司id
+	int64 changeAccount = 4; 	// 变动的金额
+	uint64 account = 5; 		// 剩余账户金额
+	uint32 changeType = 6; 		// 账户变动类型 1-充值 2-消费 3-体现 4-订单余额退回 5-充值赠送 6-保证金退还 7-补贴金转余额  8-提现失败退还 9-订单取消预付金退还
+	string changeDesc = 7; 		// 账户变动原因
+	string orderId = 8; 		// 消费或订单余额退回时涉及到的订单id
+	uint64 createTime = 9; 		// 创建时间
+	string remark = 10;			// 备注
+}
+
+message UserIntegralRecord{
+	uint64 id = 1;
+	uint64 userId = 2;
+	uint64 companyId = 3;  		// 公司id
+	uint64 changeIntegral = 4;	// 变动的积分
+	uint64 integral = 5; 		// 剩余积分
+	uint32 changeType = 6; 		// 积分变动类型 1-消费 2使用
+	string changeDesc = 7; 		// 积分变动原因
+	string orderId = 8; 		// 消费或使用时涉及到的订单id
+	uint64 createTime = 9; 		// 创建时间
+}
+
+message UserWithdrawRecord{
+	uint64 id = 1;
+	uint64 userId = 2;
+	uint64 companyId = 3;  	// 公司id
+	string userName = 4; 	// 用户名
+	string phone = 5; 		// 手机号
+	uint64 fee = 6; 		// 提现金额
+	uint64 account = 7; 	// 剩余账户金额
+	uint32 status = 8; 		// 提现状态 0-未受理 1-已受理 2-待财务处理
+	uint64 createTime = 9; 	// 创建时间
+	uint64 acceptTime = 10; // 受理时间
+	uint64 updateStaffId = 11;	//操作处理人id
+	string updateStaffName = 12;	// 操作处理人
+}
+
+message SystemMessage {
+	uint64 id = 1;				// 消息id
+	uint64 fromUserId = 2;		// 发送用户id 默认0标识系统
+	uint64 toUserId = 3;		// 接收用户id
+	uint32 msgType = 4;			// 消息类型
+	string nativeUrl = 5;		// 客户端跳转链接
+	string url = 6;				// 跳转url
+	string content = 7;			// 发送消息的内容
+	uint64 createTime = 8;		// 消息发送时间
+	uint32 state = 9;			// 该消息是否已读 0-未读 1-已读
+	uint64 invalidateTime = 10;	// 失效时间
+	string createTimeStr = 11;
+	string msgTypeStr = 12;		// 消息类型描述
+}
+
+message SystemMessageVO {
+	string title = 1;			// 标题
+	uint32 msgType = 4;			// 消息类型
+	string content = 6;			// 发送消息的内容
+	string createTime = 7;		// 消息发送时间
+	uint32 num = 8;				// 未读消息数
+}
+
+message UserVO{
+	uint64 id = 1;			// 用户ID
+	string name = 2;		// 用户名
+	string phone = 3;		// 手机号
+	uint32 sex = 4;			// 用户性别 1-男 2-女
+	uint64 account = 5;		// 用户账户余额
+	uint64 present = 6; 	// 用户赠送账户余额
+	uint64 integral = 7;	// 用户积分
+	uint64 createTime = 8;	// 用户创建时间
+	string headImg = 9;		// 用户头像
+	string headImgUrl = 10;	// 用户头像地址
+	uint32 couponNum = 11;	// 用户优惠券数量
+	uint32 msgNum = 12;		// 未读消息数量
+	string birthday = 13;	// 生日
+	string realName = 14;	// 实名制姓名
+	string idcard = 15;		// 实名制身份证
+	bool isReal = 16;		// 是否已实名制
+	uint32 bankNum = 17;	// 银行卡数
+	bool hasCash = 18;		// 是否有现金过账
+}
+
+message IndexServiceItem{
+	uint64 id = 1;// id
+	repeated uint32 cityIdList = 2;// 城市id列表
+	string nativeUrl = 3;//  app跳转url
+	string url = 4;// h5跳转url
+	string icon = 5;// 图标的图片id
+	string iconDesc = 6;// 图片的描述
+	uint32 sort = 7;// 排序字段
+	uint64 createTime = 8;// 创建时间
+	uint64 updateTime = 9;// 修改时间
+	uint32 state = 10 ;// 0 未启用 1 启用
+	string iconUrl = 11 ; // icon图标的url
+	uint32 st = 12; 	//服务类型
+}
+
+//已开通服务的城市的model
+message ServiceCityModel{
+	uint32 cityId = 1; 	// 城市的id
+	string cityName = 2;// 城市名
+	uint32 provinceId = 3; // 省份id
+	string provinceName = 4; // 省份名
+}
+
+//被陪护人日志信息
+message KinsfolkSnapshoot{
+	uint64 id = 1;
+	uint64 kinsId = 2;			//被陪护人ID
+	uint64 userId = 3;			//关联的用户ID
+	string name = 4;			//被陪护人的姓名
+	uint32 sex = 5;				//性别
+	uint32 age = 6;				//年龄
+	uint64 idCardPic = 7;		//身份证照片
+	string idcardNo = 8;		//被陪护人的身份证号
+	string medicalNO = 9;		//就诊卡号
+	string height = 10;			//身高
+	string weight = 11;			//体重
+	uint32 actAbility = 12;		//行动能力
+	repeated uint32 language = 13;	//语言
+	string memoInfo = 14;		//备注信息
+	uint32 createType = 15;		//创建类型 1 - 用户APP创建,  2 - 护工APP创建, 3 - SAAS创建
+	uint64 createStaffId = 16;	//创建者ID
+	string createChannel = 17;	//创建渠道
+	string createStaffName = 18;//创建员工
+	string createTime = 19;		//创建时间
+	uint32 medicareType = 20;	// 医保类型
+	string healthCareNO = 21;	// 医保类型
+}
+
+// 医保类型
+message MedicareType {
+	uint32 id = 1;
+	string medicare = 2;
+}
+
+//机构和距离的封装
+message OrgDistanceModel{
+	double distance = 1; // 距离 单位 千米
+	OrgVO orgVO = 2; // 机构
+
+}
+//用户亲属VO
+message KinsfolkVO{
+	uint64 kinsId = 1;
+	string name = 2;
+	uint32 age = 3;
+	uint32 sex = 4;						// 1 - 男, 2 - 女
+	string relation = 5;				//亲属关系
+	string idCardNo = 6;				//身份证号
+	string height = 7;					//身高
+	string weight = 8;					//体重
+	string physicalState = 9;			//行动能力
+	string idPic = 10;					//身份证图片ID
+	string medicalNO = 11;				//医院就诊卡号
+	repeated uint32 language = 12;		//常用语言 1 - 普通话  2 - 粤语 3 - 客家话 4 - 潮汕话
+	string idPicUrl = 13;				//身份证图片URL
+	uint32 actAbility = 14;             //行动能力 1-自理 2-半失能 3-失能
+	bool defaultUse = 15;
+	uint32 medicareType = 16;			// 医保类型
+	string medicare = 17;				// 医保
+	bool insureFlag = 18;				// 是否可以申请长护险
+	string insureDesc = 19;				// 长护险状态描述
+	int32 score = 20;					// -1即没有自评得分 大于等于0即算有效自评得分
+	string healthCareNO = 21;			// 医保卡号
+	string extraInfo = 22;				// 补充说明
+	uint32 insureFlagType = 23;			// 可操作状态：0-可申请 1-不可申请 2-补全资料
+	string healthCareImgUrl = 24;			//医保卡信息照片
+	string kinsfolkImgUrl = 25;			//参保人照片
+	uint32 staffType = 26;				//人员类型 0-未设置 1-在职 2-离职
+	string idPic2Url = 27;				//身份证反面图片URL
+	string healthCareImgId = 28;		//医保卡信息照片id
+	string kinsfolkImgId = 29;			//参保人照片id
+	string idPic2Id = 30;				//身份证反面图片id
+}
+
+message BedModelList{
+	repeated BedModel bedList = 1;
+}
+
+message BranchModelList{
+	repeated BranchModel branchList = 2;
+}
+
+message OrgVO {
+ 	string orgName = 1; // 机构名
+ 	uint64 servicedNumber = 2; // 被服务的人数
+ 	uint32 worker = 3 ; // 护理员数量
+ 	string orgLevelStr = 4; // 机构等级
+ 	uint32 orgLevel = 5; // 机构等级
+ 	uint64 orgId = 6; // 机构id
+	repeated OrgTagVO tagList = 7; // 标签
+	bool isHis = 8;	// 是否对接机构his系统
+	bool isLocation = 9;	// 是否为定位机构
+	uint32 hisType = 10;	// 医院类型 1-对接his 2-未对接his 3-小医院（不需要拍照直接下单）
+}
+
+enum PermissionMenuType {
+	DictMgr = 0; // 字段管理
+	CompanyMgr = 1; // 合作伙伴管理
+	COMgr = 2; // 项目点管理
+	PriceMgr = 3; // 定价管理
+	SysMgr = 4; // 系统管理
+	WorkerMgr = 5; // 人员管理
+	UserMgr = 6; // 用户管理
+	OrderMgr = 7; // 订单管理
+	DataAnalysing = 8; // 数据分析
+	ServiceMgr = 9 ; // 服务管理
+	FinanceMgr = 10 ; // 财务管理
+	QualityMgr = 11; // 质量管理
+	FormMgr = 12; // 报表中心
+	SpecialMgr = 13;// 特殊权限
+}
+
+message PermissionMenuItem {
+	PermissionMenuType menuType = 1; // 菜单类型
+	string name = 2; // 菜单名
+	string url = 3; // 菜单列表
+}
+
+message PermissionMenu {
+	string name = 1; // 菜单名
+	repeated PermissionMenuItem menu = 2;
+	string icon = 3;
+}
+
+message PermissionMenuList {
+	repeated PermissionMenu list = 1;
+}
+
+message OrgTag {
+	uint64 id = 1; // id
+	uint64 tagId = 2; // 标签id
+	uint64 orgId = 3; // 机构id
+	uint32 order = 4; // 标签顺序
+	string orgName = 5; // 机构名
+	uint32 state = 6; // 状态 -1 已删除 0 正常
+	uint64 createStaffId = 7; // 创建员工id
+	string createStaffName = 8; // 创建员工姓名
+	uint64 createTime = 9; // 创建时间
+}
+
+message OrgTagItem {
+	uint64 id = 1; // id
+	string tagName = 2; // 标签名
+	uint32 color = 3; // 标签颜色 1 #FFC362 2 #2BD6BD 3 #FD6565 4 #333333 5 #48A0DC
+	string colorStr = 4; // 颜色字符串   eg:#FFC362
+	uint32 state = 5; // 状态 -1 已删除 0 正常
+	uint64 createStaffId = 6; // 创建员工id
+	string createStaffName = 7; // 创建员工姓名
+	uint64 createTime = 8; // 创建时间
+}
+
+message CompanyPrepay {
+	uint64 companyId = 1; // 公司ID
+	uint32 serviceType = 2; // 服务类型  101 居家照护 102家庭护士 103 康复护理 104 中医理疗 105 金牌月嫂 106 就医陪护 107 心理慰藉 108 产后恢复 109 育婴幼教 110 临终关怀',
+	string serviceTypeName = 3; // 服务类型名称
+	string companyName = 4; // 公司名
+	uint64 prepayAmount = 5; // 预付金
+	uint64 createStaffId = 6; // 创建员工id
+	string createStaffName = 7; // 创建员工姓名
+	uint64 createTime = 8; // 创建时间
+}
+
+message OrgTagVO {
+	string tagName = 1; // 标签名
+	uint32 color = 2; // 标签颜色 1 #FFC362 2 #2BD6BD 3 #FD6565 4 #333333 5 #48A0DC
+	string colorStr = 3; // 颜色字符串   eg:#FFC362
+	uint32 order = 4; // 排序字段
+	uint64 orgId = 5; // 机构id
+	string orgName = 6; // 机构名
+}
+
+message CompanyPriceVO {
+	string prepayAmount = 1; 	// 预付金
+	Price  price = 2; 			// 定价
+	uint32 number = 3; 			// 数量
+	string priceFeeStr = 4;		// 价格描述
+	uint32 payNumber = 5;		// 已经支付的数量
+	uint32 subjoinGroupingType = 6;// 附加项子类型 1-专陪 2-多陪 3-夜陪
+}
+
+// 长护险申请批次
+message InsureNOModel {
+	string insureNO = 1;		// 申请批次
+	string idcard = 2;		// 身份证号
+	string cityId = 3;		// 城市id
+	uint64 userId = 4;		// 申请人id
+	string contactName = 5;	// 联系人
+	string contactPhone = 6;// 联系电话
+	uint64 kinsId = 7;		// 被服务人id
+	string kinsName = 8;	// 被服务人
+	uint32 sex = 9;			// 性别 0-未知 1-男 2-女
+	uint32 age = 10;			// 当前年龄
+	uint32 medicareType = 11;	// 医保类型
+	string medicareNO = 12;		// 就诊卡号
+	string height = 13;			// 身高
+	string weight = 14;			// 体重
+	uint32 actAbility = 15;		// 行动能力
+	repeated uint32 language = 16;		// 语言，多种语言用,号分割 1-普通话 2-粤语
+	string memoInfo = 17;		// 备注信息
+	uint64 addrId = 18;			// 地址id
+	string phone = 19;			// 地址联系电话
+	string name = 20;			// 地址联系人
+	string province = 21;		// 省
+	string city = 22;			// 市
+	string district = 23;		// 区县
+	string building = 24;		// 小区
+	string addrDetail = 25;		// 详细地址
+	uint32 status = 26;			// 状态 0-客服审核 1-护士初审 2-等待提交复审 3-等待复审 4-复审通过 5-复审中  50-客服驳回 51-初审驳回 52-复审驳回 53-已关闭
+	repeated string orderId = 27;// 正在进行的相关订单id集合，用逗号隔开
+	uint64 nurseId = 28;		// 被指派护士id
+	string nurseName = 29;		// 被指派护士
+	uint64 managerId = 30;		// 被指派健康经理id
+	string managerName = 31;	// 被指派健康经理
+	uint32 fee = 32;			// 强制申请的金额（大于0即强制申请）
+	uint64 reviveTime = 33;		// 复活时间-不通过时，可重新提交申请时间
+	uint64 startTime = 34;		// 长护险有效开始时间
+	uint64 endTime = 35;		// 长护险有效结束时间
+	uint64 createTime = 36;		// 申请时间
+	uint64 createStaffId = 40;
+	string createStaffName = 41;
+	int32 score = 42;			// 自评分数
+	uint32 isForce = 43;		// 是否强制提交申请 0-非强制 1-强制提交
+	uint32 payType = 44;		// 支付方式
+	uint64 nurseLeaderId = 45;	// 被指派护士长id
+	string nurseLeaderName = 46;// 被指派护士长
+	uint32 orderStatus = 47;	// 下单意愿 0-未联系 1-暂不下单 2-等待下单 3-已下单
+	string healthCareNO = 48;	// 医保卡号
+	int32 scoreMMSE = 49;		// mmse评估得分
+	uint64 assessTime = 50;		// 护士初审时间
+	repeated string medicalList = 51;// 病史记录
+	string kfRemark = 52;		// 客服备注
+	string hsRemark = 53;		// 护士评估备注
+	string channelId = 54;		// 渠道来源
+	uint64 appointTime = 55;	// 预约上门评估时间
+	int32 scoreADL = 56;		// ADL评估得分
+	uint64 orderTime = 57;		// 预约上门下单时间
+	string managerRemark = 58;	// 指派健康经理时的客服备注
+	uint64 updateTime = 59;		// 更新时间
+	uint32 insureGetType = 60;	// 领取方式 1 邮寄 2 自行领取
+	string agencyName = 61;		// 代理人昵称
+	string agencyRelation= 62;	// 代理人关系
+	string agencyPhone = 63;	// 代理人电话
+
+	uint32 dudaoScoreADL 		= 64;		// 健康经理adl评估的分数
+	uint32 applyTreatmentType 	= 65;		// 申请待遇类别 1-生活照料 2-生活照料+医疗护理
+	uint32 treatmentType 		= 66;		// 待遇类型 1-机构护理 2-居家护理
+	uint32 assessType		 	= 67;		// 评估类别 1-首次评估 2-复检评估 3-变更评估
+	string securityAssess 		= 68;		// 安全风险评估
+	string userStatusRemark 	= 69;		// 健康经理客户状态描述
+
+	string userSignPic			= 70;		// 申请人签名
+	string entrustPic 			= 71;		// 用户委托书
+
+	uint64 managerAssessTime 		= 72;	// 健康经理评估时间
+	uint64 loseAppointAssessTime 	= 73;	// 复审上门评估时间
+	uint64 kfTime 					= 74;	// 客服评估时间
+	uint64 loseAppointTime 			= 75;	// 复审时间
+
+	uint64 loseNurseId 				= 76;		// 被指派复审护士id
+	string loseNurseName 			= 77;		// 被指派复审护士
+
+	repeated string caseDiagnosePic = 78;		// 病例、诊断等图片
+	string hsCasePresentation = 79;				// 护士初审病情描述
+
+	uint32 isAmentia = 80;						// 是否中重度智能障碍 0-否 1-是
+	repeated string dysgnosiaePic = 81;			// 中重度智能障碍照片 如多张，以逗号隔开
+
+	string medicalHistory = 82;					// 护士初审评估情况说明
+
+	uint64 loseNurseLeaderId = 83;				// 被指派护士长id
+	string loseNurseLeaderName = 84;			// 被指派护士长
+
+	string loseRemark = 85;						// 专家复审评估备注
+	uint32 foundWay = 86;						// 创建方式  0-客户端app 1-客户端h5 2-企业端（健康经理） 3-saas
+
+}
+
+message InsureVO {
+	string insureNO = 1;	// 申请编号
+	string kinsName = 2;	// 被服务人
+	string createTime = 3;	// 申请时间
+	string statusDesc = 4;	// 进度描述
+	uint32 status = 5;		// 状态 0-客服审核 1-护士初审 2-等待提交复审 3-等待复审 4-复审通过 5-复审中  50-客服驳回 51-初审驳回 52-复审驳回 53-已关闭
+	int32 score = 6;		// 日常生活活动能力评分
+}
+
+message InsureFirmVO {
+	InsureNOModel insureNO = 1;
+	string addrInfo 		= 2;			// 地址详情
+	string statusTimeStr 	= 3;			// 与状态相关的时间说明
+	string statusTime 		= 4;			// 与状态相关的时间
+	string statusStr 		= 5;			// 状态说明
+	uint32 status 			= 6;			// 状态  0-客服审核 1-护士初审 2-等待提交复审 3-等待复审 4-复审通过 5-复审中  50-客服驳回 51-初审驳回 52-复审驳回 53-已关闭
+	uint32 assignStatus 	= 7;			// 指派状态 0-未指派 1-已指派
+}
+
+// 长护险申请记录明细
+message InsureNODetail {
+	uint64 id = 1;
+	string insureNO = 2;		// 申请批次
+	uint32 status = 3;			// 状态 0-下一步 1-通过 2-驳回
+	uint32 detailType = 4;		// 操作类型 0-用户提交 1-客服审核 2-指派护士 3-护士初审 4-提交复审 5-专家复审 6-指派健康经理 7-支付保证金 8-资料补全 9-录入复审时间
+	string content = 5;			// 操作内容
+	string remark = 6;			// 描述
+	uint64 createStaffId = 7;
+	string createStaffName = 8;
+	uint64 createTime = 9;
+	uint64 startTime = 10;		// 有效开始时间
+	uint64 endTime = 11;		// 有效结束时间
+	uint32 isForce = 12;		// 是否强制提交申请 0-非强制 1-强制提交
+	string rejectDesc = 13;		// 驳回原因
+}
+message InsureNODetailVO {
+	uint64 id = 1;
+	string insureNO = 2;
+	string content = 3;
+	string createTime = 4;
+	uint64 createStaffId = 5;
+	string createStaffName = 6;
+}
+
+message InsureNOAssess{
+	string insureNO = 1;
+	string kinsName = 2;			//昵称
+	uint32 sex = 3;					//性别
+	uint32 age = 4;					//年龄
+	string idcard = 5;				//身份证
+	string name = 6;				//地址联系人
+	string phone = 7;				//地址联系人电话
+	string medicareNo = 8;			//就诊卡号
+	string healthCareNO = 9;		//医保卡号
+	string addrItem = 10; 			//地址
+	string medicalList = 11;		//病例
+	string appointTime = 12;		//预约时间
+	uint32 status = 13;				//订单状态
+}
+
+
+message HgPerformanceVO {
+	string phone = 1;				// 手机号码
+	string fullName = 2;			// 昵称
+	uint64 firstTrial = 3;			// 初审人数
+	uint64 recheck = 4;				// 复审人数
+	uint64 lastInstance = 5;		// 终审人数
+	uint64 totality = 6;			// 申请总数
+
+	uint64 placeAnOrder = 7;		// 下单人数
+	string percentConversion = 9; 	// 转换率
+	string settleAccountsFee = 10;	// 结算金额
+}
+
+
+// 人员指派记录
+message StaffGuideRecord {
+	uint64 id = 1;
+	string insureNO = 2;			// 相关申请批次
+	string orderId = 3;			// 相关订单id
+	uint64 staffId = 4;			// 被指派人id
+	string staffName = 5;		// 被指派人
+	uint32 guide = 6;			// 指派类型 0-护士上门评估长护险 1-服务上门评估
+	string content = 7;			// 指派内容
+	uint64 createStaffId = 8;	// 指派人id
+	string createStaffName = 9;	// 指派人
+	uint64 createTime = 10;		// 指派时间
+	uint32 status = 11;			// 0-待上门 1-进行中 2-已完成
+}
+
+message InsureAccount {
+	string idcard = 1;			// 身份证号
+	uint64 companyId = 2;		// 公司id
+	string orderId = 3;			// 订单id
+	uint64 account = 4;			// 账户金额 单位 分
+	uint64 totalAccount = 5;	// 历史总金额（只增不减）
+	uint64 createTime = 6;		// 时间
+}
+message InsureAccountVO {
+	string kinsName = 1;		// 被服务人
+	string idcard = 2;			// 身份证号
+	uint32 orderNum = 3;		// 订单数
+	string accountStr = 4;		// 补贴账户余额
+}
+
+message InsureAccountRecord {
+	uint64 id = 1;
+	string idcard = 2;			// 身份证号
+	uint64 companyId = 3;		// 公司id
+	uint64 changeAccount = 4;	// 变动的金额
+	uint64 account = 5;			// 剩余账户金额
+	string changeDesc = 6;		// 变动原因
+	string orderId = 7;			// 订单id
+	uint32 changeType = 8;		// 账户变动类型 1-补贴发放 2-消费 3-体现
+	uint64 createTime = 9;
+	uint64 createStaffId = 10;	// 操作人id
+	string createStaffName = 11;// 操作人
+}
+message InsureAccountRecordVO {
+	string changeDesc = 1;			// 变动原因
+	string changeAccountStr = 2;	// 变动的金额
+	string accountStr = 3;			// 剩余账户金额
+	string orderId = 4;				// 订单id
+	string createTime = 5;
+}
+
+// 长护险评估结果
+message InsureAssess {
+	uint64 id = 1;
+	string insureNO = 2;		// 申请批次
+	uint32 assessType = 3;		// 0-用户自评 1-初审评估 2-复审评估 3-终审评估
+	int32 score = 4;			// 评估分数
+	uint32 isEat = 5;			// 是否能自己吃饭
+	uint32 isWater = 6;			// 是否能自己洗澡
+	uint32 isFace = 7;			// 是否能自己整理仪容
+	uint32 isWear = 8;			// 是否能自己穿衣服
+	uint32 isFaec = 9;			// 是否能自己控制大便
+	uint32 isPee = 10;			// 是否能自己控制小便
+	uint32 isToilet = 11;		// 是否能自己上厕所
+	uint32 isCarry = 12;		// 是否能自己进行床椅转移
+	uint32 isWalk = 13;			// 是否能自己行走
+	uint32 isStair = 14;		// 是否能自己上下楼梯
+	uint64 createStaffId = 15;
+	string createStaffName = 16;
+	uint64 createTime = 17;
+	string remark = 18;			// 评估备注
+	string idcard = 19;			// 被评估人的身份证号
+	uint64 userId = 20;			// 用户id
+
+	string eatRemark = 21;		// 是否能自己吃饭-备注
+	string waterRemark = 22;	// 是否能自己洗澡-备注
+	string faceRemark = 23;		// 是否能自己整理仪容-备注
+	string wearRemark = 24;		// 是否能自己穿衣服-备注
+	string faecRemark = 25;		// 是否能自己控制大便-备注
+	string peeRemark = 26;		// 是否能自己控制小便-备注
+	string toiletRemark = 27;	// 是否能自己上厕所-备注
+	string carryRemark = 28;	// 是否能自己进行床椅转移-备注
+	string walkRemark = 29;		// 是否能自己行走-备注
+	string stairRemark = 30;	// 是否能自己上下楼梯-备注
+}
+
+message AdlAssessItem {
+	string itemName = 1;
+	uint32 result = 2;
+	string remark = 3;
+	uint32 score = 4;
+}
+
+message InsureAssessMMSE {
+	uint64 id = 1;
+	string insureNO = 2;		// 申请批次
+	uint32 assessType = 3;		// 0-用户自评 1-初审评估 2-复审评估 3-终审评估
+	int32 score = 4;			// 评估分数
+	string idcard = 5;			// 被评估人的身份证号
+	uint64 userId = 6;			// 用户id
+
+	string composure = 7;		//	定向力
+	uint32 isMemory = 8;		//	记忆力得分
+	uint32 isMind = 9;			//	注意力得分
+	uint32 isRecall = 10;		//	回忆能力得分
+	uint32 isRename = 11;		//	命名能力得分
+	uint32 isRetell = 12;		//	复述能力得分
+	uint32 isThree = 13;		//	三步命令得分
+	uint32 isWrite = 14;		//	书写能力得分
+	uint32 isRead=15;			//	阅读能力得分
+	uint32 isStruct = 16;		//	结构能力得分
+
+	string memoryRemark = 17;	// 记忆力备注
+	string mindRemark = 18;		// 注意力备注
+	string recallRemark = 19;	// 回忆能力备注
+	string renameRemark = 20;	// 命名能力备注
+	string retellRemark = 21;	// 复述能力备注
+	string threeRemark = 22;	// 三步命令备注
+	string writeRemark = 23;	// 书写能力备注
+	string readRemark = 24;		// 阅读能力备注
+	string structRemark = 25;	// 结构能力得分
+
+	uint64 createStaffId = 26;
+	string createStaffName = 27;
+	uint64 createTime = 28;
+	string remark = 29;			// 评估备注
+}
+
+// 长护险补贴发放记录
+message OrderSubsidy {
+	uint64 id = 1;				// 唯一id
+	string orderId = 2;			// 补贴单id
+	uint32 itemType = 3;		// 0-居家项目 1-医疗项目
+	uint32 status = 4;			// 发放状态 0 - 未发放 1 - 已发放
+	uint64 fee = 5; 			// 当月消费金额
+	uint64 realFee = 6;			// 补贴金额
+	uint64 subsidyTime = 7;		// 发放补贴时间
+	uint64 createTime = 8;		//创建时间
+	uint64 createStaffId = 9;	//操作员工ID
+	string createStaffName = 10;//操作员工名称
+	string idcard = 11;			// 身份证id
+}
+
+// 客服联系记录
+message KFContactRecord {
+	uint64 id = 1;				// 唯一id
+	string orderId = 2;			// 订单id
+	string insureNO = 3;		// 补贴单id
+	string content = 4;			// 长护险id
+	uint64 createTime = 5;		//创建时间
+	uint64 createStaffId = 6;	//操作员工ID
+	string createStaffName = 7;//操作员工名称
+}
+
+// 日程表
+message ScheduleVO {
+	string insureNOId = 1;	// 长护护险申请id
+	string items = 2;		// 事项
+	string fullName = 3;	// 全名
+	uint32 sex = 4;	 		// 性别 1- 男 2-女
+	uint32 age = 5;			// 年龄
+	string userName = 6;	// 用户姓名
+	string phone = 7;  		// 用户手机号
+	uint64 createTime = 8;
+	uint32 itemType = 9;	// 事项类型 1：长护险申请评估 2：医疗服务 3：长护险下单预约
+	string orderId = 10;	// 订单id
+}
+
+// 护士评估
+message AssessVO {
+	string insureNOId = 1;		// 申请编号
+	string kinsName = 2;		// 全名
+	uint32 sex = 3;	 			// 性别 1- 男 2-女
+	uint32 age = 4;				// 年龄
+	string userName = 5;		// 用户姓名
+	string phone = 6;  			// 用户手机号
+	string kfRemark = 7;		// 客服备注
+	string Detail = 8;			// 联系地址
+	string hsRemark = 9;		// 护士备注
+}
+
+// 自照护理员申请记录
+message InsureStaffApply {
+	string applyId = 1;
+	uint64 userId = 2;			// 用户id
+	string userName = 3;		// 用户名
+	string userPhone = 4;		// 用户手机号
+	string applyName = 5;		// 申请人
+	string applyPhone = 6;		// 申请人手机号
+	string idcard = 7;			// 申请人身份证
+	uint32 isHealth = 8;		// 是否有健康证 1-有 2-无
+	uint32 isNurse = 9;			// 是否有护理员资格证 1-有 2-无
+	string referrerPhone = 10;	// 推荐人手机号
+	uint64 fee = 11;			// 需要支付的费用（单位分）
+	uint32 payStatus = 12;		// 是否已支付 0-未支付 1-已支付
+	uint32 payType = 13;		// 支付方式
+	uint32 status = 14;			// 状态 1-待审核 2-审核通过待缴费 3-待发放账号 4-培训中 5-入职 50-审核不通过
+	string rejectDesc = 15;		// 驳回原因（审核不通过时使用）
+	string province = 16;		// 省
+	string city = 17;			// 市
+	string cityCode = 18;		// 城市编码
+	string district = 19;		// 区
+	string adCode = 20;			// 区编码
+	string building = 21;		// 小区
+	string addrDetail = 22;		// 楼号、单元、门号
+	uint32 gpsType = 23;		// 经纬度类型 1-百度  2-高德
+	double lng = 24;			// 0.000000-维度
+	double lat = 25;			// 0.000000-经度
+	uint64 createTime = 26;		// 创建时间
+	uint64 createStaffId = 27;
+	string createStaffName = 28;
+	string idcardPic = 29;		// 身份证照片
+}
+
+// 自照护理员申请记录流水
+message InsureStaffApplyDetail {
+	uint64 id = 1;
+	string applyId = 2;			// 申请单号
+	string content = 3;			// 操作内容
+	uint32 status = 4;			// 状态 1-下一步 2-通过 3-驳回
+	string rejectDesc = 5;		// 驳回原因（审核不通过时使用）
+	uint64 createTime = 6;		// 创建时间
+	uint64 createStaffId = 7;
+	string createStaffName = 8;
+}
+
+
+//医疗服务附加项
+message OrderInsurePrice{
+	uint64 priceId = 1;				// 服务id
+	uint32 number = 2;				// 服务次数
+}
+
+
+//获取护士长指派列表
+message AssignVO{
+	AssessVO assessVO = 1;			//基础信息
+	string hgName = 2;				//护工昵称
+	uint64 hgId = 3;				//护工id
+	uint32 isExist = 4;				//是否存在护工 0:不存在 1：存在
+	uint32 status = 5;				// 长护险评估状态 1：已处理，2：未处理 3：待指派
+}
+
+//获取护工护士列表
+message HgVO{
+	uint64 id = 1;					// 护工id
+	string fullName = 2;			// 全名
+	uint32 sex = 3;					// 0未设置 1男 2 女
+	uint64 careerStartTime = 4;     // 护工工作开始时间, 用于计算工龄
+	uint32 seniority = 5;			// 工龄
+	string pic = 6;					// 个人照片
+	uint32 onService = 7;			// 0-空闲 1-专陪服务中 2-多陪服务中
+	repeated uint32 language= 8;	// 多种语言
+	uint64 serveNumber = 9;			// 服务中数量
+	uint32 workType = 10;			// 1-多陪 2-专陪 3-两种都可以
+}
+
+// 打印记录
+message PrintRecord {
+	uint64 id = 1;
+	string orderId = 2;			// 订单id
+	uint32 printType = 3;		// 打印类型 1-陪工费 2-陪人床 3-门禁卡 4-预交金
+	uint32 printNum = 4;		// 打印次数
+	uint64 createTime = 5;		// 创建时间
+	uint64 createStaffId = 6;
+	string createStaffName = 7;
+	string payee = 8;			// 收款人
+	uint64 orderExtraId = 9;	// 门禁卡租借记录id
+	string printNO = 10;		// 打印批次号
+	uint64 orgId = 11;			// 机构id
+}
+
+// 财务记录
+message FinanceRecord {
+	uint64 id 			  	= 1;
+	uint64 companyId 	  	= 2;			// 公司id
+	uint64 withdrawId 	  	= 3;			// 提现记录id
+	uint64 userId		 	= 4;			// 用户id
+	string userName		  	= 5;			// 用户名
+	string phone		  	= 6;			// 手机号
+	uint32 payType		  	= 7;			// 支付方式
+	string noteNO		  	= 8;			// 小票单号
+	uint64 fee			  	= 9;		 	// 提现金额
+	string feeStr 		  	= 10;			// 提现金额（元）
+	string realName		  	= 11;			// 实名
+	string cardNO		 	= 12;			// 银行卡号
+	string bankBranch	  	= 13;			// 银行支行
+	uint32 status		 	= 14;			// 处理状态  0-待处理  1-已处理
+	uint32 withdrawStatus	= 15;			// 提现状态 0-未知 1-成功 2-失败
+	string failureRemark  	= 16;			// 失败原因
+	uint64 acceptTime	  	= 17;			// 处理时间
+	uint64 withdrawTime   	= 18;			// 提现时间
+	uint64 payTime		  	= 19;			// 支付时间
+	uint64 updateStaffId  	= 20;			// 操作员工ID
+	string updateStaffName 	= 21;			// 操作员工名称
+	uint64 createTime 		= 22;			// 创建时间
+}
+
+// 报表记录表
+message FormRecord {
+	uint64 id				= 1;
+	uint64 companyId		= 2;			// 公司id
+	string fileName			= 3;			// 文件名
+	string filePath			= 4;			// 文件路径
+	uint32 fileType			= 5;			// 文件格式   0-excel
+	string condition		= 6;			// 筛选条件
+	uint64 fileSize			= 7;			// 文件大小（Kb）
+	uint64 createTime		= 8;			// 创建时间
+	uint64 createStaffId	= 9;			// 创建员工ID
+	string createStaffName	= 10;			// 创建员工名称
+	uint32 formType			= 11;			// 报表类型 1-财务提现表 2-门禁卡作废表 3-门禁卡过期表 4-长护险用户汇总 5-门禁卡租借表 6-门禁卡归还表 7-项目点资金流水 8-门禁卡费用报表 9-陪人床费用报表 10-护工费报表
+}
+
+// 消费记录表
+message Expenditure {
+	string expenditureTime 			= 1;		// 消费时间
+	string expenditureFee 			= 2;		// 消费总额
+	string expenditureONEFee 		= 3;		// 专陪费用
+	string expenditureNFee 			= 4;		// 普陪费用
+	string expenditureAdditionFee 	= 5;		// 附加项费用
+	string expenditureJJZGFee 		= 6;		// 居家照护
+	string expenditureJTHSFee 		= 7;		// 家庭护士
+	string expenditureJKHLFee 		= 8;		// 健康护理
+	string expenditureZYLLFee 		= 9;		// 中医理疗
+	string expenditureJPYSFee 		= 10;		// 金牌月嫂
+	string expenditureJYHLFee 		= 11;		// 就医护理
+	string expenditureXLWJFee 		= 12;		// 心理慰藉
+	string expenditureCHHFFee		= 13;		// 产后恢复
+	string expenditureYYYJFee 		= 14;		// 育婴幼教
+	string expenditureLZGHFee 		= 15;		// 临终关怀
+	string expenditureCHXFee 		= 16;		// 长护险生活照料
+	string expenditureFJXFee 		= 17;		// 普通附加项费用
+	string hgRebateFee 				= 18;		// 优惠金额
+	string needPay					= 19;		// 实收金额
+	uint64 companyId				= 20;		// 公司id
+	uint64 orgId					= 21;		// 机构id
+	uint64 branchId					= 22;		// 科室id
+	string startDate				= 23;		// 开始时间
+	string endDate					= 24;		// 结束时间
+	//状态
+	uint32 expenditureType 			= 25;		// 消费总额
+	uint32 expenditureONEType  		= 26;		// 专陪费用
+	uint32 expenditureNType  		= 27;		// 普陪费用
+	uint32 expenditureAdditionType  = 28;		// 附加项费用
+	uint32 expenditureJJZGType  	= 29;		// 居家照护
+	uint32 expenditureJTHSType  	= 30;		// 家庭护士
+	uint32 expenditureJKHLType  	= 31;		// 健康护理
+	uint32 expenditureZYLLType  	= 32;		// 中医理疗
+	uint32 expenditureJPYSType  	= 33;		// 金牌月嫂
+	uint32 expenditureJYHLType  	= 34;		// 就医护理
+	uint32 expenditureXLWJType  	= 35;		// 心理慰藉
+	uint32 expenditureCHHFType 		= 36;		// 产后恢复
+	uint32 expenditureYYYJType  	= 37;		// 育婴幼教
+	uint32 expenditureLZGHType  	= 38;		// 临终关怀
+	uint32 expenditureCHXType  		= 39;		// 长护险生活照料
+	uint32 expenditureFJXType  		= 40;		// 普通附加项费用
+}
+
+//  门禁卡押金总费用表
+message ExtraAccount {
+  	uint64 id 						= 1;		// id
+  	uint64 orgId 					= 2;		// 机构id
+  	int64  fee						= 3;		// 门禁卡费用
+  	int64  cashFee					= 4;		// 门禁卡现金费用
+}
+
+// 门禁卡总押金操作记录表
+message ExtraAccountRecord {
+	uint64 id 						= 1;		// id
+	string orderId 					= 2;		// 订单id
+	uint64 extraId					= 3;		// 关联门禁卡操作id
+	uint64 orgId 					= 4;		// 机构id
+	int64 fee						= 5;		// 门禁卡费用
+	int64 frontFee					= 6;		// 门禁卡总押金（变更前）
+	int64 backFee					= 7;		// 门禁卡总押金（变更后）
+	uint32 extraType				= 8;		// 操作类型 0-支付 1-退款
+	uint64 createTime				= 9;		// 创建时间
+	uint64 createStaffId			= 10;		// 创建员工ID
+	string createStaffName			= 11;		// 创建员工名称
+	int64 frontCashFee				= 12;		// 门禁卡总押金（变更前）
+	int64 backCashFee				= 13;		// 门禁卡总押金（变更后）
+}
+
+// 储存图片id跟图片url
+message picUrlId {
+	uint64 picId 					= 1;		// 图片id
+	string picUrl 					= 2;		// 图片链接
+}
+
+
+
+// 变更服务类型
+message UpdateType {
+	uint32 updateTypeId 			= 1;		// 变更id
+	string updateTypeStr 			= 2;		// 变更文案
+}
+
+
+
+// 服务中订单数量
+message OrderPriceNumberVO {
+	string serviceItem = 1;		// 服务项目
+	string priceDesc = 2;		// 价格描述
+	uint64 number = 3;			// 数量
+	uint64 priceId = 4;			// 服务id
+}
+
+
+
+// 系统异常数据记录
+message ErrorModel {
+	uint64 id 				= 1;		// id
+	uint64 userId			= 2;		// 用户id
+	string userName			= 3;		// 用户昵称
+	uint64 hgId 			= 4;		// 员工id
+	string hgName			= 5;		// 员工昵称
+	uint32 createType		= 6;		// 异常来源 1-用户app 2-saas 3-企业app 4-用户h5
+	uint32 terraceType		= 7;		// 异常来源平台 1-安卓 2-ios 3-h5
+	uint32 errorType		= 8;		// 异常类型 0-页面错误 1-服务器异常
+	uint64 createTime		= 9;		// 创建时间
+	string logText			= 10;		// 页面错误日志
+	string url				= 11;		// 错误页面路径
+}
+
+// 记录页面打开耗时
+message WebpageTimeModel {
+	uint64 id 				= 1;		// id
+	uint64 expendTime		= 2;		// 总耗时,毫秒为单位
+	uint64 bpTime			= 3;		// 白屏时间,毫秒为单位
+	uint64 zyTime			= 4;		// 资源加载,毫秒为单位
+	uint64 httpTime			= 5;		// HTTP响应全部接收完成,毫秒为单位
+	uint64 startDOMTime		= 6;		// 开始解析渲染DOM树,毫秒为单位
+	uint64 endDOMTime		= 7;		// DOM树解析完成,毫秒为单位
+	uint64 createTime		= 8;		// 创建时间
+	string url				= 9;		// 页面路径
+	string startTime		= 10;		// 开始时间
+	string netType			= 11;		// 网络类型
+	string userAgent		= 12;		// userAgent
+	uint64 wxTime			= 13;		// 微信加载时间,毫秒为单位
+}
+
+
+
+message PriceVO {
+	uint64 priceId = 1;				// 价格配置ID
+	string serviceItem = 2;			// 服务项目
+	string priceDesc = 3;			//价格描述
+}
+
+message InsurePriceVO {
+	uint64 priceId = 1;
+	string serviceItem = 2;		// 服务项目
+	string serviceIntro = 3;	// 服务介绍
+	string priceDesc = 4;		// 价格
+	uint32 serviceType = 5;		// 服务类型（长护险陪护服务-180 长护险带教服务-181 长护险自照服务-182）
+}
+
+// 自照护工
+message HGApply {
+	uint64 id = 1;
+	uint64 companyId = 2;		// 公司ID
+	string hgName = 3;			// 姓名
+	string phone = 4;			// 联系电话
+	string idcard = 5;			// 身份证
+	uint32 status = 6;			// 获取资质状态 0-未获得 1-已获得
+	uint64 sendStaffId = 7;		// 发放资质员工ID
+	string sendStaffName = 8;	// 发放资质员工名称
+	uint64 createTime = 9;	
+	uint64 sendTime = 10;		// 发放资质时间
+	uint32 sex = 11;			// 性别 0 - 无效; 1 - 男; 2 - 女
+	uint64 age = 12;			// 年龄	
+	uint64 hgId = 13;			// 发放资质后对应的护工id
+	repeated string orderId = 14;
+	repeated string fullNames = 15;	// 被陪护人
+}
+
+// 长护险护士列表
+message InsureHGListVO {
+	uint64 id 				= 1;				// 护工id
+	uint32 praise			= 2;				// 评分
+	uint32 sex 				= 3;				// 0未设置 1男 2 女
+	uint64 serviceNum		= 4;				// 已服务人数
+	string language			= 5;				// 多种语言
+	string fullName 		= 6;				// 全名
+	string picUrl 			= 7;				// 个人照片
+	string nativeplace		= 8;				// 籍贯
+	string hgno				= 9;				// 工号
+	uint32 exp				= 10;				// 工龄
+	uint32 orderNum 		= 11;				// 服务中单数
+	uint32 age				= 12;				// 年龄
+}
+
+// 客户端护士护工信息VO
+message HGInfoVO {
+	uint64 id = 1;
+	string headImg = 2;
+	string hgName = 3;
+	uint32 sex = 4;
+	uint32 age = 5;
+	string nativeplace = 6;	// 籍贯
+	uint32 serviceNum = 7;	// 已服务人数
+	
+	string companyName = 11;
+	string hgNO = 12;		// 工号
+	string language = 13;	// 多种语言用、分割
+	uint32 exp = 14;		// 工作经验
+	string goodAtProject = 15;		// 擅长项目
+	string healthCertificate = 16;	// 健康证（护理师独有）
+	string nursingCertificate = 17;	// 护理证（护理师独有）
+	string serviceOrg = 18;			// 任职医院（护士独有）
+	
+	string phone = 19;
+}
+
+
+
+
+message UserShield {
+	uint64 id 				= 1;  			// id
+	uint64 userId 			= 2;	  		// 用户id
+	string userName			= 3;			// 用户昵称
+	string phone 			= 4;			// 用户手机号
+	uint32 shieldType		= 5;			// 拉黑类型 0-微信聊天框push
+	int32 shieldStatus		= 6;			// 拉黑状态 0-拉黑 -1-取消拉黑
+	uint64 shieldStaffId 	= 7;			// 拉黑员工id
+	string shieldStaffName  = 8;			// 拉黑员工昵称
+	uint64 shieldTime		= 9;			// 拉黑时间
+	string shieldTimeStr	= 10;			// 拉黑时间Str
+}
+
+
+message RefundPay {
+	uint64 id 				= 1;  			// id
+	string orderId			= 2;			// 退款编号
+	string cardNO 			= 3;			// 银行卡号
+	string receiver 		= 4;			// 收款人
+	string purpose 			= 5;			// 付款目的
+	uint64 fee				= 6;			// 发起代付金额 单位分
+	uint64 refundStartTime	= 7;			// 开始时间
+	uint64 refundEndTime	= 8;			// 结束时间
+	uint32 refundStatus		= 9;			// 代付状态 0-待退款  1-已退款 2-退款失败
+	string resultCode		= 10;			// 回调状态
+	string failureRemark	= 11;			// 失败原因
+	uint64 createStaffId 	= 12;			// 操作员工id
+	string createStaffName  = 13;			// 操作员工昵称
+	uint64 createTime		= 14;			// 创建时间
+	string mac				= 15;			// 验证
+}
+
+message TjHgFeeDetailVO {
+	string orderId			= 1;			// 订单id
+	uint64 settleTime		= 2;			// 支付结算时间
+	string settleTimeStr	= 3;			// 支付结算时间Str
+	int64 fee				= 4;			// 费用
+	string feeStr			= 5;			// 费用Str
+	uint64 branchId			= 6;			// 科室id
+	string branchName		= 7;			// 科室昵称
+	string fullName			= 8;			// 被陪护人
+	string payTypeStr		= 9;			// 支付类型Str
+	uint32 payType			= 10;			// 支付类型 0-支付 1-退款 2-预付款
+	uint32 serviceType		= 11;			// 服务类型 0-专陪 1-普陪 2-专陪；普陪
+	string serviceTypeStr	= 12;			// 服务类型 多个以“，”隔开
+	string createName		= 13;			// 操作人
+	uint64 createId			= 14;			// 操作人地
+}
+
+message PriceType {
+	uint64 id				= 1;			
+	uint64 companyId		= 2;			// 公司id
+	string companyName		= 3;
+	uint32 serviceType		= 4;			// 服务类型  1-专陪 2-普陪 101-居家照护 102-家庭护士 103-康复护理 104-中医理疗 105-金牌月嫂 106-就医陪护 107-心理慰藉 108-产后恢复 109-育婴幼教 110-临终关怀 180-长护险陪护服务 181-长护险带教服务 182-长护险自照服务	
+	string serviceTypeName	= 5;			// 服务名称
+	uint32 state			= 6;			// 1 未启用 2 已启用
+	uint64 createStaffId	= 7;			// 创建人id
+	string createStaffName	= 8;			// 创建人
+	uint64 createTime		= 9;			// 创建时间
+	string createTimeStr	= 10;			// 创建时间Str
+	uint32 remarkType 		= 11;			// 备注类型 1-居家业务 2-医院业务
+}
+
+message FeedBackVO {
+	FeedBack feedBack = 1;				// 基础信息
+	string newTimeStr = 2;				// 最新时间
+}
+
+

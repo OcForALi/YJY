@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+option java_package = "com.yijianyi.protocol";
+option java_outer_classname = "LBSProto";
+
+/////////////// LBSData结构///////////////////////////
+message LbsLocation
+{
+	double latitude 	= 1;	//维度
+	double longitude	= 2;	//经度
+	uint32 altitude	= 3;	//海拔高度
+	uint32 accuracy	= 4;	//精确
+	uint32 bearing		= 5;	//方向
+	uint32 speed		= 6;	//速度
+	uint64 time		= 7;
+	uint64 locationId	= 8;		//位置ID
+	uint32 adCode		= 9;	// adCode
+}
+
+message LbsCell
+{
+	uint32 mcc	= 1; // mcc	国家码 (MCC for GSM and CDMA)
+	uint32 mnc	= 2; // mnc	网络码 (MNC for GSM, SystemID for CDMA)
+	uint32 lac	= 3; // lac	小区号 (LAC for GSM, NetworkID for CDMA)
+	uint32 cellId	= 4; // cellid	基站ID (CID for GSM, BaseStationID for CDMA)
+	uint32 rssi 	= 5; // rssi	信号强度（dBm）
+}
+
+message LbsWifiMac
+{
+	string mac	= 1; // mac wifi接入点的mac地址
+	uint32 rssi= 2; // rssi	信号强度（dBm）
+}
+
+message AddrInfo
+{
+	string province	= 1;
+	string city		= 2;
+	string district	= 3;
+	string streetName	= 4;
+	string streetNum	= 5;
+	string addrStr		= 6;
+}
+
+message LbsData
+{
+	LbsLocation location	= 1;
+	AddrInfo addrInfo		= 2;
+	repeated LbsCell cells			= 3;
+	repeated LbsWifiMac wifis		= 4;
+}
+

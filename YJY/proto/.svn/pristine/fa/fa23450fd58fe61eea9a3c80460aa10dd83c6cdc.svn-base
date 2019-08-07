@@ -1,0 +1,320 @@
+syntax = "proto3";
+
+option java_package = "com.yijianyi.protocol";
+option java_outer_classname = "ModelPROTO";
+import "CommonData.proto";
+
+message ImageModel{
+	uint64	imageId		= 1;
+	string type		= 2; // 图片类型
+	string suffix		= 3; // 后缀
+	uint32 width      	= 4; // 图片宽度
+	uint32 height      = 5; // 图片高度
+	uint32 bgcolor     = 6; // 背景色
+	double longitude	= 7; // 图片位置经度
+	double latitude	= 8; // 图片位置纬度
+	double center_x   	= 9;  // 图片中心点
+	double center_y	= 10;
+	uint64 createTime	= 11; // 上传时间
+}
+message UserModel{
+    uint64 id = 1;
+    string name = 2;
+    uint32 sex = 3;
+    string nickName = 4;
+    string birthday = 5;
+    string phone = 6;
+    string headImg = 7;
+    uint32 state = 8;		// 用户状态：0-正常，-1-删除
+    string channelId = 9;
+    string address = 10;
+    uint64 adcode = 11;
+    uint64 provinceId = 12;
+    uint64 cityId = 13;
+    string province = 14;
+    string city = 15;
+    string county = 16;
+    string building = 17;
+    double lat = 18;
+    double lng = 19;
+    string rongCloudToken = 20;
+    string remark = 21;
+    uint64 createTime = 22;
+    uint64 updateTime = 23;
+    uint64 lastTime = 24;
+	uint32 activeState = 25; //用户活跃状态 1 - 未登录 2 - 登录.
+	string wxNo = 26; 	// 微信号
+	string qqNo = 27;	// qq号
+	string email = 28;	// 电子邮箱
+    uint64 firstTime = 29;	// 首次绑定手机号时间
+    string diffno = 30;		// 异号（针对于没有手机号的一些用户）
+    string realName = 31;	// 实名制姓名
+    string idcard = 32;		// 身份证号
+}
+
+message WXMsgInfo{
+    uint32 cmdId       = 1;
+    string keyword     = 2;
+    string msg         = 3;
+    uint64 createTime  = 4;
+    string editor      = 5;
+}
+
+message WXMenuInfo{
+    uint64 menuId      = 1;//	主键id
+    uint64 parentId    = 2;//	父节点id
+    string menuName    = 3;//	菜单名称
+    uint32 menuType    = 4;//   菜单类型
+    string menuUrl     = 6;//	菜单链接
+    string menuMsg     = 7;//   菜单消息
+    uint64 createTime  = 8;//   创建时间
+    string editor      = 9;//	修改者
+    repeated WXMenuInfo subMenus= 10;//		微信菜单详情
+    uint32 state       = 11;//   状态,  1:正常状态,可以显示   0:删除状态,不予显示
+}
+message WXMPUserInfo{
+    string openId      = 1;
+    string unionid     = 2;
+    uint64 userId      = 3;
+    uint32 actType     = 4;
+    uint32 channelId   = 5;
+    uint64 createTime  = 6;
+}
+
+message WXUser{
+    uint64 userId          =1;
+    sint32 thirdType       =2; // 1：微信；2：QQ；3：新浪微博；4:微信公众号
+    string wxAppId         =3; // 微信公众号开放平台appid
+    string openId          =4; //
+    string unionid         =5; //
+    string accessKey       =6; //
+    string refreshKey      =7; //
+    uint64 expiresTime     =8; //
+    string nickName        =9; //
+    string headImg         =10; //
+    uint32 sex         =11; // 1-男 2-女
+    uint64 createTime  =12; //
+    string channelId   =13; //
+}
+
+message BannerModel {
+    uint32 id          	=1;
+    string name       	=2; //  banner名称
+    uint32 bannerType   =3; //  类型 1-微信banner 2-用户app banner
+    string url          =4; //  跳转路径
+    string imgUrl       =5; //  图片路径或图片id
+    string desc       	=6; //  banner描述
+    uint64 startDate    =7; //  开始时间
+    uint64 endDate     	=8; //  结束时间
+    string editor       =11; //  创建者
+    uint64 createTime  	=12; //  创建时间
+    string imgId		=13; // 图片id
+    uint32 sort 		=14; // banner排序
+}
+
+//  闪屏model
+message SplashScreenModel {
+    uint32 id          	=1;
+    string name       	=2; //  闪屏名称
+    uint32 duration   	=3; //  持续的时间（秒）
+	uint32 type   		=4; //  类型 1-用户app 2-护工app
+    string url          =5; //  跳转路径
+    string imgUrl       =6; //  图片路径或图片id
+    string desc       	=7; //  描述
+    uint64 startDate   	=8; //  开始时间
+    uint64 endDate     	=9; //  结束时间
+    string editor       =11; //  创建者
+    uint64 createTime  	=12; //  创建时间
+    string imgId		=13; // 图片id
+}
+
+message AppVersion {
+	uint32 id = 1;
+	string name = 2;
+	uint32 version = 3;
+	uint32 type = 4;		 	//  APP类型 1-用户APP,2-企业APP
+	uint32 platform = 5;		//  运行平台 1-ios, 2-android
+	string sourceLink = 6;		//  下载链接
+	uint32 remindLevel = 7;		//  提醒级别 1 - 强制更新 2 - 推荐更新(重启APP提醒) 3 - 建议更新(只提醒一次)
+	uint64 publishTime = 8;		//  发布时间
+	uint64 remindTime = 9;		//  提醒时间
+	uint32 enabled = 10;		//  是否可用 1-可用 2-不可用
+}
+
+// 优惠券模板
+message CouponTemplate {
+	uint64 id = 1;
+	string couponCode = 2;		// 优惠码
+	string couponName = 3;		// 优惠券名
+	uint32 couponType = 4;		// 优惠类型 1-减免 2-打折
+	uint32 fee = 5;				// 优惠额度 如果是减免就是减免的金额， 如果是打折90代表9折
+	string couponDesc = 6;		// 优惠券描述
+	uint32 periodType = 7;		// 有效期类型 1-固定日期 2-有效天数
+	string startDate = 8;		// 开始日期
+	string endDate = 9;			// 结束日期
+	uint32 validDays = 10;		// 有效天数
+	uint32 scence = 11;			// 适用场景 1-机构 2-居家
+	repeated uint32 serviceTypes = 12;	// 限定服务类型，机构有1-1 1-n，居家有中医理疗等
+	repeated uint64 orgIds = 13;	// 限定机构id
+	repeated uint64 branchIds = 14;	// 限定科室id
+	uint32 weekday = 15;		// 是否工作日可用
+	uint32 weekend = 16;		// 是否周末可用
+	uint32 holiday = 17;		// 是否节假日可用
+	uint32 getMaxNum = 18;		// 可领取最大数量
+	uint32 sendMaxNum = 19;		// 可发送最大数量
+	uint64 companyId = 20;		// 创建公司id
+	string companyName = 21;	// 创建公司
+	uint64 createStaffId = 22;
+	string createStaffName = 23;
+	uint64 createTime = 24;
+}
+
+// 用户优惠券
+message UserCoupon {
+	uint64 id = 1;
+	uint64 templateId = 2;		// 模板ID
+	uint64 userId = 3;			// 用户ID
+	string startDate = 4;		// 开始日期
+	string endDate = 5;			// 结束日期
+	uint64 createTime = 6;		// 发放时间
+	uint64 useTime = 7;			// 使用时间
+	uint64 sendCompanyId = 8;	// 发放公司ID
+	uint64 sendStaffId = 9;		// 发放员工ID
+	uint64 useOrgId = 10;		// 使用机构ID
+	uint64 useBranchId = 11;	// 使用科室ID
+	uint32 status = 12;			// 状态 1-未使用 2-已使用
+	string channelId = 13;
+}
+
+// 极光用户表
+message UserJGModel {
+	string jpushId = 1;		// 极光推送设备ID
+	uint32 jgAppId = 2;		// 1-用户端 2-企业端
+	uint64 userId = 3;		// 用户ID
+	uint64 hgId = 4;		// 护工ID
+	uint64 createTime = 5;	// 登陆时间
+	uint32 deviceType = 6;	// 设备类型 1-安卓 2-IOS
+}
+
+// 充值配置
+message RechargeSetting {
+	uint32 id = 1;
+	string name = 2;	// 充值描述
+	uint32 fee = 3;		// 充值金额
+	uint32 present = 4;	// 赠送金额
+	uint64 createTime = 5;
+	string feeStr = 6;	// 充值金额
+	string presentStr = 7; // 赠送金额
+}
+
+
+//意见反馈
+message FeedBack{
+	uint64  id = 1;
+	uint64  userId = 2;
+	string  suggest = 3;		// 意见内容
+	string  createChannel = 4;
+	string  createTime = 5;
+	string reply = 6;			// 客服回复
+	uint32 state = 7; 			// 1 未回复 2已回复
+	uint64 replyStaffId = 8; 	// 回复人id
+	string replyStaffName = 9; 	// 回复人姓名
+	uint32 fbType = 10;			// 类型 1-用户端 2-企业端
+	string userName = 11;		// 反馈人
+	string phone = 12;			// 反馈人手机号
+	string replyTime = 13;		// 反馈时间
+}
+
+// 语种
+message Language {
+	uint32 id = 1;
+	string name = 2;
+}
+
+// 健康资讯
+message Information {
+	uint32 id = 1;
+	string imgUrl = 2;	// 图片
+	string title = 3;	// 标题
+	string sketch = 4;	// 简述
+	uint64 createTime = 5;
+	string description = 6;	// 详情
+	uint32 status = 7;	// 0-有效 -1-已删除
+	string url = 8;	// 跳转链接
+}
+
+// 入院通知单或住院手环识别对象
+message HospitalBra {
+	string name = 1;		// 姓名
+	uint32 sex = 2;			// 性别 0-未知 1-男 2-女
+	uint32 age = 3;			// 年龄
+	string phone = 4;		// 手机号
+	string branchName = 5;	// 科室名
+	string orgName = 6;		// 机构名
+	string orgNO = 7;		// 住院号
+	string admissionDate = 8;	// 入院日期
+	uint64 orgId = 9;		// 机构id
+	uint64 branchId = 10;	// 科室id
+	uint64 kinsId = 11;		// 被陪护人id
+	string imgId = 12;		// 识别图片的图片id
+	string bedNO = 13;		// 床号
+}
+
+// 微信关键字回复(字段为官方)
+message WxKeywordReply {
+	string ToUserName	= 1;			// 	接收方帐号（收到的OpenID）
+	string FromUserName	= 2;			//	开发者微信号
+	uint64 CreateTime	= 3;			//	消息创建时间 （整型）
+	string MsgType		= 4;			//  消息类型 text- 文本
+	string Content		= 5;			//  回复的消息内容（换行：在content中能够换行，微信客户端就支持换行显示）
+	string MsgId		= 6;			//  消息id
+}
+
+// 企业端工作台
+message WorkbenchVO {
+	string num = 1;			// 数据
+	string desc = 2;		// 数据简介
+	string nativeUrl = 3;	// 跳转url
+}
+
+// 企业端常用工具
+message CommonToolsVO {
+	string iconUrl = 1;		// 图片地址
+	string desc = 2;		// 工具描述
+	string nativeUrl = 3;	// 跳转地址
+}
+
+// 我的日程
+message MyScheduleVO {
+	string orderId = 1;
+	string insureNO = 2;		// 申请单号
+	string serviceItem = 3;		// 服务项
+	uint32 serviceType = 4;		// 服务类型
+	string kinsName = 5;
+	uint32 condition = 6;
+	string conditionStr = 7;	// 状态描述
+	uint32 dayNum = 8;			// 离服务到期还N天，或距上次更新已N天
+	string addrDetail = 9;		// 服务地点或联系地址
+	string contactPhone = 10;	// 联系电话
+	string startDate = 11;		// 预约开始时间
+}
+
+// 中肿his结算数据
+message BalanceData {
+	uint64 id = 1;
+	uint64 companyId = 2;
+	uint64 orgId = 3;
+	string orderId = 6;			// 订单id
+	string invoiceNo = 7;		// 操作记录id
+	uint32 transType = 8;		// 交易类型 1-正交易 2-反交易
+	string paykindCode = 9;		// 结算类别 01–自费
+	string totCost = 10;		// 总金额
+	string ownCost = 11;		// 自费金额
+	uint64 beginDate = 12;		// 起始日期
+	uint64 endDate = 13;		// 终止日期
+	string balanceType = 14;	// 结算类型 0-出院结算
+	string balanceOpercode = 15;// 结算操作员
+	string wasteOpercode = 16;	// 作废操作人
+	string wasteDate = 17;		// 作废时间
+	uint64 createTime = 18;
+}

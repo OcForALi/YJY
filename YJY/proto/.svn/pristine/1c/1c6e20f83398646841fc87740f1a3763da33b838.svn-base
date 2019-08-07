@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option java_package = "com.yijianyi.protocol";
+option java_outer_classname = "ErrProto";
+
+//注意：1024以下的错误码供约定俗成或者框架错误使用，业务从1025开始定义错误码
+enum APP_ERROR_CODE {
+
+    AEC_SUCCESS             = 0;    //成功
+	AEC_FAULT 				= -1;	//请求失败
+
+	AEC_UNLOGIN             = 1;    //未登录或者登录失效
+    AEC_DECRYPTION_FAULT    = 2;    //解密失败
+    AEC_PACKAGE_FAULT       = 3;    //HTTP包文Decode 失败
+	AEC_COMMAND_NOT_EXIST   = 4;   	//Command不存在
+	AEC_DECODE_FAULT        = 5;    //按照指定的command解码失败
+	AEC_COMMAND_TIME_OUT    = 6;    //命令超时
+	AEC_SYSTEM_FAULT        = 7;    //服务端处理异常
+	AEC_PARAM_ERR			=8;		//请求参数错误
+	AEC_IM_GET_TOKEN_ERR	=9;		//融云Token获取异常
+
+	AEC_PHONE_BLANK			= 1100;  //手机号为空
+	AEC_SMS_SEND_ERR		= 1101; //短信发送异常
+	AEC_SMS_SEND_FREQUENT   = 1102; //短信发送频繁
+	AEC_USER_NOT_EXIST		= 1103; //用户不存在
+	AEC_LOGIN_VERIFY_FAIL	= 1104; //登录失败
+	AEC_PHONE_ERR		    = 1105; //手机号码不正确
+	AEC_PROFILE_NOT_COMPLETE= 1106; //用户资料不完善
+	AEC_CODE_ERR			= 1107; //验证码错误
+	AEC_CODE_EXPIRE         = 1116; //验证码过期
+	AEC_THIRD_USER_ADD_FAIL = 1109;  //第三方用户添加失败
+	AEC_USER_ADD_FAIL       = 1110;  //用户添加失败
+	AEC_THIRD_VERIFY_FAIL 	= 1111;  //第三方登录账户验证不通过
+	AEC_USER_FROZEN         = 1112; //用户被冻结
+};

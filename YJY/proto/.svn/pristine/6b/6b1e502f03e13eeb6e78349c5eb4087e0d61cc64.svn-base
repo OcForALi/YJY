@@ -1,0 +1,936 @@
+syntax = "proto3";
+
+option java_package = "com.yijianyi.protocol";
+option java_outer_classname = "OrderModelPROTO";
+import "CommonData.proto";
+
+// 支付流水
+message OrderPayModel {
+	string payId = 1;			// 支付的用户单号
+	string orderId = 2;			// 订单号
+	uint64 userId = 3;			// 用户id
+	uint64 companyId = 4;		// 公司id
+	uint32 payType = 5;			// 支付类型 1-支付宝  2-微信公众号 3-微信APP 9-条形码 10-现金 11-pos  50-支付宝退款 51-微信公众号退款 52-微信APP退款
+	string transactionId = 6;	// 第三方支付的订单号
+	string payOpenId = 7;		// 支付的用户ID
+	uint32 fee = 8;				// 发起支付金额 单位分  负数时为退款请求
+	uint32 payFee = 9;			// 实际支付金额 单位分
+	uint64 payStartTime = 10;	// 支付开始时间
+	uint64 payEndTime = 11;		// 支付结束时间
+	string bank = 12;			// 支付银行
+	string attach = 13;			// 扩展字段
+	uint32 payStatus = 14;		// 支付状态 1-已支付  3-待退款  4-已退款
+	uint32 payBusiType = 15;	// 支付业务类型 1-定额充值 2-任意金额充值 3-支付预交金 4-支付结算清单 5-支付订单 60-退预付款或优惠 61-退长护险补贴 62-退门禁卡押金
+	uint32 refundFee = 16;		// 已退金额
+	uint32 printNum = 17;		// 打印次数
+	string receiver = 18;		// 收款人
+	uint64 receiverId = 19;		// 收款人id
+	uint64 orgId = 20;			// 机构id
+	uint64 branchId = 21;		// 科室id
+}
+
+//订单
+message Order{
+	string orderId = 1;				//订单号
+	uint64 userId = 2;				//用户ID
+	uint64 companyId = 3;			//公司ID
+	uint64 orgId = 4;				//机构ID
+	string orgName = 5;				//机构名称
+	uint64 branchId = 6;			//科室ID
+	string branchName = 7;			//科室名称
+	uint32 companyBranchId = 8;		//公司科室ID
+	uint64 roomId = 9;				//房间ID
+	string roomNo = 10;				//房号
+	uint64 bedId = 11;				//床ID
+	string bedNo = 12;				//床号
+	uint64 addrId = 13;				//用户地址ID
+	string province = 14;			//省
+	string city = 15;				//市
+	string cityCode = 16;			//城市编码
+	string district = 17;			//区
+	string adCode = 18;				//高德 区编码
+	string street = 19;				//街道
+	string building = 20;			//小区
+	string addrDetail = 21;			//详细地址
+	string phone = 22;				//第一联系人手机号
+	string contacts = 23;			//第一联系人
+	string phone2 = 24;				//第二联系人手机号
+	string contacts2 = 25;			//第二联系人
+	uint32 gpsType = 26;			//经纬度类型 1-百度  2-高德
+	double lng = 27;				//经度
+	double lat = 28;				//纬度
+	uint32 payStatus = 29;			//支付状态  0-未支付  1-已支付  2-部分支付
+	uint32 preRealFee = 30;			//预交金
+	uint32 originalFee = 31;		//原价
+	string couponCode = 32;			//优惠码
+	uint32 rebate = 33;				//减免
+	uint32 fee = 34;				//应付价格 = 原价-减免
+	uint32 realFee = 35;			//实际支付费用
+	string consentImgId = 36;		//知情同意书图片id
+	int32 status = 37;				// -1-已取消 0-待付款预交金,1-待派工,2-待服务,3-服务中,4-服务完成,5-待评价,6-已完成
+	string userMemo = 38;			//用户备注
+	string kfMemo = 39;				//客服备注
+	uint64 createTime = 40;
+	uint32 createType = 41;			// 1-用户app下单 2-saas下单 3-企业app下单 4-用户h5下单
+	string channelId = 42;			// 渠道来源
+	uint64 createStaffId = 43;		// 创建员工ID
+	string createStaffName = 44;	// 创建员工名字
+	uint64 serviceStartTime = 45;   // 预约开始时间
+	uint64 serviceEndTime = 46;   	// 预约截止时间
+	uint64 priceId = 47;			// 定价ID
+	uint64 hgId = 48;				// 护工ID
+	uint64 kinsId = 49;				// 被陪护人ID
+	uint32 orderType = 50;			// 订单类型 1-机构订单 2-居家订单 3-长护险订单
+	uint32 extraFee = 51;			// 门禁卡押金费用
+	uint64 invalidTime = 52;		// 订单失效时间
+	string userName = 54;			// 用户姓名
+	string fullName = 55;			// 照护人名字
+	string idCard = 56;				// 被照护人身份证号
+	string hgName = 57;				// 护工姓名
+	uint64 hgId2 = 58;				// 护工ID
+	string hgName2 = 59;			// 护工姓名
+	uint64 hgId3 = 60;				// 护工ID
+	string hgName3 = 61;			// 护工姓名
+	string serviceItem = 62;		// 服务项目
+	uint32 serviceUnit = 63;		// 服务单位 1-次 2-小时 3-天 4-月
+	uint64 price = 64;				// 套餐定价
+	string contactPhone = 66;		// 联系电话（下单时填入的手机号）
+	string insureNO = 67;			// 长护险申请单号（不为空即为长护险订单）
+	string managerName = 68;        // 客户经理或者督导
+	uint64 managerId = 69;			// 客户经理或者督导id
+	uint64 orderStartTime = 70;		// 服务开始时间
+	uint64 orderEndTime = 71;		// 服务结束时间
+	string signPic = 72;			// 被陪护人签名
+	uint32 pgStatus = 73;			// 0-待评估 1-已评估 2-跳过评估
+	uint32 serviceType = 74;		// 服务类型 1-1:1  2-1:N  99 机构附加项目 101 居家照护 102家庭护士 103 康复护理 104 中医理疗 105 金牌月嫂 106 就医陪护 107 心理慰藉 108 产后恢复 109 育婴幼教 110 临终关怀 199 上门服务附加项
+	uint32 serviceStatus = 75;		// 医疗服务状态 0-默认 1-待指派 2-服务中 3-服务完成
+	string orgNO = 76;				// 住院号
+	string admissionDate = 77;		// 入院日期
+	string securityAssess = 78;		// 安全风险评估
+	uint64 dischargedTime = 79;		// 预估出院时间
+	string pic1 = 80;				// 手环或入院通知单照片
+	string pic2 = 81;				// 手环或入院通知单照片
+	int64 hgRebateFee = 82;			// 职工优惠金额
+	uint32 hgRebateType = 83;		// 职工优惠类型 0-无优惠 1-职工 2-职工家属
+	string rebateDesc = 84;			// 优惠备注
+	uint64 settleTime = 85;			// 订单结算时间
+	uint64 endStaffId = 86;			// 结束服务员工ID
+	string endStaffName = 87;		// 结束服务员工名称
+	uint64 updateTime = 88;			// 服务项变更时间
+	uint32 refundStatus = 89;		// 订单取消是否退过款 0-未退款 1-已退款
+	uint32 settleType = 90;			// 1-用户app结算 2-saas结算 3-企业app结算 4-用户h5结算
+	uint32 finishType = 91;			// 1-saas结束订单 2-企业app结束订单
+	uint32 isHis = 92;				// 是否对接了his 0-未对接 1-对接
+	int64 firstHgRebateFee = 93;	// 第一次结算时职工优惠金额
+	uint32 firstHgRebateType = 94;	// 第一次结算时职工优惠类型 0-无优惠 1-职工 2-职工家属
+	string relationName = 95;		// 陪护家属姓名
+	string relation = 96;			// 陪护家属与被陪护人关系
+	string relationPhone = 97;		// 陪护家属手机号
+	string relationIdcard = 98;		// 陪护家属身份证号
+	string recommendHGNo = 99;		// 推荐人工号
+	uint64 insureHsId = 100;		// 长护险护士id
+	string insureHsName = 101;		// 长护险护士姓名
+	uint64 insureNurseLeaderId = 102;// 长护险被指派护士长id
+	string insureNurseLeaderName = 103;// 长护险被指派护士长姓名
+	uint32 cancelOrderId = 104;		// 取消订单id 1-上门不及时 2-病情变化不需要了 3-订单填写错误 4-其他原因
+	string cancelOrderDesc = 105;	// 取消订单原因
+	uint32 cancelStatus = 106;		// 取消订单前的订单状态
+	uint32 settleItemStatus = 107;	// 服务项确认状态 0-未确认 1-已确认
+}
+
+//订单项目
+message OrderItem{
+	uint64 itemId = 1;		 	//订单号
+	string orderId = 2;			//价格配置ID
+	uint64 priceId = 3;			//价格配置ID
+	string serviceItem = 4;		//服务项目
+	uint32 serviceUnit = 5;		//服务单位 1-次 2-小时 3-天 4-月
+	uint32 price = 6;			//定价 单位分
+	uint32 num = 7;				//数量
+	int32 fee = 8;				//单项总费用 = preDayFee * num
+	uint64 hgId = 9;			//护工id
+	string hgName = 10;			//护工姓名
+	int32  status = 11;			//-1-已取消 0-未确认 1-已确认 2-未服务
+	uint64 createTime = 12;		//创建时间
+	uint32 payState = 13;		//支付状态 0 - 未支付 1 - 已支付
+	int64 perDayFee = 15;		//每日费用 = price / serviceUnit(天-1    月-每月天数)
+	string location = 16;		//服务地点
+	uint32 rate = 17;			//比率
+	uint64 confirmTime = 18;	//确认时间
+	uint64 belongId = 19;		//所属每日明细的ID
+	string priceDesc = 20;		//价格描述
+	int64 paidFee = 21;		//已支付费用
+	uint32 itemType = 22;		//0-基本服务 1-附加服务 2-校正服务
+	string serviceDate = 23;	//服务时间
+	string trade_no = 24;		//支付交易号 多个时，以,隔开
+	uint32 payType = 25;		// 支付方式
+	uint32 insureFlag = 26;		// 1-可用长护险  2-不可用长护险
+	string fullName = 27;		// 被陪护人姓名
+	uint64 kinsId = 28;			// 被陪护人id
+	string updateTime = 29;		// 变更时间
+	uint64 payTime = 30;		// 支付时间
+	uint32 finishType = 31;		// 完成类型 1：完成服务，2：事假，3：病假，4：休假，5：旷工，6：客户外出， 7：用户转icu，不收费
+	uint32 workResult = 32;		// 工作情况 1：半天（有人顶替），2：半天（无人顶替），3：全天（有人顶替），4：全天（无人服务），5：客户外出（半天） ，6：客户外出（全天）
+	uint32 auditStatus = 33;	// 审核状态 0-未评审 1-已审核
+	uint64 auditId = 34;		// 审核人id
+	string auditName = 35;		// 审核人昵称
+	uint64 auditTime = 36;		// 审核时间
+	string auditRemark = 37;	// 审核备注
+	uint64 createStaffId = 38;	//创建员工ID
+	string createStaffName = 39;//创建员工名字
+	uint32 serviceSubjoinType = 40;	// 附加项类型 0-普通附加项 1-金额调整 2-陪人床
+	uint32 subjoinGroupingType = 41;// 附加项子类型 1-专陪 2-多陪 3-夜陪
+	uint64 seedHgId	= 42;		// 单独属于指定护工，子护工Id
+	string seedhgName = 43;		// 子护工昵称
+}
+
+//订单处理记录
+message OrderProcess{
+	uint64 id = 1;
+	string orderId = 2;			// 订单号
+	uint64 userId = 3;			// 处理人-用户
+	uint64 hgId = 4;			// 处理人-护工
+	string userName = 5;		// 处理人
+	uint32 processType = 6;		// 处理类型 0-创建订单 1-取消订单 2-分配护工 3-开启服务 4-确认服务 5-添加附加项 6-变更服务 7-校正附加项 8-结束订单 9-评价订单 10-支付预交金和门禁卡 11-支付订单 12-附加项收款 13-订单收款   14-添加分配协助护工 15-关闭订单项
+	string content = 7;			// 处理内容
+	uint64 processTime = 8;		// 处理时间
+	uint64 extendType = 9;		// 子类型（与processType关联）6变更服务：1-变更联系信息，2-变更服务项目，3-变更服务人员 4-变更科室 5-变更房号 6-变更床号
+	string processTimeStr = 10;
+	string signImgId = 11;		// 订单签名
+	uint64 orderExtraId = 12;	// 门禁卡租借记录id
+	uint32 payType = 13;		// 暂时记录除下单时门禁卡的支付方式
+}
+
+
+//订单的评价
+message OrderPraise{
+	uint64 id = 1 ;  // 评价的id
+	string orderId = 2; // 订单号
+	uint64 userId = 3; // 用户id
+	string userName = 4; // 用户名
+	string phone = 5; // 手机号
+	uint32 version = 6; // 版本号 不同版本代表评价的星星不同
+	uint32 grade1 = 7; // 评价的星星颗数 取值1-5 默认5星
+	uint32 grade2 = 8; // 评价的星星颗数 取值1-5 默认5星
+	uint32 grade3 = 9; // 评价的星星颗数 取值1-5 默认5星
+	uint32 grade4 = 10; // 评价的星星颗数 取值1-5 默认5星
+	uint32 grade5 = 11; // 评价的星星颗数 取值1-5 默认5星
+	string content = 12; // 评价内容  
+	uint64 companyId = 13; // 公司id
+	uint64 orgId = 14; // 机构id
+	uint64 branchId = 15; // 科室id
+	uint64 createTime = 16; // 创建时间
+	uint32 auditStatus 	= 17;	// 审核状态 0-未评审 1-通过 2-不通过
+	uint64 auditId		= 18;	// 审核人id
+	string auditName	= 19;	// 审核人昵称
+	uint64 auditTime	= 20;	// 审核时间
+	uint64 hgId = 21;	// 护工id
+	string hgName = 22;	// 护工名
+}
+
+//订单的附属服务
+message OrderPriceSubjoin{
+	uint64 id = 1 ;  			//关联的id
+	string orderId = 2; 		//订单号
+	uint64 userId = 3; 			//用户id
+	uint64 priceId = 4;			//价格配置ID
+	string serviceItem = 5;		//服务项目
+	uint32 serviceUnit = 6;		//服务单位 1-次 2-小时 3-天 4-月
+	uint64 price = 7;			//定价 单位分
+	uint32 status = 8;			//状态 0-使用中 1-已删除
+	uint64 createTime = 9;		//创建时间
+	uint64 createStaffId = 10;	//创建员工ID
+	string createStaffName = 11;//创建员工名字
+	
+}
+
+//用于APP端展示的订单数据模型
+message OrderVO{
+	string orderId = 1;				//订单ID
+	string createTime = 2;			//下单时间
+	string service = 3;				//服务内容	
+	string location = 4;			//服务地点
+	int32 status  = 5;				//-1-已取消 0-待付款预交金,1-待派工,2-待服务,3-服务中,4-服务完成,5-待评价,6-已完成
+	string serviceStaff = 6;		//服务人员
+	string invalidTime = 7;			//订单失效时间
+	string contactPhone = 8;		//联系电话
+	string contactName = 9;			//联系人
+	string kinsName = 11;			//被照护人姓名
+	string relation = 12;			//关系
+	string priceDesc = 13;			//收费标准
+	string prepayAmount = 14;		//预交金
+	string paidFee = 15;			//已支付
+	string needPay = 16;			//需要支付的费用
+	string hospital = 17;			//医院
+	string branch = 18;				//科室
+	string room = 19;				//病房
+	string bed = 20;				//床号
+	string memo = 21;				//备注
+	string locationMinute = 22;		//服务地址详细信息
+	string serviceTime = 23;		//预约时间
+	uint32 orderType = 24;			//订单类型 1-机构订单 2-居家订单
+	string kfPhone = 25;			//催单电话
+	uint32 payFlag = 26;			//0-费用刚好 1-需要支付 2-需要退款
+	string statusStr = 27;			//状态描述
+	string actionStr = 28;			//操作描述
+	string kfmemo =29;				//客服备注
+	string wantFee = 30;			//需交费用
+	uint32 insureType = 31;			//是否长护险订单 1:长护险 2：不为长护险
+	uint64 userId = 32;				//申请人id
+	uint64 kinsId = 33;				//被陪护人id
+	string superiorName = 34;		//督导或者健康经理
+	string extraFee = 35;			//门禁卡费用
+	string preRealFee = 36;			//预付金额
+	uint64 managerId = 37;			//健康经理或者督导id
+	uint32 pgStatus = 38;			// 评估状态 0-待评估 1-已评估 2-跳过评估
+	string orderStartTime = 39;		// 订单开始时间
+	string orderEndTime = 40;		// 订单结束时间
+	string addrPhone = 41;			// 地址联系电话
+	string addrContacts = 42;		// 地址联系人
+	string insureNO = 43;			// 长护险申请单id，当为长护险订单时才有值
+	uint32 isAll = 44;				// 科室承包状态 '0 -未定义 1 - 承包 2 - 非承包'
+	uint64 hgId = 45;				// 服务人员id
+	string securityAssess = 46;		// 安全风险评估
+	string updateTime = 47;			// 附加项校正时间
+	string reviseFee = 48;			// 服务附加费调整金额
+	string orgNO = 76;				// 住院号
+	string needRefundFee = 77;		// 订单结算时待退款金额
+	uint64 priceId = 78;			// 服务套餐id
+	uint64 branchId = 79;			// 科室id
+	uint32 createType = 80;			// 1-用户app下单 2-saas下单 3-企业app下单 4-用户h5下单
+	uint64 orgId = 81;				// 机构id
+	string orgName = 82;			// 机构名
+	string branchName  =83;			// 科室名
+	bool beRecover = 84;			// 是否可以恢复
+	uint32 settleItemStatus = 85;	// 服务项确认状态 0-未确认 1-已确认
+}
+
+//结算清单
+message Settlement{
+	uint64 id = 1;
+	string orderId = 2;				//订单ID
+	uint64 userId = 3;				//用户ID
+	uint64  needPay = 4;			//需要支付的费用
+	uint64 totalFee = 5;			//结算费用
+	uint32 month = 6;				//结算月份
+	string startServiceTime = 7;	//服务开始时间
+	string settleTime = 8;			//结算时间
+	uint32 payState = 9;			//支付状态
+	uint32 payWay = 10;				//支付方式 1 - 微信 2 - 支付宝
+	string createTime = 11;			//创建时间
+	uint32 orderType = 12;			//订单类型
+}
+
+// 当前订单
+message OrderCurrent {
+	string orderId = 1;
+	string serviceAddr = 2;		// 服务地址
+	string serviceName = 3;		// 服务项目
+	uint32 dayNum = 4;			// 服务时长(天数)
+	uint64 totalFee = 5;		// 消费金额
+	string totalFeeStr = 6;		// 转化后的消费金额
+}
+
+
+//结算清单VO
+message SettlementVO {
+	uint64 needPay = 2;			    // 需要支付的费用
+	string serviceTime = 3;			// 服务时间
+	uint32 payState = 4;			// 支付状态 0 - 未支付 1 - 已支付
+	uint64 confirmCost = 5;			// 确认费用
+	uint64 sortScore = 6;			// 排序分数
+	string settleDate = 7;			// 结算日期
+	string needPayStr = 8;			// 待交费用	
+	string confirmCostStr = 9;		// 确认总金额
+	string paidFeeStr = 10;			// 已支付金额
+	int64  subjoinFee = 11;			// 附加项费用（陪人床）
+	int64  subjoinNewNum = 12;		// 附加项数量（今日）（陪人床）
+	int64  nightNum = 13;			// 附加项数量（夜陪）
+}
+
+message OrderItemVO{
+	uint64 id = 1;
+	string service = 2;							// 服务内容
+	string serviceTime = 3;						// 服务时间
+	string location = 4;						// 服务地点
+	uint64 cost = 5;							// 费用（等于0即已取消）
+	string staffName = 6;						// 服务人员
+	uint32 payState = 7;						// 支付状态
+	repeated ExtraItemVO extraVOList = 8;		// 附加项列表
+	uint32 hasExtra = 9;						// 是否有附加项 0-无 1-有
+	uint64 sortScore = 10;						// 排序分数
+	string costStr = 11;						// 费用
+	repeated string hgName = 12;				// 协助护工
+	uint32 affirmStatus = 13;					// 当日服务项状态 0-不可确认 1-已确认 2-待确认 3-已支付
+	uint32 status = 14;							// -1-已取消 0-未确认 1-已完成
+	repeated uint64 hgId = 15;					// 护工、协助护工id
+	uint64 staffId = 16;						// 服务人员id
+	uint32 updateStatus = 18;					// 是否允许修改子服务项： 0-允许 1-不允许 
+	repeated ExtraItemVO basisVOList = 19;		// 基础服务列表
+	uint64 extraitemCost = 20;					// 附加服务总费用
+	string extraitemCostStr = 21;				// 附加服务总费用（小数）
+	uint64 basisCost = 22;						// 基础服务费用
+	string basisCostStr = 23;					// 基础服务费用（小数）
+}
+
+message OrderItemInvertVO{
+	uint64 id = 1;
+	string service = 2;							// 服务内容
+	uint64 cost = 3;							// 费用（等于0即已取消）
+	string costStr = 4;							// 费用
+	uint64 number = 5;							// 数量（等于0即已取消）
+	string numberStr = 6;						// 数量
+	uint64 price = 7;							// 单价（等于0即已取消）
+	string priceStr = 8;						// 定价
+	
+}
+
+
+// 下单时间
+message TimeData {
+	string dayStr = 1;	// 日期字段
+	string alias = 2;	// 别名
+	DayTimeData dayTimeData = 3;
+}
+message DayTimeData {
+	// 居家字段
+	repeated OrderTimeData amList = 1;	// 上午时间
+	repeated OrderTimeData pmList = 2;	// 下午午时间
+	
+	// 机构字段
+	repeated OrderTimeData mList = 3;
+}
+message OrderTimeData {
+	string time = 1;				// 用于显示
+	string serviceStartTime = 2;	// 选中的时间值
+	string serviceEndTime = 3;		// 选中的时间值
+	bool status = 4;				// 是否可选 true-可选 false-不可选
+	string timeStr = 5;
+	string dateTime = 6;			// 日期
+}
+
+//附加项展示VO
+message ExtraItemVO{
+	uint64 id = 1;					// id
+	string service = 2;				// 服务内容
+	uint32 serviceTimes = 3;		// 服务次数
+	string priceDesc = 4;			// 价格描述
+	uint64 paidFee = 5;				// 已付金额
+	uint64 needPay = 6;				// 未付金额
+	uint64 totalCost = 7;			// 总费用
+	repeated uint64 hgId = 8;		// 服务人员id
+	repeated string hgName = 9;		// 服务人员昵称
+	int32 status = 10;				// -1-取消 0-未确认 1-已完成
+	uint32 insureFlag = 11;			// 套餐类型 1：长护险附加项，2：普通附加项
+	uint64 priceId = 12;			// 套餐id
+	string priceDescNumber = 13;	// 价格描述 + 服务次数
+	string totalCostStr = 14;		// 总费用（转译）
+}
+
+//用于支付详情页展示套餐明细
+message OrderItemVO2{
+	string service = 1;				// 服务内容
+	int32 serviceDays = 2;			// 服务次数
+	uint64 paidFee = 3;				// 已付金额
+	string paidFee_yuan = 4;		// 转换成元
+	uint64 needPay = 5;				// 未付金额
+	string needPay_yuan = 6;		// 转换成元
+	uint64 totalCost = 7;			// 总费用
+	string serviceDate = 8;			// 消费时间
+	bool isInsure = 9;				// 是否是长护险医疗附近项
+	uint64 priceId = 10;			// 服务id
+	string serviceStartDate = 11;	// 服务开始时间
+	string serviceEndDate = 12;		// 服务结束时间	
+	string totalCostStr = 13;		// 总费用转换为元
+	string PriceDesc = 14;			// 服务单价
+	double basicServiceDays = 15;	// 基础服务天数
+	repeated string startEndDateDays = 16;			// saas中间支付服务开始结束时间
+	uint32 itemType = 17;			// 服务类型
+	uint32 serviceSubjoinType = 18; // 附加项类型 0-普通附加项 1-金额调整 2-陪人床
+	int32 paidPayNum	= 19;		// 已支付数量
+	int64 Price = 20;				// 服务单价
+	int32 serviceUnit = 21;			// 服务单位 1-次 2-小时 3-天  4-月
+	uint32 subjoinGroupingType = 22; // 附加项子类型 1-专陪 2-多陪 3-夜陪
+}
+
+//用于支付详情页展示套餐明细
+message OrderItemVO3{
+	string service 							= 1;	// 服务内容
+	uint64 totalCost 						= 2;	// 总费用
+	string totalCostStr 						= 3;	// 总费用
+	repeated OrderItemVO2 serviceList 		= 4;	// 基础服务
+}
+
+// 每个月服务信息
+message OrderItemInfo{
+	string serveTime = 1;		// 开始时间 - 结束时间
+	string feeStr = 2;			// 消费金额
+	string paidFee = 3;			// 已缴金额
+	string needFee = 4;			// 需缴费用
+}
+
+// 订单评估结果
+message OrderAssessResult {
+	uint64 id = 1;
+	string orderId = 2;					// 订单id
+	repeated string medicalList = 3;	// 病史记录
+	uint32 mbNum = 4;					// 脉搏次数
+	double twNum = 5;					// 体温
+	uint32 xyNum = 6;					// 血压
+	uint32 hxNum = 7;					// 呼吸次数/每分钟
+	string illDesc = 8;					// 并发症
+	repeated string treatDesc = 9;			// 治疗情况
+	repeated string hobby = 10;			// 嗜好
+	
+	string cjID = 11;		// 残疾证号
+	uint64 cjTime = 12;		// 残疾时间
+	uint32 cjType = 13;		// 残疾类别 1-视力 2-听力 3-语言 4-肢体 5-智力 6-精神 7-多重
+	uint32 cjLevel = 14;	// 残疾等级
+	string cjDesc = 15;		// 残疾原因
+	
+	uint32 commLevel = 16;	// 感知觉沟通等级
+	uint32 mindLevel = 17;	// 精神状态等级
+	uint32 jujiaLevel = 18;	// 居家环境安全等级
+	uint32 adlLevel = 19;	// 日常生活等级
+	uint32 nurseLevel = 20;	// 护理等级
+	
+	uint64 createTime = 21;			// 创建时间
+	uint64 createStaffId = 22;		// 创建员工ID
+	string createStaffName = 23;	// 创建员工名称
+	
+	uint64 hsId = 24;		// 评估护士id
+	string hsName = 25;		// 评估护士名
+	string kinsName = 26;	// 被服务人名
+	uint64 kinsId = 27;		// 被服务人id
+}
+
+// 门禁卡信息
+message OrgExtra {
+	uint64 id = 1;
+	string orderId = 2;		// 订单id
+	string extraNO = 3;		// 门禁卡号
+	int32 status = 4;		// 状态 -1-删除 0-使用中 1-已归还 2-已挂失 3-已作废 4-已解绑
+	uint64 lossTime = 5;	// 挂失时间
+	uint64 cancelTime = 6;	// 取消挂失时间
+	uint64 returnTime = 7;	// 退还时间
+	uint64 createTime = 8;	// 创建时间
+	uint64 createStaffId = 9;	// 创建员工ID
+	string createStaffName = 10;	// 创建员工名称
+	uint64 updateStaffId = 11;	// 最后修改员工ID
+	string updateStaffName = 12;	// 最后修改员工名称
+	uint64 fee = 13;		// 门禁卡押金
+	uint64 orgId = 14;		// 机构id
+	string orgName = 15;	// 机构名
+	uint64 branchId = 16;	// 科室id
+	string branchName = 17;	// 科室名
+	uint64 damagedTime = 18;// 作废时间
+	uint32 payType = 19;			// 支付类型 1-支付宝  2-微信公众号 3-微信APP 9-条形码 10-现金 11-pos  50-支付宝退款 51-微信公众号退款 52-微信APP退款
+	uint64 refundFee = 20;		// 门禁卡退款金额
+	uint32 refundPayType = 21;			// 支付类型 1-支付宝  2-微信公众号 3-微信APP 9-条形码 10-现金 11-pos  50-支付宝退款 51-微信公众号退款 52-微信APP退款
+	uint32 feikaType = 22;		// 废卡类型 1-废卡 2-换卡
+	// 收款人、退款人、开票人、发卡人、收卡人
+	uint64 shoukuanStaffId = 23;	// 收款人ID
+	string shoukuanStaffName = 24;	// 收款人
+	uint64 tuikuanStaffId = 25;		// 退款人ID
+	string tuikuanStaffName = 26;	// 退款人
+	uint64 kaipiaoStaffId = 27;		// 开票人ID
+	string kaipiaoStaffName = 28;	// 开票人
+	uint64 fakaStaffId = 29;		// 发卡人ID
+	string fakaStaffName = 30;		// 发卡人
+	uint64 shoukaStaffId = 31;		// 收卡人ID
+	string shoukaStaffName = 32;	// 收卡人
+}
+
+
+// 门禁卡管理信息
+message Extra {
+	uint64 id = 1;
+	string extraNO = 2;			// 门禁卡号
+	int32 status = 3;			// 状态 -1-删除 0-使用中 1-已归还 2-已挂失 3-已作废 4-已解绑
+	uint64 lossTime = 4;		// 挂失时间
+	uint64 cancelTime = 5;		// 取消挂失时间
+	uint64 returnTime = 6;		// 退还时间
+	uint64 createTime = 7;		// 创建时间
+	uint64 createStaffId = 8;	// 创建员工ID
+	string createStaffName = 9;	// 创建员工名称
+	uint64 orgId = 10;			// 机构id
+	string orgName = 11;		// 机构名
+	uint64 branchId = 12;		// 科室id
+	string branchName = 13;		// 科室名
+	uint64 damagedTime = 14;	// 作废时间
+	string serialNumber = 15;	// 门禁卡编号
+}
+
+
+// 陪人床审核
+message OrderPriceVO {
+	string serviceDate = 1;		// 租借时间
+	string orgName = 2;			// 机构名称
+	string branchName = 3;		// 科室名称
+	uint64 number = 4;			// 数量
+	string typeStr = 5;			// 审核状态 审核状态 0-未评审 1-已审核
+	uint64 type = 6;			// 审核状态 审核状态 0-未评审 1-已审核
+	string hgName = 7;			// 评审护士昵称
+	string auditTimeStr = 8;	// 审核时间
+	string auditRemark = 9;		// 备注
+	uint32 auditShowStatus = 10;// 是否漏出审核按钮 
+	uint64 orgId = 11;			// 机构id
+	uint64 branchId = 12;		// 科室id
+}
+
+// 订单结算后校正表
+message OrderCheck {
+	uint64 id = 1;
+	string orderId = 2;				// 订单id
+	uint64 kinsId = 3;				// 被陪护人id
+	string kinsName = 4;			// 被陪护人名
+	uint64 orgId = 5;				// 机构id
+	uint64 branchId = 6;			// 科室id
+	uint32 status = 7;				// 0-未结算 1-已结算
+	uint64 createTime = 8;			
+	uint64 settleTime = 9;			// 结算时间
+	uint64 checkTime = 10;			// 校正时间（校正后支付或校正后退款时间）
+	uint64 createStaffId = 11;		// 创建员工ID
+	string createStaffName = 12;	// 创建员工名称
+}
+
+// 订单结算后校正明细表
+message OrderCheckItem {
+	uint64 id = 1;
+	string orderId = 2;				// 订单id
+	uint64 checkId = 3;				// 校正id
+	uint64 priceId = 4;				// 服务id
+	string serviceItem = 5;			// 服务项名称
+	uint64 price = 6;				// 定价 单位分
+	uint32 serviceUnit = 7;			// 服务单位 1-次 2-小时 3-天  4-月
+	int32 num = 8;					// 数量
+	int64 fee = 9;					// 单项总费用
+}
+
+
+
+// 订单结算统计明显
+message OrderSettleVO {
+	string orderId = 1;				// 订单id
+	uint64 kinsId = 2;				// 被陪护人id
+	string kinsName = 3;			// 被陪护人名
+	int64 hgFee = 4;				// 护工费费用
+	string hgFeeStr = 5;			// 护工费费用Str
+	int64 hgRebateFee = 6;			// 优惠金额
+	string hgRebateFeeStr = 7;		// 优惠金额Str 
+	uint64 createTime = 8;			// 下单时间
+	string createTimeStr = 9;		// 下单时间Str
+	uint64 settleTime = 10;			// 结算时间
+	string settleTimeStr = 11;		// 结算时间Str
+	uint64 checkTime = 12;			// 矫正时间
+	string checkTimeStr = 13;		// 矫正时间Str
+	repeated OrderItemVO2 serviceList 		= 14;	// 基础服务
+}
+
+// 夜陪vo
+message OrderItemNightVO {
+	string orderId = 1;				// 订单id
+	string serviceItem = 2;			// 订单信息
+	uint64 createTime = 3;			// 下单时间
+	string createTimeStr = 4;		// 下单时间
+	uint64 hgId = 5;				// 护工
+	string hgName = 6;				// 护工昵称
+	uint32 status = 7;				// 状态 0 - 可操作  1 - 已支付（不可操作） 
+	string priceDesc = 8;			// 价格描述
+	uint64 priceId = 9;				// 服务id
+	uint64 itemId = 10;				// 服务项id
+}
+
+
+// 订单列表VO
+message OrderListVO {
+	string orderId = 1;
+	int32 status = 2;
+	string statusStr = 3;
+	string kinsName = 4;
+	string createTime = 5;
+	uint32 orderType = 6;	// 订单类型 1-机构订单 2-居家订单 3-长护险订单
+	string kfPhone = 7;		// 催单电话
+	string actionStr = 8;	// 操作描述
+	string serviceItem = 9;	// 服务项目
+	uint32 serviceType = 10;// 服务类型
+	int32 condition = 11;	// 订单流转状态（不同于status）-1-已取消 0-待接单 1-待支付 2-待发放 3-已发放 4-待指派 5-已指派 6-待服务 7-服务中8-待结算  9-待评价 10-已完成
+	string conditionStr = 12;
+	string addrDetail = 13;	// 地址
+	uint64 priceId = 14;
+}
+
+
+// 长护险订单照护计划
+message OrderTend {
+	uint64 id 				= 1;	// id
+	uint64 companyId		= 2;	// 公司id
+	string orderId 			= 3;	// 订单号	
+	uint64 kinsId 			= 4;	// 被陪护人id
+	string kinsName			= 5;	// 被陪护人全名
+	uint32 status 			= 6;	// 状态 0-草稿 1-待审核 2-执行中 3-已完成 4-审核不通过 5-审核通过未生效
+	string rejectReason		= 7;	// 驳回理由
+	uint64 createStaffId	= 8;	// 创建员工id
+	string createStaffName	= 9;	// 创建员工名称
+	uint64 createTime		= 10;	// 创建时间
+	uint64 startTime		= 11;	// 生效时间
+	uint64 checkStaffId		= 12;	// 审核员工id
+	string checkStaffName	= 13;	// 审核员工名称
+	uint64 checkTime = 14;			// 审核时间
+}
+
+// 长护险订单照护计划明细 
+message OrderTendDetail {
+	uint64 id 				= 1;	// id
+	uint64 orderTendId		= 2;	// 照护计划ID
+	uint64 tendDetailTypeId	= 3;	// 照护明细类型id
+	uint64 tendDetailId		= 4;	// 照护明细ID(如果是手动输入，则为-1)
+	string content 			= 5;	// 照护明细内容	
+	uint64 createStaffId	= 6;	// 创建员工id
+	string createStaffName	= 7;	// 创建员工名称
+	uint64 createTime		= 8;	// 创建时间
+}
+
+message OrderTendDetailBO {
+	int64 tendDetailId		= 1;	// 照护明细ID(如果是手动输入，则为-1)
+	string content 			= 2;	// 照护明细内容
+}
+
+// 长护险单照护每日明细（如果没确认，需要自动任务跑出旷工的每日明细）
+message OrderTendItem {
+	uint64 id 				= 1;	// id
+	string orderId 			= 2;	// 订单号	
+	uint64 tendId 			= 3;	// 照护计划ID(orderTend)	
+	uint32 status 			= 4;	// 每日明细状态 0-服务 1-休假 2-旷工 3-已完成
+	uint32 serviceAddr		= 5;	// 服务地点 0-无 1-在家 2-住院
+	uint64 serviceStaffId	= 8;	// 服务员工ID
+	string serviceStaffName	= 9;	// 服务员工名称
+	uint64 serviceTime		= 10;	// 服务时间
+	uint64 subsidy			= 11;	// 补贴标准（分）
+	uint64 priceId			= 12;	// 服务id
+}
+
+
+// 长护险订单照护每日明细详情
+message OrderTendItemDetail {
+	uint64 id 				= 1;	// id
+	uint64 orderTendItemId	= 2;	// 每日明细id(orderTendItem)
+  	uint64 orderTendDetailId = 3;	// 照护计划明细id(orderTendDetail)
+  	string content			= 4;	// 照护明细内容
+  	uint32 status			= 5;	// 状态 0-待完成 1-已完成
+  	uint64 createStaffId	= 6;	// 服务员工ID
+  	string createStaffName	= 7;	// 服务员工名称
+  	uint64 finishTime		= 8;	// 完成时间
+  	uint64 orderTendId = 9;			// 照护计划id
+  	int64 tendDetailId = 10;		// 照护明细id
+  	uint64 tendDetailTypeId = 11;	// 照护计划明细类型id
+}
+
+
+// 长护险订单自照考核
+message InsureOrderCheck {
+	uint64 id 				= 1;	// id
+	uint64 companyId		= 2;	// 公司ID
+  	string orderId			= 3;	// 订单号
+  	uint32 checkType		= 4;	// 考核类型  0-长护险生活照护类操作考核 1-居家照护质量标准检查 2-最终考核
+  	uint64 score			= 5;	// 考核分数
+  	uint64 createStaffId	= 6;	// 服务员工ID
+  	string createStaffName	= 7;	// 服务员工名称
+  	uint64 createTime		= 8;	// 创建时间
+}
+
+// 长护险订单回访 
+message InsureOrderVisit {
+	uint64 id 					= 1;	// id
+	uint64 companyId			= 2;	// 公司ID
+  	string orderId				= 3;	// 订单号
+	uint64 visitTime			= 4;	// 回访时间
+	string visitDetial			= 5;	// 回访内容，不允许修改
+	uint32 visitStatus			= 6;	// 回访状态  0-未执行 1-执行中 2-已完成 -1-删除
+	uint64 visitStartTime		= 7;	// 回访开始时间
+	uint64 visitEndTime			= 8;	// 回访结束时间
+	string visitProblem			= 9;	// 现存护理问题
+	string visitMeasures		= 10;	// 护理措施
+	uint64 visitVitaId			= 11;	// 生命体征id
+	uint64 visitQualityId 		= 12;	// 质控内容id
+	repeated string visitSkillTraining	= 13;	// 技能培训
+	string visitTrainingType	= 14;	// 技能培训，1-指导 2-视频 ，多个以,逗号隔开
+	uint32 visitSkillStatus		= 15;	// 护理员技能掌握程度 0-掌握 1-未掌握
+	string relationImgId		= 16;	// 家属签名图片id
+	string hgImgId				= 17;	// 护工图片id
+	uint64 createStaffId		= 18;	// 创建员工ID
+	string createStaffName		= 19;	// 创建员工名称
+	uint64 createTime			= 20;	// 创建时间
+	uint64 finishTime			= 21;	// 完成时间
+	uint64 nurseLeaderId		= 22;	// 护士长ID
+	string nurseLeaderName		= 23;	// 护士长名称	
+}
+
+// 长护险订单回访生命体征
+message InsureOrderVisitVita {
+	uint64 id 				= 1;	// id
+  	uint64 visitId			= 2;	// 回访id
+  	string animalHeat		= 3;	// 体温
+  	string pulse			= 4;	// 脉搏
+  	string breathe			= 5;	// 呼吸
+  	string bloodPressure	= 6;	// 血压
+	uint64 createStaffId	= 7;	// 创建员工ID
+	string createStaffName	= 8;	// 创建员工名称
+	uint64 createTime		= 9;	// 创建时间
+}
+
+
+// 长护险订单回访质控内容
+message InsureOrderVisitQuality {
+	uint64 id 				= 1;	// id
+  	uint64 visitId			= 2;	// 回访id
+	uint32 floor			= 3;	// 地板,1-干净 2-不干净
+	uint32 kitchen			= 4;	// 厨房,1-干净 2-不干净
+  	uint32 toilet			= 5;	// 卫生间,1-干净 2-不干净
+	uint32 bed				= 6;	// 床单位,1-整洁 2-不整洁
+	uint32 tables			= 7;	// 桌椅台面,1-整洁 2-脏乱
+	uint32 hair				= 8;	// 头发,1-清洁 2-异味 3-不清洁
+	uint32 oralCavity		= 9;	// 口腔,1-清洁 2-异味 3-不清洁
+	uint32 skin				= 10;	// 全身皮肤,1-清洁 2-异味 3-不清洁
+	uint32 perineum			= 11;	// 会阴部,1-清洁 2-异味 3-不清洁
+	uint32 clothing			= 12;	// 身上衣物,1-清洁 2-异味 3-不清洁
+	uint32 diet				= 13;	// 饮食,1-正常 2-胃口差 3-导管灌注
+	uint32 sleep			= 14;	// 睡眠,1-好 2-易醒 3-差
+	uint32 feces			= 15;	// 大便,1-造痿 2-正常 3-失禁 4-便秘
+	uint32 skinFull			= 16;	// 皮肤完整性,1-完好 2-压疮 3-伤口
+	uint32 mentality		= 17;	// 心理状态,1-平稳 2-焦虑 3-暴躁 4-抑郁
+	uint32 discomfort		= 18;	// 近期有无不适,1-无 2-有
+	string discomfortDetial = 19;	// 不适状况
+	uint32 result			= 20;	// 上传回访的护理问题效果评价,1-有效 2-无效
+	string resultDetial 	= 21;	// 无效原因
+	uint64 createStaffId	= 22;	// 创建员工ID
+	string createStaffName	= 23;	// 创建员工名称
+	uint64 createTime		= 24;	// 创建时间
+}
+
+// 长护险订单自照考核
+message InsureOrderCheckVO {
+	string title 		= 1;	// 标题
+	uint64 score		= 2;	// 分数
+	uint32 checkType	= 3;	// 考核类型  0-长护险生活照护类操作考核 1-居家照护质量标准检查 2-最终考核
+	string scoreStr 	= 4;	// 分数说明，当checkType为2时，设置为考核结果
+	string checkTimeStr = 5;	// 考核时间
+	
+}
+
+// 长护险订单自照考核
+message OrderTendVO {
+	string name 		= 1;	// 被服务人
+	string startTimeStr = 2;	// 生效时间
+	uint32 status		= 3;	// 状态  0-草稿 1-待审核 2-执行中 3-已完成 4-审核不通过
+	string statusStr	= 4;	// 状态
+	uint64 tendId 		= 5;
+	string createTimeStr = 6;
+	string orderId		= 7;	// orderId
+	string checkTimeStr = 8;	// 审核时间
+}
+
+// 客户端订单状态流转信息
+message OrderStatusVO {
+	string statusStr = 1;	// 状态信息
+	bool isLight = 2;		// 是否亮起
+}
+
+// 长护险订单回访列表
+message InsureOrderVisitVO {
+	string visitTimeStr = 1;	// 回访时间
+	uint64 visitTime	= 2;	// 回访时间
+	uint64 status 		= 3;	// 状态 回访状态  0-未执行 1-执行中 2-已完成 -1-删除
+	string statusStr	= 4;	// 状态
+	uint64 visitId		= 5;	// 回访id
+}
+
+
+
+// 长护险订单每日明细列表
+message InsureOrderTendItemVO {
+	string serviceTimeStr	= 1;	// 服务时间
+	string hgName			= 2;	// 服务人员
+	uint64 serviceName		= 3;	// 服务数量
+	uint32 status			= 4;	// 状态0-服务 1-休假 2-旷工  3-已完成
+	string statusStr		= 5;	// 状态
+	uint64 itemId			= 6;	// 服务id
+}
+
+
+// 长护险订单每日明细详情
+message InsureOrderTendItemDetailVO {
+	string title			= 1;	// 标题
+	repeated InsureTendItemContentVO vo = 2;
+	uint64 detailTypeId = 3;	// 明细类型id
+}
+
+message InsureOrderTendDetailBO {
+	string detailTypeName = 1;	// 标题
+	uint64 detailTypeId = 2;	// 明细类型id
+	repeated OrderTendDetail tendDetailList = 3;
+}
+
+// 长护险订单每日明细详情内容列表
+message InsureTendItemContentVO {
+	string content 					= 1;	// 明细内容
+	string finishTimeStr 			= 2;	// 完成时间(时分)
+	string finishTimeHGStr 			= 3;	// 完成时间(时分秒)
+	uint32 status 					= 4;	// 0-待完成 1-已完成
+	uint64 orderTendItemDetailId 	= 5;
+}
+
+// 带教记录
+message InsureOrderTeachRecord {
+	uint64 id = 1;
+	uint64 startTime = 2;			// 带教开始时间
+	uint64 endTime = 3;				// 带教结束时间
+	double trainTime = 4;			// 培训时长
+	double exerciseTime = 5;		// 练习时长
+	repeated string trainContent = 6;		// 培训内容
+	repeated string exerciseContent = 7;	// 考核内容
+	uint32 selfPraise = 8;			// 带教对象自我评价 0-无 1-已经掌握 2-要求重新带教
+	uint32 hgPraise = 9;			// 带教人员评价 0-无 1-已经掌握 2-需要重新带教
+	string remark = 10;				// 备注
+	repeated string pics = 11;		// 图片集合（多个用逗号个开）
+	string selfSign = 12;			// 带教对象签名
+	string hgSign = 13;				// 带教人员签名
+	uint64 createStaffId	= 14;	// 创建员工ID
+	string createStaffName	= 15;	// 创建员工名称
+	uint64 createTime		= 16;	// 创建时间
+	string orderId = 17;
+	uint64 subsidy = 18;			// 补贴标准（分）
+	uint64 priceId = 19;			// 服务id
+	string teachTimeStr = 20;		// 培训时间
+	string createTimeStr = 21;		// 记录时间
+	string selfSignUrl = 22;		// 带教对象签名url
+	string hgSignUrl = 23;			// 带教人员签名url
+	repeated string picUrls = 24;	// 图片集合url
+}
+
+// 支付前记录表
+message OrderPrePayModel {
+	uint64 id = 1;
+	string outTradeNo = 2;
+	uint32 payType = 3;
+	uint64 fee = 4;
+	string attach = 5;
+	uint64 createTime = 6;
+}
+
+
+// 支付回调支付信息记录表
+message OrderPayCallbackModel {
+	uint64 id = 1;
+	uint64 companyId = 2;
+	string orderId = 3;
+	string tradeNo = 4;			// 支付标示
+	repeated uint64 itemId = 5;	// 订单服务id
+	uint32 status	= 6;		// 状态 0-未使用  1-已使用
+	uint32 callbackType	= 7;	// 类型 0-结算前  1-结算后
+	uint64 createStaffId = 8;	// 创建员工ID
+	string createStaffName = 9;	// 创建员工名称
+	uint64 createTime = 10;		//创建时间
+}
+
+  

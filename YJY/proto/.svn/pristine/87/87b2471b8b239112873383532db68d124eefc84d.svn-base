@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+option java_package = "com.yijianyi.protocol";
+option java_outer_classname = "StatProto";
+
+enum STAT_TYPE {
+	ST_DEFAULT					= 0;
+	ST_UserAction				= 1;		//用户行为统计
+	ST_InterFace				= 2;		//统计接口
+};
+
+enum ACTION{
+	ACT_DEFAULT	= 0;
+	ACT_VIEW 	= 100;	//页面浏览曝光
+	ACT_CLICK	= 200;	//点击
+	ACT_SHARE	= 300;	//分享
+	ACT_REPORT	= 400;	//举报
+};
+
+enum SCENCE_PAGE{
+	SP_DEFAULT	= 0;
+	SP_SPLASH			= 1;	//闪屏
+	SP_LOGIN			= 2;	//登录主界面
+	SP_LOGIN_PHONE		= 3;	//手机号登录界面
+	SP_COMPLETE_PROFILE	= 4;	//完善个人资料
+	SP_EDIT_FACE		= 5;	//编辑头像
+	SP_ADD_PET			= 6;	//添加宠物
+	SP_RECOMMAND_USER	= 7;	//推荐用户
+
+	SP_NEAR				= 8;	//附近的人
+	SP_USER_PROFILE		= 9;	//他人主页
+	SP_WALKDOG			= 10;	//遛狗
+
+	SP_FEEDS			= 11; 	//Feeds列表页
+	SP_FEEDS_DETAIL		= 12; 	//Feeds详情页
+	SP_FEEDS_ADD		= 13; 	//Feeds添加页
+
+};
+
+message StatUserAction
+{
+	uint32 sourceScene	= 1;    //源场景 见enum SCENCE_PAGE
+	uint32 scene		= 2;    //场景 见enum SCENCE_PAGE
+	string slot  		= 3;	//槽位号
+	uint32 action		= 4;    //动作 见enum ACTION
+	uint64 userId		= 5;	//用户ID 未登录 0
+	string sceneKey 	= 6;	//当前页面主键  用户详情页为用户ID，帖子详情页为帖子ID，宠物详情页为宠物ID
+	string extraData 	= 7;	//额外数据
+	uint64 time		= 8;	//时间
+	uint64 pushId		= 9;	//pushId
+	uint32 result		= 10;   //结果
+};
+
+message StatInterFace
+{
+	uint64 userId		= 1;	//当前登录用户ID 未登录 0
+	string method  	= 2;	//调用方法
+	string methodKey 	= 3;	//发发主键
+	uint32 result		= 4;   	//结果
+	uint32 costTime	= 5;	//耗时
+	string extraData 	= 6;	//额外数据
+};
+
+

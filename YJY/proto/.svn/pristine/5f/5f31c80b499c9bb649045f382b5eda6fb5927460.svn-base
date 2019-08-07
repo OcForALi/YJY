@@ -1,0 +1,251 @@
+syntax = "proto3";
+
+option java_package = "com.yijianyi.protocol";
+option java_outer_classname = "AssessModelPROTO";
+import "CommonData.proto";
+
+// 评估报告
+message InsureAssessResult {
+	uint64 id = 1;
+	string idcard = 2;				// 身份证号
+	uint32 assessType = 4;			// 评估类型 1-首次评估 2-复核评估 3-动态评估
+	string relation = 5;			// 协助评估人与评估对象的关系（配偶、子女、其他亲属、雇佣照顾者、其他）
+	string assistIdcard = 6;		// 协助评估人身份证号
+	string assistPhone = 7;			// 协助评估人联系电话
+	uint64 evaluationId = 8;		// 评估点id
+	string assessAddr = 9;			// 评估地点
+	string kinsSignPic = 10;	 	// 评估对象签名照片id
+	string assessSignPic = 11;	 	// 评估员签名照片id
+	
+	uint32 level = 3;				// 照护需求等级 0-6（0-2适合社区居家 3视情况社区居家或机构养老 4-6宜机构养老）
+	uint32 abilityLevel = 12;		// 能力等级 0-能力完好 1-轻度失能 2-中度失能 3-重度失能
+	uint32 nurseLevel = 13;			// 医疗照护分级0（基础正常或轻度，常规和康复正常）-1（基础中度，常规和康复轻度）-2（基础重度，常规和康复重度）-3（常规或康复重度）-4（需接受特殊治疗/护理）
+	uint32 illLevel = 14;			// 疾病状况等级 0-无一类和二类疾病 1-有1到2种一类疾病 2-有3种及以上一类疾病 3-有二类疾病
+	uint32 ssrsLevel = 15;			// 社会支持等级 1级-低水平（≤22分） 2级-中等水平（23-44分） 3级-高水平（≥45分）
+	uint32 tendType = 16;			// 养老意愿 1-家人照护 2-社区居家养老 3-机构养老 4-暂时社区居家，以后考虑机构养老
+	uint32 suggestServiceType = 17;	// 建议服务类型 2-社区居家养老 3-机构养老
+	repeated string suggestServiceContent = 18;	// 建议服务内容，内容以英文逗号隔开
+	string suggestServiceContentOther = 19;	// 建议服务内容-其他
+	string suggestServiceTime = 20;	// 建议照顾时间
+	string specialRemark = 21;		// 特殊情况描述
+	uint32 status = 22;				// 状态 0-待确认 1-评估员已确认 2-评估机构已确认
+	
+	string kinsName = 23;			// 姓名
+	uint32 sex = 24;				// 性别 0-未知 1-男 2-女
+	string nation = 25;				// 民族
+	string birthday = 26;			// 生日  1982-07-12 格式
+	string district = 27;			// 区/街道
+	string pic = 28;				// 个人照片
+	string province = 29;			// 籍贯-省份
+	string city = 30;				// 籍贯-城市
+	int32 marriage = 31;			// 婚姻状态 0-未知 1-未婚 2-已婚 3-丧偶 4-离异
+	uint32 dwelling = 32;			// 居住状况1-独居 2-与配偶/伴侣居住 3-与子女居住 4-与父母居住 5-与配偶和子女居住 6-与兄弟姐妹居住 7-与其他亲属居住 8-与非亲属关系的人居住 9-养老机构
+	uint32 education = 33;			// 教育程度 0-未知 1-文盲  2-小学  3-初中 4-高中 5-技校 6-职高 7-中专 8-大专 9-本科 10-硕士（及以上）
+	string religion = 34;			// 宗教
+	uint32 professionType = 35;		// 职业类别 1-政府机关人员 2-事业单位人员 3-企业职工 4-个体户 5-自由职业 6-无业
+	repeated string income = 36;	// 收入来源 机关事业单位离退休金 2-城乡居民养老保险 3-供养人员补贴 4-低保金 5-子女抚养/补贴 6-亲友自助 7-其他
+	uint32 nurseType = 37;			// 医疗类别 1-公费医疗 2-职工医保 3-居民医保 4-商业医疗保险 5-自费 6-其他
+	uint32 childrenStatus1 = 38;	// 子女状况 儿子个数
+	uint32 childrenStatus2 = 39;	// 子女状况 女儿个数
+	string housingType = 40;		// 住房性质 自有产权房 、租赁住房 、借住 、廉租房 、公租房 、其他
+	repeated string infoChannel = 41;	// 信息采集渠道 本人 、家属 、病历 、医院诊断 、健康档案 、其他
+	repeated string assessMan = 42;		// 参与评估人员 本人 、子女 、亲属 、朋友 、居委会工作人员 、其他
+	
+	uint64 createTime = 43;   		// 本次评估时间
+	uint64 confirmTime = 44;   		// 评估员确认时间
+	uint64 fianlTime = 45;   		// 评估机构确认时间
+	uint64 createStaffId = 46;		// 操作员工ID
+	string createStaffName = 47;	// 评估人员
+	
+	string dynamicDesc = 48;		// 动态评估事由
+	uint64 lastTime = 49;			// 上次评估时间
+	uint64 kinsId = 50;				// 评估人id
+	string assistSignPic = 51;		// 协助评估人签名
+	
+}
+
+// 老年人能力评估
+message InsureAssessAbility {
+	uint64 id = 1;
+	uint64 resultId = 2;		// 报告id
+	uint32 level = 3;			// 能力等级 0-能力完好 1-轻度失能 2-中度失能 3-重度失能
+	uint32 adlLevel = 4;		// 生活能力等级
+	uint32 adlScore = 5;		// 生活能力分数
+	uint32 mindLevel = 6;		// 精神状态等级
+	uint32 mindScore = 7;		// 精神状态分数
+	uint32 commLevel = 8;		// 感知觉与沟通等级
+	uint32 commScore = 9;		// 感知觉与沟通分数
+	uint32 socialLevel = 10;		// 社会参与等级
+	uint32 socialScore = 11;		// 社会参与分数
+	uint64 createTime = 12;   	// 本次评估时间
+	uint64 createStaffId = 13;	// 操作员工ID
+	string createStaffName = 14;	// 评估人员
+}
+
+// 老年人能力评估-生活能力
+message InsureAssessAbilityADL {
+	uint64 id = 1;
+	uint64 resultId = 2;		// 报告id
+	uint32 score = 3;			// 评估分数
+	uint32 level = 4;			// 0级-100分 1级-65至95分 2级-45至60分 3级-小于40分
+	uint32 eat = 5;				// 进食 10-可独立进食 5-需部分帮助 0-需极大帮助
+	uint32 water = 6;			// 洗澡 5-可独立洗澡 0-需帮助
+	uint32 face = 7;			// 修饰 5-可独立完成 0-需帮助
+	uint32 wear = 8;			// 穿衣 10-可独立完成 5-需部分帮助 0-需极大帮助
+	uint32 faec = 9;			// 大便控制 10-可控制大便 5-偶尔失控 0-完全失控
+	uint32 pee = 10;			// 小便控制 10-可控制大便 5-偶尔失控 0-完全失控
+	uint32 toilet = 11;			// 如厕 10-可独立完成 5-需部分帮助 0-需极大帮助
+	uint32 carry = 12;			// 床椅转移 15-可独立完成 10-需部分帮助 5-需极大帮助 0-完全依赖
+	uint32 walk = 13;			// 平地行走 15-可独立行走 10-需部分帮助 5-需极大帮助 0-完全依赖
+	uint32 stair = 14;			// 上下楼梯10-可独立完成 5-需部分帮助 0-需极大帮助
+	uint64 createTime = 15;   	// 本次评估时间
+	uint64 createStaffId = 16;	// 操作员工ID
+	string createStaffName = 17;	// 评估人员
+}
+
+// 老年人能力评估-精神状态
+message InsureAssessAbilityMind {
+	uint64 id = 1;
+	uint64 resultId = 2;		// 报告id
+	uint32 score = 3;			// 评估分数
+	uint32 level = 4;			// 0级-0分 1级-1分 2级-2至3分 3-4至6分
+	uint32 cognitive = 5;		// 认知功能得分
+	uint32 attack = 6;			// 攻击行为得分
+	uint32 depressed = 7;		// 抑郁症状得分
+	uint64 createTime = 8;   	// 本次评估时间
+	uint64 createStaffId = 9;	// 操作员工ID
+	string createStaffName = 10;	// 评估人员
+}
+
+// 老年人能力评估-感知觉与沟通
+message InsureAssessAbilityComm {
+	uint64 id = 1;
+	uint64 resultId = 2;		// 报告id
+	uint32 score = 3;			// 评估分数
+	uint32 level = 4;			// 感知觉与沟通分级（根据每个选项得出） 0-能力完好 1-轻度受损 2-中度受损 3-重度受损
+	uint32 mentality = 5;		// 意识水平
+	uint32 vision = 6;			// 视力
+	uint32 hearing = 7;			// 听力
+	uint32 communication = 8;	// 沟通交流
+	uint64 createTime = 9;   	// 本次评估时间
+	uint64 createStaffId = 10;	// 操作员工ID
+	string createStaffName = 11;	// 评估人员
+}
+
+// 老年人能力评估-社会参与
+message InsureAssessAbilitySocial {
+	uint64 id = 1;
+	uint64 resultId = 2;		// 报告id
+	uint32 score = 3;			// 评估分数
+	uint32 level = 4;			// 社会参与等级 0-0至2分 1-3至7分 2-8至13分 3-14至20分
+	uint32 viability = 5;		// 生活能力
+	uint32 workAbility = 6;		// 工作能力
+	uint32 timeSpace = 7;		// 时间/空间定向
+	uint32 personal = 8;		// 人物定向
+	uint32 socialSkills = 9;	// 社会交往能力
+	uint64 createTime = 10;   	// 本次评估时间
+	uint64 createStaffId = 11;	// 操作员工ID
+	string createStaffName = 12;	// 评估人员
+}
+
+// 医疗照护评估
+message InsureAssessNurse {
+	uint64 id = 1;
+	uint64 resultId = 2;		// 报告id
+	uint32 level = 3;			// 医疗照护分级0（基础正常或轻度，常规和康复正常）-1（基础中度，常规和康复轻度）-2（基础重度，常规和康复重度）-3（常规或康复重度）-4（需接受特殊治疗/护理）
+	uint32 baseNurse = 4;		// 基础护理 1-正常 2-轻度依赖 3-中度依赖 4-重度依赖
+	uint32 commonNurse = 5;		// 常规治疗护理 1-正常 2-轻度依赖 3-中度依赖 4-重度依赖
+	uint32 rehaNurse = 6;		// 康复护理 1-正常 2-轻度依赖 3-中度依赖 4-重度依赖
+	repeated string specialNurse = 7;	// 特殊治疗/护理（多选） 放射治疗、化学治疗、持续吸氧/吸痰、处于造口适应期、使用监护仪、人工呼吸机、压疮Ⅲ级、频繁伤口换药（大换药/特大换药）、静脉营养、气管切开处理、严重皮肤溃疡
+	uint64 createTime = 8;   	// 本次评估时间
+	uint64 createStaffId = 9;	// 操作员工ID
+	string createStaffName = 10;	// 评估人员
+}
+
+// 疾病状况评估
+message InsureAssessIll {
+	uint64 id = 1;
+	uint64 resultId = 2;		// 报告id
+	uint32 level = 3;			// 疾病状况等级 0-无一类和二类疾病 1-有1到2种一类疾病 2-有3种及以上一类疾病 3-有二类疾病
+	repeated string angiocarpy = 4;		// 心血管系统
+	string angiocarpyOther = 5;	// 心血管系统-其他
+	repeated string breathe = 6;			// 呼吸系统
+	string breatheOther = 7;	// 呼吸系统-其他
+	repeated string metabolism = 8;		// 代谢和内分泌系统
+	string metabolismOther = 9;	// 代谢和内分泌系统-其他
+	repeated string digestion = 10;		// 消化系统
+	string digestionOther = 11;	// 消化系统-其他
+	repeated string joint = 12;			// 骨/关节/脊柱
+	string jointOther = 13;		// 骨/关节/脊柱-其他
+	repeated string nerve = 14;			// 神经系统
+	string nerveOther = 15;		// 神经系统-其他
+	repeated string urinary = 16;		// 泌尿生殖系统
+	string urinaryOther = 17;	// 泌尿生殖系统-其他
+	repeated string blood = 18;			// 血液系统
+	string bloodOther = 19;		// 血液系统-其他
+	repeated string other = 20;			// 其他
+	repeated string secondIll = 21;		// 二类疾病
+	string secondIllOther = 22;	// 二类疾病-其他
+	uint64 createTime = 23;   	// 本次评估时间
+	uint64 createStaffId = 24;	// 操作员工ID
+	string createStaffName = 25;	// 评估人员
+}
+
+// 社会支持评定量
+message InsureAssessSSRS {
+	uint64 id = 1;
+	uint64 resultId = 2;			// 报告id
+	uint32 score = 3;				// 得分
+	uint32 level = 4;				// 社会支持等级 1级-低水平（≤22分） 2级-中等水平（23-44分） 3级-高水平（≥45分）
+	uint32 friends = 5;				// 关系密切的朋友数量
+	uint32 liveStatus = 6;			// 居住情况
+	uint32 neighbor = 7;			// 与邻居交往情况
+	uint32 colleague = 8;			// 与同事交往情况
+	uint32 familySpouse = 9;		// 与夫妻/恋人交往情况
+	uint32 familyParent = 10;		// 与父母交往情况
+	uint32 familyChild = 11;		// 与儿女交往情况
+	uint32 familySibling = 12;		// 与兄弟姐妹交往情况
+	uint32 familyOther = 13;		// 与其家属交往情况
+	repeated string helpChannel = 14;	// 帮助来源
+	string helpChannelOther = 15;	// 帮助来源-其他
+	repeated string careChannel = 16;	// 安慰和关心来源
+	string careChannelOther = 17;	// 安慰和关心来源-其他
+	uint32 pourWay = 18;			// 倾述方式
+	uint32 helpWay = 19;			// 求助方式
+	uint32 publicActivity = 20;		// 参加社会活动
+	uint64 createTime = 21;   		// 本次评估时间
+	uint64 createStaffId = 22;		// 操作员工ID
+	string createStaffName = 23;	// 评估人员
+}
+
+// 养老意愿评估
+message InsureAssessTend {
+	uint64 id = 1;
+	uint64 resultId = 2;			// 报告id
+	uint32 desireChannel = 3;		// 意愿来源 1-个人意愿 2-法定监护人意愿
+	uint32 tendType = 4;			// 养老意愿 1-家人照护 2-社区居家养老 3-机构养老 4-暂时社区居家，以后考虑机构养老
+	uint64 createTime = 5;   		// 本次评估时间
+	uint64 createStaffId = 6;		// 操作员工ID
+	string createStaffName = 7;		// 评估人员
+}
+
+// 评估点
+message EvaluationModel {
+	uint64 id = 1;
+	string evalName = 2;		// 评估点名
+	uint64 companyId = 3;		// 公司id
+	string province = 4;
+	string city = 5;
+	string cityCode = 6;		// 城市编码
+	string district = 7;		// 区
+	string adCode = 8;			// 高德城市编码
+	string street = 9;
+	string building = 10;		// 小区
+	string addrDetail = 11;		// 详细地址
+	uint32 gpsType = 12;		// 经纬度类型 1-百度 2-高德
+	double lng = 13;
+	double lat = 14;
+	uint64 createTime = 15;		
+	uint64 createStaffId = 16;	// 操作人id
+	string createStaffName = 17;// 操作人
+}

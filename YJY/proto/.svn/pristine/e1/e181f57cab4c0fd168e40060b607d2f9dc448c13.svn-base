@@ -1,0 +1,218 @@
+syntax = "proto3";
+
+option java_package = "com.yijianyi.protocol";
+option java_outer_classname = "CommonDataProto";
+
+import public "comm/Stat.proto";
+
+//短信验证码类型
+enum APP_SMS_PURPOSE{
+	SMS_DEFAULT		= 0;
+	ASP_LOGIN	= 1; //登录
+	PHONE_CHANGE = 2;	//绑定手机号
+}
+//第三方开放平台类型
+enum SNS_TYPE {
+	ST_UNKNOW	   = 0; //未知
+	ST_WECHAT      = 1; //[1：微信；2：QQ；3：新浪微博；4:微信公众号]
+    ST_QQ    	   = 2;
+    ST_WEIBO       = 3;
+    ST_WXGZ		   = 4;
+};
+//性别类型
+enum SEX_TYPE {
+	SEX_DEFAULT		= 0;
+	ST_MAN    = 1;   //[1-男  2-女]
+	ST_WOMAN  = 2;
+};
+
+// 图片格式类型
+enum IMG_FORMAT {
+	IMG_DEFAULT		= 0;
+	IMG_UNKNOW  =  1;
+	IMG_JPEG    =  2;
+	IMG_PNG     =  3;
+	IMG_WEBP    =  4;
+}
+
+message IMG_POINT {
+	double x  = 1;
+	double y  = 2;
+}
+
+message ImgInfo {
+	uint64	imgId		=1;
+	string imgurl      = 2;
+	string thumbImgurl = 3;
+	uint32 height      = 4;
+	uint32 width      = 5;
+	uint32 bgcolor     = 6;
+	IMG_FORMAT imgtype  = 7;
+	IMG_POINT center    = 8;  //图片中心点
+	string suffix		=9;		//图片后缀
+	string type		=10; //类型 ：petimg ,headimg,feeds
+}
+
+//闪屏信息
+message SplashItem
+{
+	uint32 id			= 1;
+	ImgInfo imgInfo		= 2;
+	uint64 startTimeCD	= 3;    // 距离开始的相对时间,如果已经开始则为0. 单位：ms毫秒
+	uint64 endTimeCD	= 4;    // 距离结束的相对时间,如果已经结束则为0. 单位：ms毫秒
+	bool onlyOneTime 	= 5;  // 指定闪屏是否只显示一次
+}
+
+// 广告信息-（闪屏、banner...）
+message ADItem {
+	uint32 id  		= 1;
+	AD_TYPE type 		= 2;   // 此广告显示的位置（同时表示类型）
+	uint32 index   	= 3;   //当前位置的顺序数,排在第几位
+	ImgInfo imgInfo 	= 4;   //旧版本banner图片，3.0之前的APP版本使用
+	string jumpto  	= 5;   //点击跳转url
+	uint64 startTimeCD = 6;  //距离开始的时间，如果已经开始则为0. 单位：毫秒
+	uint64 endTimeCD   = 7;  //距离结束的时间，如果已经开始则为0. 单位：毫秒
+	bool onlyOneTime   = 8;  // 指定广告是否只显示一次
+	ImgInfo imgInfoNew = 9;   //新版本banner图片，3.0以后的APP版本使用
+}
+
+enum AD_TYPE {
+	AD_DEFAULT			= 0;
+	SPLASH              = 1;   //闪屏
+	HOME_PAGE_BANNER    = 2;   //首页banner
+}
+
+//单条配置信息
+message SettingItem
+{
+	string k	= 1;
+	bytes  v	= 2;
+}
+
+//上报数据类型
+message StatReportItem
+{
+	STAT_TYPE type	= 1;	//上报类型
+	uint32 version	= 2;    //版本号
+	bytes data     = 3;    // 请求数据
+}
+
+// 支付类型
+enum PayType{
+	DEFAULT_PAY		= 0;
+	ALI_ZFB			= 1;		// 支付宝
+	WX_GZ			= 2;		// 微信公众号		H5微信支付
+	WX_APP			= 3;		// 微信app		APP微信支付
+	POS_PAY 		= 4;		// pos支付
+	CASH			= 5;		// 现金支付
+	ACCOUNT			= 6;		// 会员支付
+	WX_QRCODE		= 7;		// 微信二维码支付
+	WX_SAAS			= 8;		// SAAS微信扫码支付
+	ALI_SAAS		= 9;		// SAAS支付宝扫码支付
+	
+	PRE_FEE			= 10;		// 预交金支付
+	INSURE			= 11;		// 长护险补贴支付
+	REBATE_PRE_FEE	= 12;		// 优惠或预付金支付
+	ALI_H5_ZFB		= 13;		// 支付宝h5支付
+	
+	BAOFOO_ALIAPP	= 30;		// 宝付支付宝app
+	BAOFOO_WXGZ		= 31;		// 宝付微信公众号支付
+	BAOFOO_WXAPP	= 32;		// 宝付微信app支付
+	BAOFOO_WAP_ALI	= 33;		// 宝付手机网站-支付宝支付
+	BAOFOO_WAP_WX	= 34;		// 宝付手机网站-微信支付
+	
+	YINGSEHNGBAO_ALI_H5 = 35;		// 银生宝支付宝h5支付
+	YINGSEHNGBAO_WXGZ_H5 = 36;		// 银生宝微信公众号支付
+	
+	POS_WX			= 40;		// pos微信支付
+	POS_ZFB			= 41;		// pos支付宝支付
+	POS_CHUXU		= 42;		// pos银联储蓄卡支付
+	POS_QQ			= 43;		// posQQ钱包
+	POS_XINYONG		= 44;		// pos银联信用卡
+
+	ALI_ZFB_REFUNND	= 50;		// 退支付宝
+	WX_GZ_REFUND	= 51;		// 退微信公众号
+	WX_APP_REFUND	= 52;		// 退微信app
+	ACCOUNT_REFUND  = 53;		// 退账户余额
+	TG_REFUND		= 71;		// 退团购
+	CASH_REFUND		= 72;		// 退现金
+}
+
+//订单支付状态  0 未支付，1 已支付 ，2 部分支付，3 退款处理中，4 已退款
+enum OrderPayStatus{
+	PAY_NOT			=0;
+	PAY				=1;
+	PAY_PART		=2;
+	REFUND_PROCESS	=3;//退款处理中
+	REFUND_FINISH	=4;//已退款
+	ABNORMAL		=5;//支付流水异常
+}
+
+enum OrderStatus{
+	WAIT_PAY_PREFEE = 0;			// 待付款 (待支付预交金)
+	WAIT_ASSIGN = 1;				// 待派工
+	WAIT_SERVICE = 2;				// 待服务
+	SERVICE_ING = 3;				// 服务中
+	SERVICE_COMPLETE = 4;			// 服务完成
+	WAIT_APPRAISE = 5;				// 待评价
+	ORDER_COMPLETE = 6;				// 已完成
+	CANCEL = -1;					//已取消
+}
+
+//支付业务类型
+enum PayBusiType{
+	DO_NOT_USE = 0;			// 不使用
+	RECHARGE_D = 1;			// 定额充值
+	RECHARGE_R = 2;			// 任意金额充值
+	PAY_PREAMOUNT = 3;		// 支付预交金
+	PAY_SETTLEMENT = 4; 	// 支付结算清单
+	PAY_ORDER = 5;			// 支付订单
+	PAY_ORDER_EXTRA = 6;	// 订单附加项
+	PAY_INSURE = 7;			// 支付强制提交长护险保证金
+	PAY_APPLY = 8;			// 支付自照护理员培训费
+	PAY_EXTRA = 9;			// 支付门禁卡押金
+	PAY_SETTLEMENT_CLOSE = 10;//结算后校正支付
+	
+	REFUND_EXTRA = 50;		// 退门禁卡押金
+	REFUND_PREPAY = 51;		// 退预交金
+	REFUND_SETTLEMENT_CLOSE = 52;//结算后校正退款
+}
+
+//长护险订单状态
+enum InsureOrderStatus{
+	INSURE_WAIT_RECEIVE = 0;		// 待接单
+	INSURE_WAIT_PAY = 1;			// 待支付（陪护特有）
+	INSURE_WAIT_ASSIGN = 2;			// 待派工
+	INSURE_WAIT_SERVICE = 3;		// 待服务
+	INSURE_SERVICE_ING = 4;			// 服务中
+	INSURE_WAIT_SETTLE = 5;			// 待结算（陪护特有）
+	INSURE_WAIT_APPRAISE = 6;		// 待评价（陪护特有）
+	INSURE_ORDER_COMPLETE = 7;		// 已完成
+	INSURE_CANCEL = -1;				// 已取消
+}
+
+// 企业端按钮定义
+enum OrderButton {
+	CANCEL_ORDER = 0;		// 取消订单
+	JIEDAN = 1;				// 接单
+	TEACH = 2;				// 安排带教
+	UPDATE_ORDER = 3;		// 修改订单
+	SEND_CERT = 4;			// 发放资质
+	UPDATE_KINS = 5;		// 变更陪护家属
+	START_SERVICE = 6;		// 开启服务
+	END_SERVICE = 7;		// 结束服务
+	SUBSIDY = 8;			// 补贴估算
+	AGAIN_ORDER = 9;		// 再次下单
+	SERVICE_CONFIRM = 10;	// 服务确认
+	APPLY_END_SERVICE = 11;	// 申请结束服务
+	ASSIGN_HS = 12;			// 指派护士
+	UPDATE_HS = 13;			// 更换护士
+	CHECK_TEND = 14;		// 照护计划审核
+	TEND_MANAGE = 15;		// 照护计划管理
+	VISIT_RECORD = 16;		// 回访记录
+	SELF_ASSESS = 17;		// 自照考核
+	ASSIGN_TEACH = 18;		// 指派带教人员
+	TRANSFER_ORDER = 19;	// 转出订单
+	UPDATE_HG_TEACH = 20;	// 更换带教人员
+	TEACH_RECORD = 21;		// 记录带教
+}

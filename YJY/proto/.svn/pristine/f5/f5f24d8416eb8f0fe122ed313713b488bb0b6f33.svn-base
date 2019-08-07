@@ -1,0 +1,10 @@
+TO 客户端同学（wusong, boren, xiaowangzi）
+
+
+SAASAPPGetOrderAdjustStatus	获取订单可调整状态和费用
+GetOrderInfoReq
+GetOrderAdjustStatusRsp
+
+SAASAPPConfirmOrderAdjustStatus 确认订单调整信息
+GetOrderInfoReq
+

@@ -1,0 +1,43 @@
+TO 前端同学（lijun）
+
+SAASRecoverOrder 恢复订单（把待结算的订单恢复到服务中）
+orderId
+
+SAASSearchAbnormalOrder 异常订单管理搜索订单
+key, pageNO, pageSize
+
+
+SAASGetUserShieldList 获取用户黑名单列表
+phone
+shieldType //拉黑类型 0-微信聊天框push
+pageNo
+pageSize
+
+
+SAASGetUserShield 获取用户黑名单
+req
+	phone
+	shieldType //拉黑类型 0-微信聊天框push
+rsp
+	userId
+	phone
+	error	// 错误提示
+	errorStatus // 大于0的时候。不可拉黑
+	
+	
+	
+SAASSaveOrUpdateUserShield 添加恢复用户黑名单
+req
+	userId
+	shieldType //拉黑类型 0-微信聊天框push
+	operationType // 操作类型 1-添加 2-恢复
+	phone
+	pageSize	为了刷新
+	
+	
+SAASTJOrderHgFeeDetail	护工费报表明细
+startTime 	开始时间
+endTime		结束时间
+orgId		机构id
+branchIds 	科室id
+	

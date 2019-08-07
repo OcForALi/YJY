@@ -1,0 +1,59 @@
+TO 前端同学（lijun）
+
+SAASRecoverOrder 恢复订单（把待结算的订单恢复到服务中）
+orderId
+
+SAASSearchAbnormalOrder 异常订单管理搜索订单
+key, pageNO, pageSize
+
+
+SAASGetUserShieldList 获取用户黑名单列表
+phone
+shieldType //拉黑类型 0-微信聊天框push
+pageNo
+pageSize
+
+
+SAASGetUserShield 获取用户黑名单
+req
+	phone
+	shieldType //拉黑类型 0-微信聊天框push
+rsp
+	userId
+	phone
+	error	// 错误提示
+	errorStatus // 大于0的时候。不可拉黑
+	
+	
+	
+SAASSaveOrUpdateUserShield 添加恢复用户黑名单
+req
+	userId
+	shieldType //拉黑类型 0-微信聊天框push
+	operationType // 操作类型 1-添加 2-恢复
+	phone
+	pageSize	为了刷新
+	
+	
+SAASTJOrderHgFeeDetail	护工费报表明细
+startTime 	开始时间
+endTime		结束时间
+orgId		机构id
+branchIds 	科室id
+
+--2018-05-05
+SAASGetOrderReceptionTime	获取订单接诊时间
+req
+	orderId
+rsp
+	receptionType  	// 1-未查询到接诊时间 2-非中肿订单或接诊时间为今天 3-接诊时间不是今天
+	today 			// 今天日期（只有receptionType==3的时候才会有）
+	receptionDay 	// 接诊日期（只有receptionType==3的时候才会有）
+	
+SAASStartOrgOrder   开启机构订单
+req
+	receptionType	// 1-未查询到接诊时间 2-非中肿订单或接诊时间为今天 3-接诊时间不是今天
+	dateType		// 选择的计费起点类型 1-接诊日期 2-当前日期（receptionType == 3时才需要）
+	orderId
+	receptionTime	// 接诊时间（只有在receptionType == 2 || receptionType == 3时才回传）
+		

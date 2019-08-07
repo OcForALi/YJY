@@ -1,0 +1,1385 @@
+syntax = "proto3";
+
+option java_package = "com.yijianyi.protocol";
+option java_outer_classname = "AppInterfaceProto";
+import "Model.proto";
+import "SaasModel.proto";
+import "OrderModel.proto";
+
+// 来源
+enum Source{
+	USER = 0;  					// 用户
+	COMPANY = 1;				// 企业
+	ASSESS = 2;					// 评估系统
+}
+
+// 获取短信验证码
+message GetVerifyCodeReq{
+    string phone = 1;				// 手机号
+    string purpose = 2;				// 用途 Login-登陆
+    uint32 source = 3;				// 0-用户端 1-企业端
+}
+
+// 短信登陆
+message LoginReq{
+	string phone = 1;				// 手机号
+	string code = 2;				// 验证码
+	Source source = 3;				// 来源标识
+	string jpushId = 4;             // 极光推送ID(IOS才有)
+}
+// 短信登陆返回
+message LoginRsp{
+	bool isComplete = 1;	// 用户信息是否完善
+	uint64 roleId = 2;		// 角色 0-无角色 10003-健康经理 10006-督导 10004-护士长  10001-护工 10002-护士 6-其他
+}
+
+//判断用户是否存在
+message UserExistReq{
+	string phone = 1;				//手机号码
+}
+
+//判断用户是否存在
+message UserExistRsp{
+	uint64 userId = 1;		// 等于0即不存在 大于0即该手机号对应的用户存在
+}
+
+message AppVersionCheckReq{
+	uint32 version = 1;              // 当前运行的app版本
+	uint32 appType = 2;              // app类型  用户端-1 企业端-2
+	uint32 platform = 3;             // 系统平台 ios-1, android - 2
+}
+
+// App版本检测
+message AppVersionCheckRsp{
+	uint32 version = 1;              // 版本号
+	string name = 2;                 // 版本名
+	uint32 remindLevel = 3;          // 提醒等级
+	string sourceLink = 4;           // 更新地址
+	uint64 publishTime = 5;          // 发布时间
+	uint32 isNewVersion = 6;         // 是否有新版本
+}
+
+//返回融云Token
+message RongTokenRsp{
+	string rongToken = 1;            // 融云Token
+}
+
+// 获取闪屏配置
+message GetSplashScreenRsp {
+	SplashScreenModel splashScreenModel = 1;
+}
+
+// 获取用户信息
+message GetUserInfoRsp{
+	UserVO userVO = 1;
+}
+
+//添加用户地址消息体
+message UserAddressReq{
+	uint64 addrId = 1;					//地址id
+	string addrDetail = 2;				//详细地址
+	string adCode = 3;					//地区编码
+	string street = 4;					//街道地址
+	string building = 5;				//小区信息
+	uint32 gpsType = 6;					//导航数据类型 1-百度 2-高德
+	double lng = 7;						//经度
+	double lat = 8;						//维度
+	uint32 defaultUse = 9;				//是否设置为默认地址 1-设置默认地址 0-不设置
+	string phone = 10;					//联系手机号
+	string contacts = 11;				//联系人
+	uint64 userId = 12;
+}
+
+message SetDefaultUserAddressReq{
+	uint64 addrId = 1;					//地址id
+}
+
+message ListUserAddressRsp{
+	repeated UserAddressVO userAddressVO = 1;
+}
+
+//删除用户地址消息体
+message DelUserAddressReq{
+	uint64 addrId = 1;					//消息id
+	uint64 userId = 2;
+}
+
+
+// 更新用户信息的请求
+message UpdateUserInfoReq{
+	string name = 1; 		// 用户的昵称
+	string headImg = 2;  	// 用户的头像图片id
+	uint32 sex = 3;			// 性别 1-男 2-女
+	string birthday = 4;	// 生日
+	string idcard = 5;		// 身份证号
+	string realName = 6;	// 实名制姓名
+}
+// 获取系统消息列表
+message GetSystemMsgReq{
+	uint32 pageNo = 1;
+	uint32 pageSize = 2;
+}
+message GetSystemMsgRsp{
+	repeated SystemMessage msgList = 1;// 用户消息列表
+	uint32 count = 2;
+}
+
+// 标记系统消息已读
+message SystemMsgMarkAsReadReq{
+	uint64 id = 1; // 消息id
+}
+// 删除系统消息
+message DeleteSystemMessage{
+	uint64 id = 1; // 消息id
+}
+
+message GetSettingReq{
+	uint32 adcode = 1; // 区域id	 当用户不在服务城市列表中的时候, 会去选择城市, 这时候不要再传递此参数
+	uint32 cityId = 2; // 城市id 用户手动选择城市 只需传递此参数
+	double lng = 3;  // 用户经度
+	double lat = 4; // 用户纬度
+}
+message GetSettingRsp {
+	repeated IndexServiceItem items = 1; 	// 首页icon/链接列表
+	repeated ServiceCityModel citys = 2; 	// 已开通服务的城市
+	repeated BannerModel bannerList = 3; 	// banner列表
+	bool isValidCity = 4; 					// 当前所在地(城市)是否可用
+	repeated Language languageList = 5; 	// 语种列表
+	repeated Information inforList = 6; 	// 健康咨询
+	OrgVO orgVO = 7; // 距离用户最近的机构
+	repeated MedicareType medicareList = 8;	// 医保类型
+	string insureDescUrl = 9;				// 长护险介绍
+	bool needOrder = 10;					// 是否需要订单模块
+	uint32 updateFlag = 11;					// 是否需要更新 0-不需要 1-更新提醒 2-强制更新
+}
+
+//用户亲属请求
+message KinsfolkReq{
+	uint64 kinsId = 1;
+	string name = 2;		
+	uint32 age = 3;
+	uint32 sex = 4;							// 1 - 男, 2 - 女
+	string relation = 5;					//亲属关系
+	string idCardNo = 6;					//身份证号
+	string height = 7;						//身高
+	string weight = 8;						//体重
+	string physicalState = 9;				//身体情况
+	string idPic = 10;						//身份证图片ID
+	string extraInfo = 11;					//补充说明
+	string medicalNO = 12;					//医院就诊卡号
+	repeated uint32 language = 13;			//常用语言 1 - 普通话 2 - 粤语 3-客家 4-潮汕
+	uint32 actAbility = 14;                 //行动能力 1-自理 2-半失能 3-失能
+	bool firstAdd = 15;						//首次添加亲属
+	uint32 medicareType = 16;				//医保类型
+	string healthCareNO = 17;				//医保卡号
+	uint64 userId = 18;						//用户id
+	string idPic2 = 19;						//身份证反面id
+	string healthCareImg = 20;				//医保卡信息照片
+	string kinsfolkImg = 21;				//参保人照片	
+	uint32 kinsType = 22;					//添加类型 0-亲属 1-参保人
+	uint32 staffType = 23;					//人员类型 0-未设置 1-在职 2-离职
+}
+
+message GetOrgListReq{
+	string keyword = 1; // 用户输入的 机构首字母 或 拼音 或 机构名的一部分或全部
+	uint32 adcode = 2; // 区域id
+	double lat = 3 ; // 纬度
+	double lng = 4; // 经度
+	uint32 pageNo = 5; // 页码
+	uint32 pageSize = 6; // 每页条数
+	uint64 orgId = 7;	// 用户手动定位机构
+}
+
+message GetOrgListRsp{
+	repeated OrgDistanceModel orgList = 1 ;// 机构和距离封装体 列表
+	bool isLocationValid = 2; // 定位信息是否可用 如果false 则不显示最近的一家医院  
+}
+
+message GetOrgAndBranchListReq{
+	uint32 adcode = 1 ;// 用户当前所在城市id
+	double lat = 2; // 当前用户所在的纬度
+	double lng = 3; // 当前用户所在的经度
+	uint64 orgId = 4; // 机构的id 使用场景: 用户输入关键字 点击某个机构 传递此参数
+	uint32 cityId = 5 ; // 城市的id 使用场景: 当用户所在地没有机构可选择时, 要让用户去已开通服务城市列表选择城市, 然后再次请求接口, 请求时只需传递此值
+}
+
+message GetOrgAndBranchListRsp{
+	repeated OrgDistanceModel orgList = 1; // 机构列表
+	map<uint64, BranchModelList> map = 2; // 机构和科室的map
+}
+
+message GetRoomListReq{
+	uint64 branchId = 1; // 科室的id
+}
+message GetRoomListRsp{
+	repeated RoomModel roomList = 1;// 房间列表
+	map<uint64, BedModelList> map = 2; // 房间和床的map
+}
+message GetPriceReq{
+	uint64 branchId = 1; // 科室的id 机构订单时需要传
+	uint32 adcode = 2; // 用户所在的区域id 居家订单时需要传
+	uint32 st = 3; // 服务类型 居家专用 101 居家照护 102家庭护士 103 康复护理 104 中医理疗 105 金牌月嫂 106 就医陪护 107 心理慰藉 108 产后恢复 109 育婴幼教 110 临终关怀    199 医疗附加项 200 长护险医疗服务
+	bool islti = 4; // 是否长护险套餐
+}
+message GetPriceRsp{
+	repeated Price pList12N = 1 ; // 一对多套餐列表
+	repeated Price pList121 = 2 ; // 一对一套餐列表
+	string phone = 3; // 用户的手机号码
+	// 下面两个字段加起来的数值 就是app端页面展示的预付款
+	string prepayAmount = 4; // 预付金
+	uint64 entranceCardPrice = 5; // 门禁卡押金
+	repeated CompanyPriceVO familyPriceVOList = 6; // 居家套餐列表 每个套餐都有不同的预付金 在CompanyPriceVO中
+	string entranceCardPriceStr = 7;	// 门禁卡押金（转化后）
+	string totalPrice = 8;				// 机构预付金和门禁卡押金的和
+}
+
+//亲属列表返回数据体
+message ListKinsfolkRsp{
+	repeated KinsfolkVO kinsfolkList = 1;
+}
+
+//删除亲属请求体
+message DelKinsfolkReq{
+	uint64 kinsId = 1;
+	uint64 userId = 2;
+}
+
+// 充值配置项
+message GetRechargeSettingRsp{
+	repeated RechargeSetting rsList = 1;
+}
+
+//意见反馈
+message FeedBackReq{
+	string suggestion = 1;
+}
+
+// 预支付请求
+message DoPayReq {
+	// 支付业务（会员充值 - PAY_RECHARGE ,支付预交金 - PAY_PREAMOUNT,结算,支付订单 - PAY_ORDER(暂时不用), 中途支付订单-PAY_ORDERSETTLE, 支付订单项-PAY_ORDERITEM, 支付强制提交长护险申请-PAY_INSURE）
+	string operation = 1;		
+	uint32 payType = 2;			// 支付方式 1-支付宝 2-微信H5 3-微信app 5-现金支付 6-会员支付
+	
+	
+	//----充值---
+	uint32 rechargeId = 3;		// 充值项id（定额充值）
+	string rechargeFee = 4;		// 充值金额（任意金额充值）
+	
+	//----订单支付---
+	string orderId = 5;			// 订单支付必传
+	repeated string months = 6;	// 支付的月份数组（中途支付使用 格式：yyyyMM）
+	uint64 itemId = 7;			// 支付订单项的id（支付订单项使用）
+	
+	//----支付长护险保证金----
+	string insureNO = 8;		// 长护险批次号
+	
+	//----支付自照护理员培训费--
+	string applyId = 9;			// 申请id
+	
+	//----SAAS扫码支付----
+	string authCode = 10;		// 条码
+	uint64 hgId = 11;			// 当前操作的员工id
+	
+	uint64 userId = 200;	// 用户id（企业端支付必传此参数）
+	string ip = 201;		// 用户ip
+	string openId = 202;	// 微信h5支付时的openId
+	
+	string cburl = 203;		// 回调链接
+	
+	uint32 requestStatus = 204;		// 订单结算是传1
+}
+
+message DoPayRsp {
+	string prePayId = 1;
+	uint32 payType = 2;		// 1、支付宝 3、微信app 
+	
+}
+
+// 获取身份证号码的请求协议
+message GetIDCardNoReq{
+	string imgId = 1; // 身份证照片在图片服务器上面的id
+}
+
+// 获取身份证号码的响应协议
+message GetIDCardNoRsp{
+	IDCardInfo idInfo = 1; // 身份证信息
+}
+
+// 验证支付
+message GetDoPayReq {
+	string payRes = 1;	// 客户端的支付结果 
+	uint32 payType = 2; // 1、支付宝 3、微信app
+}
+
+// 验证支付
+message GetDoPayRsp {
+	uint32 res = 1; // 1-已成功支付 2-重试
+	string msg = 2; // 
+}
+
+message ScanLoginReq {
+	string accessToken = 1;		// 登录token
+	uint32 ops = 2;				// 操作 1 - 登录; 2 - 扫码 
+}
+
+message ScanLoginRsp {
+	uint32 retCode = 1;			// 0 -- 错误; 1 - 登录成功; 2 - 扫码成功;  
+}
+
+message SaveOrderPraiseReq{
+	string orderId = 1; // 订单号
+	string content = 2; // 评价内容
+	uint32 grade = 3 ; // 星星颗数 
+}
+
+message GetOrderPraiseReq{
+	string orderId = 1; // 订单号
+}
+
+// 创建订单Req
+message CreateOrderReq{
+	string serviceStartTime = 1;       	// 服务开始时间
+	string serviceEndTime = 2;       	// 预约截止时间
+	uint64 kinsId = 3;					// 被陪护人Id
+	uint64 priceId = 4;				    // 套餐ID
+	uint32 orderType = 5;				// 订单类型 1-机构订单 2-居家订单
+	string phone = 6;					// 联系电话
+	
+	// 机构订单
+	uint64 roomId = 7;					// 房间ID
+	uint64 bedId = 8;					// 床
+	
+	// 居家订单
+	uint64 addrId = 9;					// 服务地址Id
+	uint64 companyId = 10;				// 公司ID
+	uint64 orgId  = 11;					// 机构ID
+	uint64 branchId = 12;				// 科室ID
+	
+	uint64 userId = 13;					// 用户id（企业端下单使用）
+	string securityAssess = 14;			// 安全风险评估（居家订单使用）
+	
+	string orgNO = 15;					// 住院号
+	string admissionDate = 16;			// 入院日期
+	
+	// 以下三个字段是在当kinsId为0时才传值
+	string kinsName = 17;				// 被陪护人姓名
+	uint32 age = 18;					// 年龄
+	uint32 sex = 19;					// 1-男 2-女
+	
+	bool needExtra = 20;				// 是否需要办理门禁卡
+	
+	string pic1 = 21;					// 拍摄照片下单的图片id
+	string bedNO = 22;					// 床号
+	
+	uint32 isHis = 23;					// 是否对接了his 0-未对接 1-对接
+}
+
+// 长护险创建订单Req
+message CreateInsureOrderReq{
+	string serviceStartTime = 1;       	// 预约服务开始时间
+	string serviceEndTime = 2;       	// 预约服务开始时间
+	uint64 priceId = 3;				    // 套餐主ID
+	repeated string priceitemIds =4;	// 附加套餐Id
+	uint64 userId = 5;					// 申请人userId
+	uint64 addrId = 6;					// 服务地址Id
+	string insureNO = 7;				// 申请单号
+	uint64 kinsId = 8;					// 被照护人id（此字段無用）
+}
+
+message GetOrderPraiseRsp{
+	OrderPraise model = 1; // 评价
+}
+
+//创建亲人Rsp
+message CreateKinsfolkRsp{
+	uint64 kinsId = 1;
+}
+
+//创建地址Rsp
+message CreateAddressRsp{
+	uint64 addrId = 2;
+	string addressInfo = 3;
+}
+
+//创建订单Rsp
+message CreateOrderRsp{
+	string orderId = 1;					// 订单ID
+	uint32 doPay = 2;					// 0 - 不需要支付预交金 1 - 需要支付预交金 
+}
+
+//获取用户订单列表Req
+message GetOrderListReq{
+	uint32 tabType = 1; 				// 0 - 全部 1 - 进行中 2 - 已完成
+	uint32 pageSize = 2;	
+	uint32 pageNum = 3;
+}
+
+//获取用户订单列表Rsp
+message GetOrderListRsp{
+	repeated OrderVO orderList = 1;		// 未交预交金订单列表
+	uint32 count = 2;				// 订单总数
+}
+
+message GetOrderReq{
+	string orderId = 1;
+}
+
+message WithdrawReq {
+	string fee = 1;		// 提现金额
+}
+
+message GetUserAccountRsp{
+	uint64 account = 1; // 用户账户
+	uint64 present = 2; // 赠送账户
+	string totalAccount = 3;	// 总金额
+	string accountStr = 4;	// 可提现金额
+}
+
+//重下订单Rsp
+message ReOrderRsp {
+	uint64 orgId = 1;					//机构ID
+	string orgName = 2;					//机构名
+	uint64 branchId  = 3;				//科室ID
+	string branchName = 4;				//科室名称
+	uint64 roomId = 5;					//房间ID
+	string roomNo = 6;					//房间编号
+	uint64 kinsId = 7;					//亲属ID
+	string fullName = 8;				//亲属名字
+	uint64 bedId = 9;					//床ID
+	string bedNo = 10;					//床号
+	uint64 priceId = 11;				//套餐ID
+	uint32 orderType = 12;				//订单类型 1-机构订单 2-居家订单
+	string phone = 13;					//手机号
+	uint64 addrId = 14;					//地址ID
+	string serviceStartTime = 15;		//服务开始时间
+	uint64 prepayAmount = 16;			//预交金
+}
+
+message IndexRsp {
+	OrderCurrent orderCur = 1;	// 当前订单
+}
+
+//结算清单列表Rsp
+message ListSettlementRsp{
+	string orderId = 1;					//订单ID
+	string prePayAmount = 2;			//预交金
+	string confirmCost = 3;				//消费金额
+	repeated SettlementVO voList = 4;	//结算清单列表
+	
+}
+
+//结算清单Req
+message SettlementReq{
+	string orderId = 1;					//订单ID
+	string settDate = 2;				//所属结算日期
+	uint32 pageNum = 3;					//页码
+	uint32 pageSize = 4;				//每页显示条数
+}
+
+message ListOrderItemRsp{
+	repeated OrderItemVO voList = 1;
+}
+
+// 获取下单时间范围
+message GetOrderTimeReq{
+	uint32 orderType = 1;		// 订单类型 1-机构 2-居家
+}
+message GetOrderTimeRsp{
+	repeated TimeData timeDateList = 1;
+	OrderTimeData defaultTimeData = 2;	// 默认时间
+}
+
+//支付详情页Req
+message SettlPayDetailReq{
+	string orderId = 1;
+	repeated string settDate = 2;	//当结束或结算订单时可不传
+	uint32 status = 3;				//请求途径 0-付款时 1-结束订单或结算时(不用settDate)
+}
+
+//订单结算支付详情页Rsp
+message SettlPayDetailRsp{
+	OrderVO order = 1;						//订单信息
+	string serviceTime = 2;					//服务时间
+	string expense = 3;						//待缴总额
+	string serviceFee = 4;					//服务待支付费用
+	string extraFee = 5;					//附加待支付费用
+	string adjustFee = 6;					
+	bool   usePurse	= 7;					//使用钱包
+	string needPay = 8;						//需要支付的费用
+	repeated OrderItemVO2 serviceList = 9;	//服务列表
+	repeated OrderItemVO2 extraList = 10;	//附加服务列表
+	repeated OrderItemVO2 adjustList = 11;	//校正服务列表
+	uint32 payFlag = 12;					//0-费用刚好 1-需要支付 2-需要退款
+	string purse = 13;						//钱包余额
+	string insureAccount = 14;				// 长护险账户
+	bool extraPay = 15;						// 是否需要额外支付（只有当长护险账户有值得时候才使用）
+	string preRealFee = 16;					// 订单使用的预付款
+	string payHint = 17;					// 支付提示
+	
+	string realPay = 18;					// 已支付金额
+	string returnPay = 19;					// 需要还金额 payFlag = 2时
+	string hgRebateFee = 20;				// 职工优惠金额
+	string totalFee = 21;					// 消费总额
+	string serviceTotalFee = 22;			// 基础服务消费费用
+	string extraTotalFee = 23;				// 附加消费费用
+	string balancePreRealFee = 24;			// 预付款余额
+}
+
+message GetOrderPayDetailRsp{
+	OrderVO order = 1;						//订单信息
+	string prePayAmount = 2;				//预交金
+	bool hasEntranceFee = 3;				//是否有门禁卡费用
+	string entranceFee = 4;					//门禁卡费用
+	string needPay = 5;						//所需支付费用
+	bool   usePurse	= 6;					//使用钱包
+	string purse = 7;						//钱包余额
+	int64 expire = 9;						// 剩余时间（毫秒），如果是小于0，则表示已过期
+	string payHint = 10;					// 支付提示
+	bool needNotice = 11;					// 支付完成是否需要提示
+	string extraAddr = 12;					// 支付完成后收费处地址
+	string extraAddrDesc = 13;				// 支付完成后收费处地址描述
+}
+
+message GetOrderDetailRsp {
+	OrderVO order = 1;					// 订单信息
+	string confirmCost = 3;				// 消费金额
+	repeated SettlementVO voList = 4;	// 结算清单列表
+	int64 expire = 9;					// 剩余时间（毫秒），如果是小于0，则表示已过期
+	string insureAccount = 30;			// 长护险账户
+}
+
+//设置默认亲属
+message SetDefaultKinsReq{
+	uint64 kinsId = 1;
+}
+
+// 申请长护险资质
+message AddInsureReq {
+	uint64 kinsId 				= 1;
+	uint64 addrId 				= 2;
+	string healthCareNO 		= 3;		// 医保卡号
+	uint32 insureGetType 		= 4;		// 领取方式 1 邮寄 2 自行领取
+	string agencyName 			= 5;		// 代理人昵称
+	string agencyRelation		= 6;		// 代理人关系
+	string agencyPhone 			= 7;		// 代理人电话
+	uint64 userId 				= 8;		// 用户id
+	uint32 dudaoScoreADL 		= 9;		// 健康经理adl评估的分数		没有评分传-1
+	uint32 applyTreatmentType 	= 10;		// 申请待遇类别 1-生活照料 2-生活照料+医疗护理
+	uint32 treatmentType 		= 11;		// 待遇类型 1-机构护理 2-居家护理
+	uint32 assessType		 	= 12;		// 评估类别 1-首次评估 2-复检评估 3-变更评估
+	string securityAssess 		= 13;		// 安全风险评估
+	string userStatusRemark 	= 14;		// 客服状态描述
+	string userSignPic			= 15;		// 申请人签名
+	string entrustPic 			= 16;		// 用户委托书
+	uint64 assessId				= 17;		// 健康经理adl评估id
+}
+
+message AddInsureRsp {
+	string insureNO = 1;
+	string lastAssessTime = 2;	// 上次自评时间
+	int32 score = 3;			// 上次自评分数 -1 即没有自评过 -2有自评，且不需要自评，直接去详情
+	int32 status = 4;			// 订单状态
+}
+
+// 获取长护险申请进度详情
+message GetInsureReq {
+	string insureNO = 1;
+	uint32 assessType = 2;		// 获取adl评分的类型：0：护士评估adl  1：用户自评 adl
+}
+message GetInsureRsp {
+	string insureNO = 1;	// 申请单编号
+	string createTime = 2;	// 申请时间
+	string kinsName = 3;	// 被服务人
+	string idcard = 4;		// 被服务人身份证号
+	repeated InsureNODetailVO detailList = 5;		// 明细详情
+	string depositFee = 6;	// 强制提交长护险的保证金
+	uint32 forceFlag = 7;	// 是否进行支付操作 1-不可以 2-支付保证金 3-强制申请
+	string kfPhone = 8;		// 客服电话
+	string purse = 9;		// 钱包余额
+	bool usePurse = 10;		// 是否可用钱包支付
+	int32 score = 11;		// 日常生活活动能力评分   -1显示去自评  -2关闭自评入口，显示无自评得分
+	uint32 status = 12;		// 50-初审驳回 51-复审驳回
+}
+
+// 获取长护险申请列表
+message GetInsureListRsp {
+	repeated InsureVO insureList = 1;
+}
+
+// 获取用户消息列表
+message GetMsgListRsp {
+	repeated SystemMessageVO msgList = 1;
+}
+
+// 获取用户某类消息列表
+message GetUserMsgByTypeReq {
+	uint32 msgType = 1;		// 消息类型 1-待服务通知 2-服务开启通知 3-服务变更通知 4-缴费通知 5-提现受理通知 6-每日服务确认通知
+	uint32 pageNo = 2;
+	uint32 pageSize = 3;
+}
+message GetUserMsgByTypeRsp {
+	repeated SystemMessage msgList = 1;
+}
+
+// 获取长护险补贴明细
+message GetInsureAccountDetailReq {
+	string orderId = 1;	// 如果从订单详情进入获取明细需此参数
+	string idcard = 2;	// 如果从长护险资格人进入获取明细需此参数
+	uint32 tabType = 3;	// 0-全部 1-支出 2-收入
+	uint32 pageNo = 4;	// 页码 从1开始
+	uint32 pageSize = 5;// 每页条目数
+}
+message GetInsureAccountDetailRsp {
+	string kinsName = 1;		// 被服务人
+	uint32 orderNum = 2;		// 订单数
+	string insureAccount = 3;	// 补贴账户余额
+	repeated InsureAccountRecordVO recordList = 4;
+}
+
+message GetInsureAccountRsp {
+	repeated InsureAccountVO recordList = 4;
+}
+
+//	获取日程表
+message GetScheduleListReq{
+	string time = 1; 		// 查询时间 （yyyy-MM-dd）
+	uint32 pageSize = 2;	
+	uint32 pageNum = 3;
+}
+
+//获取用户日程列表Rsp
+message GetScheduleListRsp{
+	repeated ScheduleVO scheduleList = 1;		// 日程表
+	uint32 count = 2;
+}
+
+//	获取 护士/护士长/健康经理 申请单列表
+message GetAssessListReq{
+	uint32 status = 1;		// 0：全部 1：已处理，2：未处理 3：待指派
+	uint32 pageSize = 2;	
+	uint32 pageNum = 3;
+	string insureName = 4;	//模糊查询订单号或者是姓名
+}
+
+// 获取 护士/护士长/健康经理 申请单列表
+message GetAssessListRsp{
+	repeated AssignVO assess = 1;
+	uint32 count = 2;
+}
+
+//	护士MMSE评估
+message AddInsureAssessMMSEReq{
+	string insureNO = 1;	// 订单唯一id 
+	uint32 isCommit = 2;	// 1-保存 2-提交
+	string composure = 3;	// 定向力
+	
+	uint32 isMemory = 8;		//	记忆力得分
+	uint32 isMind = 9;			//	注意力得分
+	uint32 isRecall = 10;		//	回忆能力得分
+	uint32 isRename = 11;		//	命名能力得分
+	uint32 isRetell = 12;		//	复述能力得分
+	uint32 isThree = 13;		//	三步命令得分
+	uint32 isWrite = 14;		//	书写能力得分
+	uint32 isRead=15;			//	阅读能力得分
+	uint32 isStruct = 16;		//	结构能力得分
+	
+	string memoryRemark = 17;	// 记忆力备注
+	string mindRemark = 18;		// 注意力备注
+	string recallRemark = 19;	// 回忆能力备注
+	string renameRemark = 20;	// 命名能力备注
+	string retellRemark = 21;	// 复述能力备注
+	string threeRemark = 22;	// 三步命令备注
+	string writeRemark = 23;	// 书写能力备注
+	string readRemark = 24;		// 阅读能力备注
+	string structRemark = 25;	// 结构能力得分
+}
+
+//	护士MMSE评估
+message AddInsureAssessMMSERsp{
+	string insureNO = 1;	// 订单唯一id 
+	uint64 score = 2;		// 分数
+}
+
+//	护士ADL评估
+message AddInsureAssessADLReq{
+	string insureNO = 1;	// 订单唯一id 
+	uint32 isCommit = 2;	// 1-保存 2-提交
+	uint32 isEat = 3;			// 是否能自己吃饭
+	uint32 isWater = 4;			// 是否能自己洗澡
+	uint32 isFace = 5;			// 是否能自己整理仪容
+	uint32 isWear = 6;			// 是否能自己穿衣服
+	uint32 isFaec = 7;			// 是否能自己控制大便
+	uint32 isPee = 8;			// 是否能自己控制小便
+	uint32 isToilet = 9;		// 是否能自己上厕所
+	uint32 isCarry = 10;		// 是否能自己进行床椅转移
+	uint32 isWalk = 11;			// 是否能自己行走
+	uint32 isStair = 12;		// 是否能自己上下楼梯
+
+	
+	string eatRemark = 13;		// 是否能自己吃饭-备注
+	string waterRemark = 14;	// 是否能自己洗澡-备注
+	string faceRemark = 15;		// 是否能自己整理仪容-备注
+	string wearRemark = 16;		// 是否能自己穿衣服-备注
+	string faecRemark = 17;		// 是否能自己控制大便-备注
+	string peeRemark = 18;		// 是否能自己控制小便-备注
+	string toiletRemark = 19;	// 是否能自己上厕所-备注
+	string carryRemark = 20;	// 是否能自己进行床椅转移-备注
+	string walkRemark = 21;		// 是否能自己行走-备注
+	string stairRemark = 22;	// 是否能自己上下楼梯-备注
+	uint32 isSelf = 23;			// 类型 0-护士 1-健康经理
+}
+
+//	护士ADL评估
+message AddInsureAssessADLRsp{
+	string insureNO = 1;	// 订单唯一id 
+	uint64 score = 2;		// 分数
+}
+
+//	护士病史
+message AddInsureAssessMedicalReq{
+	string insureNO = 1;	// 订单唯一id 
+	uint32 isCommit = 2;	// 1-保存 2-提交
+	repeated string medicalList = 3;	// 病例名称，数组形势存在
+}
+
+//	护士病史
+message AddInsureAssessMedicalRsp{
+	string insureNO = 1;	// 订单唯一id 
+	string medicalList = 2;	// 病例信息 
+}
+
+//	获取ADL评估
+message GetInsureAssessADLlRsp{
+	string insureNO = 1;		//订单唯一id 
+	uint32 judge = 2;
+	uint64 timeSort = 3;		//时间
+	uint64 id = 4;				//id
+	uint64 createStaffId = 5;	//评分人id
+	string createStaffName = 6;	//评分人昵称
+	string idcard = 7;			//身份证
+	uint64 userId = 8;			//用户id
+	uint64 assessType = 9;		//状态0-用户自评 1-初审评估 2-复审评估 3-终审评估
+	string createTime = 10;		//时间
+	AdlAssessItem eat = 11;		//进食
+	AdlAssessItem water = 12;	//洗澡
+	AdlAssessItem face = 13;	//修饰
+	AdlAssessItem wear = 14;	//穿衣
+	AdlAssessItem faec = 15;	//控制大便
+	AdlAssessItem pee = 16;		//控制小便
+	AdlAssessItem toilet = 17;	//上厕所
+	AdlAssessItem carry = 18;	//床椅转移
+	AdlAssessItem walk = 19;	//行走
+	AdlAssessItem stair = 20;	//上下楼梯
+	uint64 score = 21;			//分数
+}
+
+//	获取MMSE评估
+message GetInsureAssessMMSERsp{
+	InsureAssessMMSE mmse = 1;
+}
+
+//	修改申请单信息
+message SaveInsureAssessReq{
+	string insureNO = 1;		//订单唯一id 
+	string height = 2;			//身高
+	string weight = 3;			//体重
+	string healthCareNO = 4;	//医保卡号
+	string medicareNO = 5;		//就诊卡号
+	string appointTime = 6;		//预约时间
+	string hsRemark = 7;		//修改备注
+}
+
+message GetInsureNoRsp{
+	InsureNOModel insureModel = 1;
+	string rejectDesc = 2;		// 驳回理由
+	string appointTimeStr = 3;	// 预约上门时间
+	string assessTimeStr = 4;	// 护士评估时间
+	uint32 insureStatus = 5;	// 订单状态 1:待指派 2：待评估 3：已评估
+	uint32 againStatus = 6;		// 复审评估结果 0:未操作 1:通过 2：不通过
+	string orderTimeStr = 7;	// 预约下单时间
+}
+
+//获取saasapp订单列表Req
+message GetSaasOrderListReq{
+	string nameOrderId = 1;	//姓名或者订单号
+	uint32 tabType = 2;		// 0-全部 1-待指派 2-待服务 3-服务中 4-待结算 5-已完成 6-待支付
+	uint32 pageSize = 3;
+	uint32 pageNum = 4;
+}
+
+
+//获取saasapp订单列表Req
+message  GetSaasOrderListRsp{
+	repeated OrderSAAS order = 1;		//信息
+	uint32 count = 2;	
+}
+
+//saasApp护士评估
+message InsureAssessFirstReq{
+	string insureNO = 1;	//申请单id
+	uint32 status = 2;		//状态 1-通过  2-驳回    
+	string rejectDesc = 3;	//驳回理由
+	string remark = 4;		//护士备注
+	uint32 payType = 5;		//付款方式 1-在线 2-现金
+}
+
+//saasApp注册信息
+message SignUserReq{
+	string phone = 1;		// 手机号
+	string code = 2;		// 验证码
+}
+
+//saasApp注册信息
+message SignUserRsp{
+	uint64 userId = 1;
+	bool isComplete = 2;	// 用户信息是否完善
+}
+
+//saasApp获取病例列表
+message MedicalRsp{
+	repeated string medical = 1;	//病例选项
+}
+
+message OrderSAAS {
+	Order orders = 1;	
+	string createTimestr = 2;	// 下单时间
+	uint64 createTime = 3;		// 下单时间
+	uint32 orderStatus = 4;		// 状态  1-待指派 2-等待服务 ，3-服务中 ， 4-待结算 ，6-已完成
+	string orderStatusStr = 5;	
+}
+
+//获取订单详情
+message GetOrderInfoReq{
+	string orderId = 1;			// 获取订单详情
+}
+
+//获取订单详情
+message GetOrderInfoRsp{
+	OrderVO orderVo = 1;					// 订单信息
+	repeated string priceName = 2;			// 订单所以套餐
+	repeated SettlementVO orderItem = 3;	// 每月套餐信息
+	repeated OrderItemVO insureItem = 4;	// 护士附加服务信息
+	string confirmCost = 5;					// 消费金额
+	int64 expire = 6;						// 剩余时间（毫秒），如果是小于0，则表示已过期
+	string insureAccount = 7;				// 长护险账户
+	uint32 workType = 8;					// 护工服务类型 0-非护工，1-多陪 2-专陪
+	uint32 isItem = 9;						// 是否存在附加项 0-不存在，1-存在
+	bool isfinish = 10;						// 是否可以结束订单
+	bool dudaoChargeConfig = 11;			// 督导是否可以收款
+	bool needRefundPrepay = 12;				// 订单已取消时，是否可以退预付款
+	bool needRefundExtra = 13;				// 订单已取消时，是否可以退门禁卡
+	bool cashPayFlag = 14;					// 是否有现金支付
+	string subjoinFeeStr = 15;				// 附加项费用（陪人床）
+	int64 subjoinNewNum = 16;				// 附加项数量（今日）（陪人床）
+	string accompanyFee = 17;				// 陪工费
+	
+}
+
+//获取订单知情书
+message GetOrderInformedReq{
+	string orderId = 1;			// 订单OrderId
+}
+
+
+//获取订单知情书
+message GetOrderInformedRsp{
+	string price = 1;								// 单价 /天       //废弃
+	map<string, string> obligation = 2;	// 服务
+	repeated string disclaimer = 3;					// 免责
+	string signPic = 4;								// 签名
+	uint32 isSignPic = 5;							// 是否已签名 1：未签名 2：已签名 
+}
+
+
+//修改order被陪护人信息
+message UpdateOrderSignPicReq{
+	string orderId = 1;						// 订单id
+	string signPic = 2;						// 图片id
+}
+
+
+//开启服务
+message SaveOrUpdateOrderReq{
+	string orderId = 1;						// 订单id
+	uint32 operationType = 2;				// 操作  1-开启服务 2-结束服务
+} 
+
+
+//添加订单医疗附加加项
+message AddOrderPriceReq{
+	string orderId = 1;						// 订单id
+	string serviceTime = 2;					// 服务时间
+	map<uint64, uint32> mapPrice = 3;		// 服务修改后对应的次数
+	string dischargedTime = 4;				//  
+}
+
+
+//订单操作通知
+message OrderJPushReq{
+	string orderId = 1;									//订单id
+	uint32 jpushType = 2;								//类型：1-结束订单 2-变更服务 3-协助收款 
+	uint64 priceId = 3;									//服务id jpushType 为变更服务时,并且是由承包科室的多陪服务变更为专陪推送才传入
+}
+
+
+// 护士、护工、督导、健康经理服务确认
+message SaveOrderItemReq{
+	string orderId = 1;									// 订单id
+	string affirmTime = 2;								// 日期    yyyy-MM-dd
+	uint32 mold = 3;									// 确认情况：1：完成服务，2：事假，3：病假，4：休假，5：旷工，6：客户外出，  7：用户转icu，不收费
+	uint32 type = 4;									// 确认状态：1：半天（有人顶替），2：半天（无人顶替），3：全天（有人顶替），4：全天（无人服务），5：客户外出（半天） ，6：客户外出（全天），7：用户转icu，不收费
+}
+
+
+//获取长护险和普通附加服务
+message GetPriceListRsp{
+	repeated CompanyPriceVO insurePriceVOList = 1; // 长护险附加服务
+	repeated CompanyPriceVO commonPriceVOList = 2; // 普通附加服务
+	string hgRebateFeeAM = 3;		// 职工优惠金额（上午出院）
+	string hgRebateFeePM = 4;		// 职工优惠金额（下午出院）
+	string hgKinsRebateFeeAM = 5;	// 职工家属优惠金额（上午出院）
+	string hgKinsRebateFeePM = 6;	// 职工家属优惠金额（下午出院）
+	string dischargedTime = 7;		// 预计出院时间
+}
+
+
+//获取护工、护士、护士长、健康经理、督导信息
+message GetHgInfoReq{
+	uint64 hgId = 1;					// 护工id	 id > 0 :查询指定用户的资料 ；  id <= 0 :查询我的资料  
+}
+
+//获取护工、护士、护士长、健康经理、督导信息
+message GetHgInfoRsp{
+	uint64 id = 1;						// 护工id
+	string phone = 2;					// 手机号
+	uint32 state = 3;					// 护工的状态  1- 在职 2-离职
+	string fullName = 4;				// 全名
+	string picUrl = 5;					// 个人照片
+	uint32 sex = 6;						// 0未设置 1男 2 女
+	string nativeplace = 7;				// 籍贯
+	string nation = 8;					// 民族
+	string province = 9;				// 省份
+	string city = 10;					// 城市
+	string district = 11;				// 区
+	string address = 12;				// 详细居住地址
+	string building = 13;				// 居住地址
+	repeated uint32 language= 14;		// 多种语言 以
+	string emergencyContact = 15; 		// 紧急联系人
+	string emergencyContactPhone = 16; 	// 紧急联系人手机号
+	uint64 assessNumber = 17;			// 评估
+	uint64 orderNumber = 18;			// 订单
+	//健康经理与督导没有以下该信息
+	string joinTimeStr = 19;			// 入职时间
+	string careerStartTime = 20;		// 入行时间 
+	uint64 branchId	= 21;				// 科室id
+	string branchName = 22;				// 科室名称
+	string superiorId = 23;				// 直属上级id
+	string superiorName = 24;			// 直属上级昵称
+	string nursingCertificateUrl = 25;	// 护理证 
+	string hgno = 26;					// 工号
+	uint32 workType = 27;				// 1-多陪 2-专陪 3-两种都可以
+	uint64 roleId = 28;					// 角色 0-无角色 10003-健康经理 10006-督导 10004-护士长  10001-护工 10002-护士 6-其他
+	//健康经理与督导有的
+	uint64 hgNumbser = 29;				// 护工人数
+	uint32 msgNum = 30;					// 未读消息数
+	string mpQRCode = 31;				// 公众号二维码
+	bool hasDiffno = 32;				// 是否有异号下单功能
+}
+
+
+//修改护工、护士、护士长、健康经理、督导信息
+message UpdateHgInfoReq{
+	string emergencyContact = 1; 		// 紧急联系人
+	string emergencyContactPhone = 2; 	// 紧急联系人手机号
+}
+
+
+//护士长指派列表
+message GetAssignListReq{
+	string nameInsureId = 1;		//姓名或者订单号
+	uint32 status = 2;			//状态 0 ：全部 ，1：待指派 ， 2：已指派， 3:待评估  4：已评估 
+	uint32 pageSize = 3;
+	uint32 pageNum = 4;
+}
+
+
+//护士长指派列表Rsp
+message GetAssignListRsp{
+	repeated AssignVO assign = 1;		
+	uint32 count = 2;				
+}
+
+
+//护士长子订单列表
+message GetSubserverReq{
+	string nameOrderId = 1;		//姓名或者订单号
+	uint32 status = 2;				//状态 0 ：全部 ，1：待指派 ， 2：服务中， 3:已服务 
+	uint32 pageSize = 3;
+	uint32 pageNum = 4;
+}
+
+// 获取被陪护人信息
+message GetKinsfolkReq {
+	uint64 kinsId = 1;
+	string idCardNo = 2;		// 身份证
+}
+message GetKinsfolkRsp {
+	Kinsfolk kins = 1;
+	uint64 scoreADL = 2;			//用户自评
+}
+
+// 指派人员
+message GuideStaffReq {
+	string insureNO = 1;	// 长护险指派
+	string orderId = 2;		// 订单指派
+	uint64 staffId = 3;		// 被指派人id
+	uint32 guideType = 4;	// 指派类型  0-护士长 1-护士 2-健康经理 3-护工 4-督导  
+	string remark = 5;		// 指派备注
+	string time = 6;		// 服务时间
+	uint32 type = 7; 		// 0-初审 1-复审
+}
+//获取我的护士、护工列表
+message GetHgReq{
+	string fullName = 1;		//姓名
+	string orderId = 2;			//订单号 订单获取护工列表时需要
+	uint32 pageSize = 3;
+	uint32 pageNum = 4;
+	uint64 priceId = 5;			//服务id 变更护工时需要
+}
+
+//获取我的护士、护工列表
+message GetHgRsp{
+	repeated HgVO hgVO = 1;			// 信息
+	uint32 count = 2;				
+}
+
+// 获取用户信息
+message GetUserReq {
+	uint64 userId = 1;	// 用户id
+}
+
+message GetUserKinsListRsp {
+	repeated KinsfolkVO kinsList = 1;	// 亲属列表
+}
+message GetUserAddrListRsp {
+	repeated UserAddressVO addrList = 1;	// 地址列表
+}
+
+message UpdateInsureOrderReq {
+	string insureNo = 1;	// 申请单号
+	string orderTime = 2;	// 上门下单时间yyyy-MM-dd hh:mm
+	uint32 orderStatus = 3;	// 1-暂不下单（设置下单时间时不需要设置此值）
+}
+
+
+
+//变更服务
+message UpdateOrderServeReq{
+	string orderId = 1;				//订单id
+	uint64 hgId = 2;				//变更服务人id
+	uint64 addrId = 3;				//服务地址id
+	uint64 priceId = 4;				//更改的基础服务项
+	repeated uint64 addition = 5;	//变更长护险附加项服务
+	uint64 branchId = 6;			//科室id
+	uint64 roomId = 7;				//房间id
+	uint64 bedId = 8;				//床位id
+	string phone = 9;				//联系电话
+	string bedNo = 10;				//床号
+	uint32 priceUpdateType = 11;	//变更服务，科室配置为手动选择收费的时传。 1 - 收取变更前服务费用 2-收取变更后服务费用
+     								// 3-两种服务各收一半  4-两种服务费用都收
+}
+
+// 添加用户地址
+message AddUserAddrReq{
+	uint64 addrId = 1;					//地址id
+	string addrDetail = 2;				//详细地址
+	string adCode = 3;					//地区编码
+	string street = 4;					//街道地址
+	string building = 5;				//小区信息
+	uint32 gpsType = 6;					//导航数据类型 1-百度 2-高德
+	double lng = 7;						//经度
+	double lat = 8;						//维度
+	uint32 defaultUse = 9;				//是否设置为默认地址 1-设置默认地址 0-不设置
+	string phone = 10;					//联系手机号
+	string contacts = 11;				//联系人
+	uint64 userId = 12;					// 用户id
+}
+message AddUserAddrRsp {
+	uint64 addrId = 1;
+	string location = 2;
+}
+
+// 获取变更记录
+message GetOrderProcessReq{
+	string orderId = 1;					//订单id
+}
+message GetOrderProcessRsp{
+	repeated OrderProcess opList = 1;
+}
+
+message CancelOrderReq {
+	string orderId = 1;		// 订单号
+	string serviceDate = 2;	// 服务日期
+}
+
+//变更服务反显
+message GetOrderServiceRsp{
+	uint64 hgId = 1;									//服务人员id 
+	string hgName = 2;									//服务人员昵称
+	uint64 addrId = 3;									//地址id
+	string addrStr = 4;									//地址信息
+	uint64 branchId = 5;								//科室id
+	string branchName = 6;								//科室名称
+	uint64 roomId = 7;									//房间id
+	string roomNo = 8;									//房间名称
+	uint64 bedId = 9;									//床位id
+	string bedNo = 10;									//床位名称
+	string phone = 11;									//联系手机号
+	string contacts = 12;								//联系人
+	repeated CompanyPriceVO pList12N = 13; 				// 一对多套餐列表
+	repeated CompanyPriceVO pList121 = 14; 				// 一对一套餐列表
+	repeated CompanyPriceVO familyPriceVOList = 15; 	// 居家套餐列表 每个套餐都有不同的预付金 在CompanyPriceVO中
+	uint64 userId = 16;									// 用户id
+	uint32 serviceType = 17;							// 服务类型 0-居家 1-专陪  2-多陪
+	repeated UpdateType updatePriceType = 18;			// 手动选择变更服务计费规则时使用
+	int32 updateType 	= 19;							// 变更规则 变更服务配置 1-变更后当天费用各收一半 2-变更后当天费用收变更后套餐 3-变更后超时时间 4-变更当天手动选择
+}
+
+message SaveOrderItemExtraReq {
+	string orderId = 1;		// 订单号
+	string startDate = 2;	// 选择的开始日期
+	string endDate = 3;		// 选择的结束日期
+	map<uint64, uint32> numMap = 4;	// 每个套餐修改后对应的次数key-priceId value-次数
+}
+message SaveOrderItemExtraRsp {
+	string extraId = 1;
+}
+
+// 校验订单是否支付成功
+message CheckOrderPaiedReq {
+	uint32 paySolution = 1;		// 1-支付预交金 2-中间支付
+	string orderId = 2;			// 订单id
+	repeated string months = 3;	// 支付的月份
+}
+message CheckOrderPaiedRsp {
+	bool isPaied = 1;		// 是否支付成功 true-已支付 false-支付中
+}
+
+// 生成异号用户
+message CreateDisffnoUserRsp {
+	uint64 userId = 1;
+	string diffno = 2;	// 自动生成的异号
+}
+
+// 住院手环识别和入院通知书识别
+message OrgNORecognizeReq {
+	string imgId = 1;
+}
+message OrgNORecognizeRsp {
+	HospitalBra hospitalBra = 1;	// 入院数据
+}
+
+// 扫码请求
+message ScanReq {
+	string key = 1;
+}
+
+message ScanRsp {
+	string yjyUrl = 2;
+}
+
+//用户银行卡列表返回数据体
+message ListBankRsp{
+	repeated UserBankVO bankList = 1;
+}
+
+//新增用户银行卡
+message AddUserBankReq {
+	string cardholderName = 1;	// 持卡人姓名
+	string cardNO = 2;			// 银行卡号
+	string bankBranch = 3;		// 银行支行
+}
+
+//护工变更服务price
+message UpdateOrderServicePriceRsp{
+	uint32 hgUpdateServerType = 1;				//修改状态 0-普陪未修改，1-普陪更换普陪 2-普陪更换为专陪  3-专陪未修改 4-专陪变专陪 5-专陪变普陪
+	
+}
+
+//添加订单医疗附加加项
+message AddOrderPriceReviseReq{
+	string orderId = 1;						// 订单id
+	map<uint64, uint32> mapPrice = 2;		// 服务修改后对应的次数
+	string dischargedTime = 3;				// 预估出院时间	关闭订单服务时传，单纯修改服务项不需要传
+	uint32 hgRebateType = 4;				// 职工优惠类型 0-无优惠 1-职工 2-职工家属
+	uint32 istoday = 5;						// 是否修改今日 0-否 1-是
+}
+
+message OrderItemInvertRsp{
+	repeated OrderItemInvertVO  orderItemInver = 1;
+	string hgRebateFeeStr = 2;					// 优惠金额
+	uint32 hgRebateType = 3;					// 职工优惠类型 0-无优惠 1-职工 2-职工家属
+}
+
+// 充值预付款
+message RechargePrepayFeeReq {
+	string prepayFee = 1;	// 充值金额
+	string orderId = 2;		// 订单id
+	uint32 payType = 3;		// 支付方式 5-现金支付
+}
+
+// 长护险列表
+message GetInsureListReq {
+	string insureId = 1;			// 身份证/参保人姓名/申请单号
+	int32 status = 2;				// 状态状态 -1-全部 0-客服审核 1-护士初审 2-等待提交复审 3-等待复审 4-复审通过 5-复审中 6-申请中 7-申请驳回 50-客服驳回 51-初审驳回 52-复审驳回 53-已关闭 
+	uint32 pageSize = 3;
+	uint32 pageNum = 4;
+}
+
+message GetInsureListFirmRsp {
+	uint64 count = 1;
+	repeated InsureFirmVO insureFirmVo = 2;
+}
+
+
+// 长护险详情
+message GetInsureDetailReq {
+	string insureId = 1;			// 申请单号
+}
+
+message GetInsureDetailRsp {
+	InsureNOModel insureNO = 1;					// 长护险信息
+	repeated InsureNODetailVO detailList = 2;		// 操作记录
+	KinsfolkVO kinsfolk = 3;					// 参保人信息
+	uint64 scoreADL = 4;			//用户自评
+	string assessTimeStr = 5;					// 护士初审时间	
+	string kfTimeStr = 6;						// 客服评估时间
+	string managerAssessTimeStr = 7;			// 健康经理评估时间
+	string loseAppointTimeStr = 8;				// 专家复审时间	
+	string kfNoPassRemark = 9;					// 客服不通过备注
+	string appointTimeStr = 10;					// 预估上门时间
+	string loseNoPassRemark = 11;				// 初审不通过备注
+	bool isManagerShow = 12;					// 健康经理评估是否显示
+	string aptitudeEndTimeStr = 13;				// 资质有效时间
+	bool assessStatus = 14;						// 护士初审状态
+	bool kfStatus = 15;							// 客服评估状态
+	bool loseAppointStatus = 16;				// 专家复审状态	
+	bool hsOperationStatus = 17;				// 护士是否能操作
+	bool nurseLeaderStatus = 18;				// 护士长是否能指派变更护士权限
+	uint32 assignStatus    = 19;				// 指派状态 0-未指派 1-已指派
+	string loseAppointAssessTimeStr = 20;		// 复审上门时间
+	
+	repeated picUrlId caseDiagnosePicUrlId = 21;// 病例、诊断等图片
+	
+	repeated picUrlId  dysgnosiaePicUrlId = 22;	// 中重度智能障碍照片 如多张，以逗号隔开
+}
+
+
+
+// 长护险审核评估 
+message InsureAssessReq{
+	string insureNO 			= 1;				// 申请批号
+	uint32 assessType 			= 2;				// 状态 1-护士初审 2-等待提交复审 3-等待复审 4-复审通过 5-复审中  50-客服驳回 51-初审驳回(初审驳回保存) 52-复审驳回 53-已关闭 54-复审中保存备注
+	uint32 status 				= 3;				// 操作状态 1-通过  2-驳回     assessType == 3 时  1-确认参加，录入复审时间 2-不能参加，将申请单状态重新变为等待提交复审 3-关闭申请单
+													//					 assessType == 5 时  1-通过  2-驳回 3-保存复审备注
+	string remark 				= 4;				// 客服，护士，复审评估的备注
+	string rejectDesc 			= 5;				// 客服，护士，复审驳回备注
+	uint64 hgId					= 6;				// 护士，护士长，健康经理id
+	string dateTime				= 7;				// 预约上门时间及资质到期时间
+	uint32 isAmentia			= 8;				// 是否智障
+	string hsCasePresentation	= 9;				// 病情描述
+	string medicalHistory		= 10;				// 评估情况说明
+	repeated string dysgnosiaePic = 11;				// 中重度智能障碍照片
+	repeated string caseDiagnosePic = 12;			// 上传诊断、病历或其他照片
+	
+}
+
+
+// 长护险申请单添加数据及修改
+message SaveOrUpdateInsureReq {
+	string insureNO 			= 1;				// 申请批号
+	string province 			= 2;				// 省
+	string city 				= 3;				// 市
+	string district 			= 4;				// 区县
+	string building 			= 5;				// 小区
+	string addrDetail 			= 6;				// 详细地址
+	string phone 				= 7;				// 地址联系电话
+	string name 				= 8;				// 地址联系人
+	uint32 staffType 			= 9;				// 人员类别
+	string healthCareNO 		= 10;				// 医保卡号
+	string agencyName 			= 11;				// 代理人昵称
+	string agencyRelation		= 12;				// 代理人关系
+	string agencyPhone 			= 13;				// 代理人电话
+	uint32 applyTreatmentType 	= 14;				// 申请待遇类别 1-生活照料 2-生活照料+医疗护理
+	uint32 treatmentType 		= 15;				// 待遇类型 1-机构护理 2-居家护理
+	uint32 insureGetType 		= 16;				// 领取方式 1 邮寄 2 自行领取
+	string userSignPic			= 17;				// 申请人签名
+	string entrustPic 			= 18;				// 用户委托书
+	string healthCarePic 		= 19;				// 医保卡信息照片
+	string kinsfolkPic 			= 20;				// 参保人照片
+	
+	string idcardpic 			= 21;				// 身份证正面照
+	string idcardpic2 			= 22;				// 身份证反面照
+	uint32 assessType 			= 23;				// 评估类别 1-首次评估 2-复检评估 3-变更评估
+	
+}
+
+// 通过his用住院号获取用户信息
+message GetUserInfoByOrgNOReq {
+	string orgNO = 1;	// 住院号
+	uint64 orgId = 2;	// 机构id
+}
+message GetUserInfoByOrgNORsp {
+	HospitalBra bra = 1;
+	uint32 rspFlag = 2;			// 0-成功返回 1-第三方系统异常，可以直接去下单页 10-格式错误，提示报错 11-未查询到用户信息
+	string errorMsg = 3;		// 错误提示
+}
+
+// 订单已取消后退款
+message RefundOrderReq {
+	string orderId = 1;
+	uint32 refundPayType = 2;	// 退会员账户-53 退现金-72
+}
+
+// 当前系统支持的支付方式
+message GetPayTypeRsp {
+	repeated uint32 payTypeList = 1;	// 支付方式集合1
+}
+
+// 获取二维码
+message GetQRCodeReq {
+	string width 	= 1;			// 宽度
+	string height 	= 2;			// 高度
+	string purpose 	= 3;			// 类型  LoginQR - 登录	PayQR - 支付
+	string format 	= 4;			// 图片类型
+	uint32 urlType 	= 5;			// 链接类型 0 - 不做操作（登录） 1 - 跳订单详情（支付预付款） 2 - 跳结算页 3 - 跳充值预付款    4 - 跳订单详情(跟中间支付)  
+	string orderId 	= 6;			// 订单id
+}
+
+message GetQRCodeRsp {
+	string qrcodeURI = 1;			// 二维码链接
+	string accessToken = 2;			// token
+	int64 time = 3;					// 倒计时间（分钟为单位）
+}
+
+// 订单明细（修改用）
+message GetOrderItemRsp {
+	repeated OrderItemVO3 serviceList 				= 1;	// 基础服务
+	repeated OrderItemVO2 extraList 				= 2;	// 附加服务
+	
+	int64 totalFee									= 3;	// 总消费
+	int64 totalCostPRC								= 4;	// 陪人床总费用
+	int64 numberPRC									= 6;	// 陪人床总次数
+	int64 serviceTotalFee 							= 7;	// 陪护费
+	string totalFeeStr								= 8;	// 总消费
+	string totalCostPRCStr							= 9;	// 陪人床总费用
+	string serviceTotalFeeStr 						= 10;	// 陪护费
+	OrderVO order 									= 11;	//订单信息
+	repeated CompanyPriceVO priceVOOrdinaryList 	= 12; 	// 普通附加服务
+	repeated CompanyPriceVO priceVOAdjustList 		= 13; 	// 金额调整附加服务
+	repeated CompanyPriceVO priceVOPrcList 			= 14; 	// 陪人床附加服务
+	string hgRebateFeeStr 							= 15;	// 优惠金额
+	int64 hgRebateType								= 16;	// 优惠类型 // 职工优惠类型 0-无优惠 1-职工 2-职工家属
+	string hgRebateTypeStr 							= 17;	// 优惠类型
+}
+

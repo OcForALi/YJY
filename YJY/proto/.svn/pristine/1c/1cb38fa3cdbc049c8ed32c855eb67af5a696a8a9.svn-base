@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+option java_package = "com.yijianyi.protocol";
+option java_outer_classname = "CommProto";
+
+/**
+ * 网络类型
+ */
+enum NET_TYPE {
+	UN_DETECT		= 0;
+	WIFI			= 1;
+    CMWAP           = 2;
+    CMNET			= 3;
+    UNIWAP			= 4;
+	UNINET			= 5;
+	WAP3G			= 6;
+	NET3G			= 7;
+	CTWAP			= 8;
+	CTNET			= 9;
+	UNKNOWN			= 10;
+	UNKNOW_WAP		= 11;
+	NO_NETWORK		= 12;
+	NETWORK_TYPE_LTE= 13;
+};
+
+
+message Terminal
+{
+	string IMEI		= 1;
+	string IMEI2		= 2;
+    string MAC			= 3;
+    string IMSI		= 4;
+    string IMSI2		= 5;
+    string ANDROIDID	= 6;
+    string ADID		= 7;
+    string CHANNELID = 8;  //标识平台， "android"-安卓设备，"apple"-苹果设备
+};
+
+message YUA {
+	string softName =1;
+	string version =2;
+	string buildNo  =3;
+	string versionName =4;
+	string platform  =5;
+	string OSversion  =6;
+	uint32 width  =7;
+	uint32 height  =8;
+	double size  =9;
+	string DeviceName  =10;
+	string channel  =11;
+}
+
+
+message PkgInfo {
+    string pkgName 	   = 1;
+    string signInfo       = 2;
+};

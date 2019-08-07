@@ -1,0 +1,17 @@
+TO 客户端同学（wusong, boren, xiaowangzi）
+
+
+SAASAPPGetOrderAdjustStatus	获取订单可调整状态和费用
+GetOrderInfoReq
+GetOrderAdjustStatusRsp
+
+SAASAPPConfirmOrderAdjustStatus 确认订单调整信息
+GetOrderInfoReq
+
+--2018-05-05
+SAASAPPGetOrderReceptionTime 获取订单接诊时间
+GetOrderInfoReq
+GetOrderReceptionTimeRsp
+
+SAASAPPStartOrgOrder   开启机构订单
+StartOrgOrderReq

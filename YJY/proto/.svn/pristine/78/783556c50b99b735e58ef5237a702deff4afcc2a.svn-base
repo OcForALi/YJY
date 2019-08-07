@@ -1,0 +1,510 @@
+syntax = "proto3";
+
+option java_package = "com.yijianyi.protocol";
+option java_outer_classname = "CMDProto";
+
+enum APP_COMMAND {
+	DEFAULT					= 0;
+	Ping					= 1;		//测试web应用是否存活
+	GetSplash				= 2;		//更新闪屏
+	GetSetting				= 3;		//跟新配置信息
+	StatReport				= 4;		//统计上报
+    GetSMSCode            	= 5;        //获取短信验证码
+    VerifyPhone     		= 6;        //验证手机号
+    Login            		= 7;        //登录
+    SaasLogin				= 8;		//护工登录
+	AppVersionCheck         = 9;        //App版本检测
+	GetRongToken            = 11;		//获取融云Token
+	IDCardRecognize			= 20;		//识别身份证号码并返回给客户端
+	APPLogout				= 21;		//APP退出登录
+	GetRechargeSetting		= 30;		// 获取充值项
+	DoPay					= 31;		// 预支付
+	GetDoPay				= 32;		// 再次确认支付成功
+	GetQRCode   			= 33;		// 获取二维码URL
+	OrgNORecognize			= 34;		// 住院手环识别和入院通知书识别
+	
+	//---------用户h5接口列表
+    GetSettings				= 3000;		// 获取首页信息
+	SaveCompany				= 3001;		// H5开户申请
+	GetImageToWx			= 3002;		// 上传微信图片
+	GetOrgList 				= 3003; 	// 获取附近或本市内的医院列表
+	GetOrgAndBranch			= 3004; 	// 获取医院和科室的接口
+	GetPrice				= 3005;		// 通过科室获取定价
+	GetRoomAndBed			= 3006;		// 通过科室获取房间和床位
+	SaveOrderPraise			= 3007; 	// 保存订单的评价
+	DeleteSystemMsg			= 3008;		// H5删除系统消息
+	GetUserAccount			= 3009;		// 获取用户账户信息
+	GetUserInfo				= 3010;		// 获取用户信息
+	GetUserSystemMessage	= 3011;		// 获取系统消息列表
+	MarkSystemMsgAsRead		= 3012;		// 标记消息为已读
+	
+	GetOrderTime			= 3013;		// 获取订单时间范围
+	AddKinsfolk				= 3014;		// 添加亲属信息
+	UpdateKinsfolk			= 3015;		// 修改亲属信息
+	GetKinsfolk				= 3016;		// 回显亲属信息
+	AddUserAddress			= 3017;		// 添加用户地址
+	UpdateUserAddress		= 3018;		// 修改用户地址
+	GetUserAddress			= 3019;		// 回显用户地址
+	ListKinsfolk 			= 3020;		// 获取亲属列表
+	ListUserAddress			= 3021;		// 获取用户地址列表
+	SetDefaultAddress		= 3022;		// 设置用户默认地址
+	AddFeedBack				= 3023;		// 添加反馈信息
+	DelKinsfolk				= 3024;		// 删除亲属
+	DelUserAddress			= 3025;		// 删除用户地址
+	SetDefaultKinsfolk      = 3026;		// 设置默认亲属
+	UpdateUserInfo			= 3027;		// 修改个人信息
+	
+	Index					= 3035;		// 获取首页数据（需登录）
+	GetWxOAuth				= 3036;		// 获取微信配置
+	
+	CreateOrder				= 3040;		// H5创建订单
+	GetOrderList			= 3041;		// H5获取订单列表
+	GetPayDetail			= 3042;		// H5预交金支付详情页
+	ListOrderItem			= 3043;		// H5获取订单项列表
+	ListSettlement			= 3044;		// H5获取结算列表
+	ReOrder					= 3046;		// 重下此单,订单信息回显
+	CancelOrder				= 3047;		// 取消订单
+	PrePayAmountDetail      = 3048;		// 支付预交金详情页
+	SettlPayDetail			= 3049;		// 中途支付详情页
+	OrderPayDetail			= 3050;		// 订单结算详情页
+	GetOrderDetail			= 3051;		// 获取订单详情
+	GetOrderItemInvertList	= 3052;		// 附加服务调整明细
+	ConfirmOrderFinish		= 3053;		// 确认订单完成
+	
+	AddInsure				= 3100;		// 申请长护险
+	GetInsureDetail			= 3101;		// 获取长护险详情
+	GetInsureList			= 3102;		// 获取长护险列表
+	AddInsureAssess			= 3103;		// 新增用户自评
+	GetInsureAssess			= 3104;		// 获取用户自评
+	CheckInsureParam		= 3105;		// 校验长护险参数
+	GetInsureAgainAssess	= 3106;		// 获取复审报告
+	GetInsureAccount		= 3107;		// 获取长护险资格人列表
+	GetInsureAccountDetail	= 3108;		// 获取长护险补贴明细
+	ForceSubmitInsure		= 3109;		// 强制提交长护险
+	GetInsurePerformanceInfo = 3110;	// 获取健康经理长护险业绩
+	
+	GetMsgList				= 3150;		// 获取用户消息类型列表
+	GetUserMsgByType		= 3151;		// 获取用户某种类型的消息列表
+	
+	CheckLogin 				= 3180;		// 检查h5登陆状态
+	
+	Withdraw = 3190;	// 提现
+	
+	AddInsureStaffApply = 3200;		// 自照护理师申请
+	GetApplyList = 3201;			// 获取自照护理师申请列表
+	GetApplyDetail = 3202;			// 获取自照护理师申请详情
+	
+	
+	ListUserBank 		= 3220;			// 获取用户银行卡列表
+	UpdateUserBank 		= 3221;			// 修改用户银行卡
+	AddUserBank 		= 3222;			// 新增用户银行卡 
+	
+	
+	//---------用户app接口列表
+	APPGetOrgList = 5000; 			// 通过 机构名 首字母  拼音  获取机构列表
+	APPGetSplashScreen = 5001;		// 获取闪屏
+	APPGetUserInfo = 5002;			// 获取用户信息
+	APPUpdateUserInfo = 5003;    	// 更新用户消息
+	APPGetSettings = 5005;			// 获取首页icon和链接
+	APPGetOrgAndBranch = 5007; 		// 获取机构和科室列表
+	APPGetRoomAndBed = 5008; 		// 获取房间和床位
+	APPGetPrice = 5009; 			// 获取套餐列表
+	
+	APPAddUserAddress = 5010;			//添加用户地址
+	APPUpdateUserAddress = 5011;		//修改用户地址
+	APPDelUserAddress = 5012;			//删除用户地址
+	APPListUserAddress = 5013;			//获取用户地址列表
+	APPSetDefaultAddress = 5014;		//设置用户默认地址
+	
+	APPAddKinsfolk = 5020;				//添加亲属
+	APPDelKinsfolk = 5021;				//删除亲属
+	APPUpdateKinsfolk = 5022;			//修改亲属
+	APPListKinsfolk = 5023;				//亲属列表
+	APPAddFeedBack = 5030;				//意见反馈
+	APPSaveOrderPraise = 5031; 			// 保存评价
+	APPGetOrderPraise = 5032; 			// 查看订单的评价
+	APPCreateOrder = 5033;				// 创建订单
+	APPGetOrderList = 5034;				// 获取订单列表
+	APPGetPayDetail = 5035;				// 获取支付详情
+	APPReOrder = 5036;					// 重新下单
+	APPListSettlement = 5037;			// 结算清单列表
+	APPListOrderItem = 5038;			// 每日明细列表
+	APPPrePayAmountDetail = 5039;		// 预交金支付详情页
+	APPCancelOrder = 5040;				// 取消订单
+	APPSettlPayDetail = 5041;			// 支付订单详情页
+	APPOrderPayDetail = 5042;			// 结算订单详情页
+	APPIndex = 5049;					// 获取首页内容（需登录）
+	APPGetOrderTime = 5050;				// 获取时间段信息
+	GetOrderPraise = 5051; 				// 查看订单的评价
+	APPGetOrderItemInvertList = 5052;	// 附加服务调整明细
+	APPWithdraw = 5100;					// 提现
+	APPDeleteSystemMessage = 5101; 		// 删除系统消息
+	APPGetUserAccount = 5102 ; 			// 获取钱包余额
+	APPSetDefaultKinsfolk = 5103;		//设置默认亲属
+	
+	APPGetOrderDetail = 5200;		// 获取订单详情
+	APPConfirmOrderFinish = 5201;	// 确认订单完成
+	
+	APPAddInsure		= 5230;		// 申请长护险
+	APPGetInsureDetail	= 5231;		// 获取长护险申请详情
+	APPGetInsureList	= 5232;		// 获取长护险列表
+	APPCheckInsureParam = 5233;		// 校验长护险参数
+	APPGetInsureAccountDetail = 5234;	// 获取长护险补贴明细
+	APPGetInsureAccount = 5235;		// 获取长护险资格人列表
+	APPForceSubmitInsure = 5236;	// 强制提交申请长护险
+	
+	APPGetMsgList = 5250;			// 获取用户消息类型列表
+	AppGetUserMsgByType = 5251;		// 获取用户某种消息列表（并标示已读）
+	
+	
+	APPListUserBank = 5270;			// 获取用户银行卡列表
+	APPAddUserBank = 5271;			// 新增用户银行卡
+	APPUpdateUserBank = 5272;		// 修改用银行卡
+	
+	//---------企业app接口列表
+    SAASAPPGetBannerList 	= 7000;
+	SAASAPPGetSplashScreen	= 7001;
+	SAASAPPGetLoginQRCode 	= 7010;	// SAAS扫码登录获取二维码
+	SAASAPPScanLogin 		= 7011; // SAAS扫码登录
+	SAASAPPGetUserKins		= 7012;	// SAAS获取用户kins信息
+	SAASAPPSignUserInfo		= 7013;	// SAAS注册用户信息
+	SAASAPPAddKinsfolk		= 7014;	// SAAS添加亲属关系
+	SAASAPPGetKins			= 7015;	// 获取被陪护人信息
+	SAASAPPGetUserKinsList	= 7016;	// 获取亲属列表
+	SAASAPPGetUserAddrList	= 7017;	// 获取地址列表
+	SAASAPPCheckUserExist	= 7018;	// 判断该手机号是否存在
+	SAASAPPGetSettings		= 7019;	// 获取企业端配置
+	SAASAPPAddUserAddr		= 7020;	// 添加用户地址
+	SAASAPPDelKinsfolk		= 7021;	// 删除用户亲属信息
+	SAASAPPDelUserAddress	= 7022;	// 删除用户地址信息
+	SAASAPPUpdateKinsfolk	= 7023;	// 更新用户亲属信息
+	SAASAPPUpdateUserAddress =7024;	// 更新用户地址信息
+	SAASAPPCreateDiffnoUser	= 7025;	// 生成异号用户
+	
+	SAASAPPGetScheduleList = 7030;	// 获取日程表信息
+	
+	SAASAPPGetAssessList   		= 7080; 	// 获取护士评估列表
+	SAASAPPInsureAssessMMSE 	= 7081;		// 护士mmse评估
+	SAASAPPInsureAssessADL		= 7082;		// 护士adl评估
+	SAASAPPInsureAssessMedical	= 7083;		// 护士添加病例
+	SAASAPPGetInsureAssessADL	= 7084;		// 获取adl评分
+	SAASAPPGetInsureAssessMMSE	= 7085;		// 获取mmse评分
+	SAASAPPGetInsureAssess		= 7086;		// 获取评估信息
+	SAASAPPSaveInsureAssess		= 7087;		// 更新订单信息
+	SAASAPPInsureAssessFirst	= 7088;		// 长护险护士初审
+	SAASAPPGetInsureMedicalList = 7089;		// 获取病例列表
+	SAASAPPUpdateInsureOrder	= 7090;		// 修改申请单预约上门下单时间和设置暂不下单
+	SAASAPPGetInsureAccountDetail = 7091;	// 获取长护险补贴明细
+	
+	
+	SAASAPPGetOrderDetail 		= 7100;		// 获取订单详情
+	SAASAPPGetOrderList			= 7101;		// 获取订单列表
+	SAASAPPGetOrderInfo			= 7102;		// 获取订单详情
+	SAASAPPSaveOrUpdateOrder	= 7103;		// 开启服务
+	SAASAPPCreateOrder 	   		= 7104; 	// 新增订单
+	SAASAPPCreateInsureOrder 	= 7105;		// 新增长护险order订单
+	SAASAPPGetOrderInformed		= 7106;		// 获取服务知情书
+	SAASAPPUpdateOrderSignPic	= 7107;		// 保存被陪护人order签名
+	SAASAPPAddOrderPrice		= 7108;		// 添加订单医疗附加服务
+	SAASAPPOrderJPush			= 7109;		// 订单信息推送 
+	SAASAPPListOrderItem		= 7110;		// 获取订单每日明细
+	SAASAPPConfirmOrderItem		= 7111;		// 护士、护工、督导、健康经理服务确认
+	SAASAPPUpdateOrderServe 	= 7112;		// 变更服务信息
+	SAASAPPGetOrderProcessList 	= 7113;		// 变更记录
+	SAASAPPCancelOrderItem		= 7114;		// 取消关闭长护险订单项（指护工添加的长护险附加项）
+	SAASAPPSettlPayDetail		= 7115;		// 订单支付详情页
+	SAASAPPGetOrderService		= 7116;		// 变更信息反显
+	SAASAPPSkipAssessOrder		= 7118;		// 居家订单跳过评估
+	SAASAPPCancelOrder			= 7119;		// 关闭订单
+	SAASAPPCheckOrderPaied		= 7120;		// 校验订单是否支付成功
+	SAASAPPUpdateOrderServicePrice = 7121;	// 护工变更服务price接口--只针对于护工
+	SAASAPPGetOrderPriceInvert 	= 7122;		// 获取附加项列表（普通附加）及反显数据
+	SAASAPPAddOrderPriceItemRevise = 7123;	// 修改订单校正服务
+	SAASAPPRechargePrepayFee	= 7124;		// 充值预付款
+	
+	
+	SAASAPPGetOrgAndBranch 		= 7150;		// 获取机构与科室
+	SAASAPPGetRoomAndBed   		= 7151; 	// 获取房间跟房间号
+	SAASAPPGetPrice				= 7152;		// 获取服务
+	SAASAPPGetPriceList			= 7153;		// 获取服务信息
+	SAASAPPGetOrderTime			= 7154;		// 获取订单服务时间
+	
+	SAASAPPGetHgInfo			= 7255; 	// 获取护士、护工、护士长、督导、健康经理信息	
+	SAASAPPUpdateHgInfo			= 7256;		// 修改护士、护工、护士长、督导、健康经理信息
+//	SAASAPPGetSubserverList		= 7258;		// 获取护士长子订单列表
+	SAASAPPGuideStaff			= 7259;		// 指派护工/护士
+	SAASAPPGetHgList			= 7260;		// 获取我的护士、护工列表
+	
+	SAASAPPUpdateMessageRead = 7300;	// 标记消息已读
+	SAASAPPGetMessageList = 7301;		// 获取消息列表
+	SAASAPPGetMsgByType = 7302;			//  获取某种分类消息的消息列表
+	SAASAPPGetMsgList = 7303;			// 获取消息分类列表
+	
+	SAASAPPAddFeedBack = 7310;			// 提交护工意见反馈
+	
+	SAASAPPScan	= 7315;					// 扫码请求
+	
+	
+	//---------saas管理后台接口
+	SAASGetPermitMenu 			= 9000;		// 根据登入用户的不同,显示不同的操作菜单
+    SAASGetBannerList			= 9001;		// 获取banner列表
+    SAASSaveOrUpdateBanner		= 9002;		// 保存或修改banner
+    SAASDelBanner				= 9003;		// 删除一个banner
+    SAASGetBannerById			= 9004;		// 获取一个banner
+
+    SAASDelSplashScreen			= 9005;		// 删除一个闪屏配置
+    SAASGetSplashScreenList		= 9006;		// 获取闪屏列表
+    SAASSaveOrUpdateSplashScreen = 9007;	// 保存或修改闪屏配置
+    SAASGetSplashScreenById = 9008;			// 通过id获取闪屏
+	SAASGetStaffList 		= 9009;			// 获取员工列表
+    SAASGetHGList			= 9010;			// 获取护工/护士的信息
+   	SAASDelHGInfo			= 9011;			// 删除护工的信息
+    SAASSaveOrUpdateHGInfo	= 9012;			// 保存或更改护工的信息
+    SAASGetHGInfo			= 9013;			// 通过id获取单个护工的信息
+    
+    SAASGetHGBankCard		= 9014;			//通过id获取银行卡信息
+    SAASGetHGBankCardList	= 9015;			//通过id获取银行卡信息列表
+    SAASDelHGBankCard		= 9016;			//通过id删除银行卡信息
+    SAASSaveOrUpdateHGBankCard = 9017;		//保存或修改银行卡信息
+    SAASUpdateHGSignPic		= 9018;			// 保存护工的签名
+	
+	SAASGetBranchpriceList     	= 9020;		// 获取branch有服务的列表
+    SAASSaveOrUpdateBranch		= 9021;		// 保存或修改branch
+	SAASDeleteBranch			= 9022;		// 删除科室
+	SAASGetBranch				= 9023;		// 获取branch
+	SAASGetBranchList			= 9024;		// 获取branch列表
+	
+    SAASSaveOrUpdateOrg			= 9025;		// 保存或修改org
+	SAASDeleteOrg				= 9026;		// 删除机构
+	SAASGetOrg					= 9027;		// 获取org
+	SAASGetOrgList				= 9028;		// 获取org列表
+	
+    SAASSaveOrUpdateOrgTag			= 9029;		// 保存或修改标签
+	SAASDeleteOrgTag				= 9030;		// 删除机构标签
+	SAASGetOrgTag					= 9031;		// 获取标签
+	SAASGetOrgTagList				= 9032;		// 获取org标签列表
+	
+	SAASSaveOrUpdateOrgTagItem		= 9033;		// 保存或修改标签
+	SAASDeleteOrgTagItem			= 9034;		// 删除机构标签
+	SAASGetOrgTagItem				= 9035;		// 获取标签
+	SAASGetOrgTagItemList			= 9036;		// 获取org标签列表
+	SAASGetOrgBranchList		= 9037;			// 获取机构和科室的map
+    SAASSaveOrUpdateCompany		= 9040;		// 保存或修改Company
+	SAASDeleteCompany			= 9041;		// 删除公司(改变状态)
+	SAASGetCompany				= 9042;		// 获取Company
+	SAASGetCompanyList			= 9043;		// 获取Company列表
+	SAASSetCompanyAdmin			= 9044; 	// 设置公司管理员
+	SAASCompanyThroughChecking		= 9046;		//公司通过申请
+	SAASGetBannerSortMax		= 9047;//	//获取banner最大的排序值并且获取是否存在
+	
+    SAASSaveOrUpdateCompanyOrg		= 9051;		// 保存或修改CompanyOrg
+	SAASDeleteCompanyOrg			= 9052;		// 删除公司机构关联
+	SAASGetCompanyOrg				= 9053;		// 获取CompanyOrg
+	SAASGetCompanyOrgList			= 9054;		// 获取CompanyOrg列表
+	
+	SAASSaveOrUpdateRoom			= 9061;		// 保存或修改Room
+	SAASDeleteRoom					= 9062;		// 删除房间
+	SAASGetRoom						= 9063;		// 获取Room
+	SAASGetRoomList					= 9064;		// 获取Room列表\
+	SAASGetRoomListInfo				= 9065;		// 查询Room列表所以
+	
+	SAASSaveOrUpdateBed				= 9071;		// 保存或修改Bed	
+	SAASDeleteBed					= 9072;		// 删除Bed
+	SAASGetBed						= 9073;		// 获取Bed	
+	SAASGetBedList					= 9074;		// 获取Bed列表
+	SAASGetBedBranchList			= 9075;		// 获取Bed列表，未被使用的
+	
+	SAASSaveOrUpdatePrice = 9081;				// 保存或修改定价
+	SAASDeletePrice		= 9082;					// 删除定价信息
+	SAASGetPrice		= 9083;					// 获取Price信息
+	SAASGetPriceList	= 9084;					// 获取Price列表
+	
+	SAASSaveOrUpdateCompanyPrepay = 9085;		// 修改居家预付金
+	SAASGetCompanyPrepayList = 9086; 			// 获取居家预付金列表
+	SAASGetInsurePrice = 9087;					// 获取长护险居家套餐
+	SAASGetPriceByCreateOrder = 9088;			// 获取居家或机构套餐
+	SAASUpdateInsureInfo = 9089;				// 修改长护险信息
+	SAASUpdateBatchCompanyPrepay = 9090;		// 批量修改居家预付金
+	
+	SAASSaveOrUpdateUser = 9091;				//添加或更新用户	
+	SAASDeleteUser		= 9092;					//删除用户
+	SAASGetUser			= 9093;					//通过id获取用户
+	SAASGetUserList		= 9094;					//获取用户列表
+	SAASGetUserAccountRecordList = 9095; 		// 获取用户账户记录
+	SAASGetUserIntegralRecordList = 9096; 		// 获取用户积分记录
+	SAASGetUserByPhone = 9097;					// 通过手机号获取用户id，如果不存在，新增一个用户id
+	
+	SAASChangePwd       = 9100;					//修改SAAS登录密码
+	SAASAddOrUpdateAppVersion = 9120;           //添加或更新APP版本记录
+	SAASListAppVersion  = 9121;                 //查询APP版本列表
+	
+	SAASSaveOrUpdateCouponTemplate 	= 9130;		// 保存或修改优惠券模板
+	SAASGetCouponTemplate			= 9131;		// 获取优惠券模板
+	SAASGetCouponTemplateList		= 9132;		// 获取优惠券模板列表
+	
+	SAASAddKinsfolk				= 9140;		//添加用户亲属
+	SAASDelKinsfolk             = 9141;		//删除用户亲属
+	SAASListKinsfolk            = 9142;		//获取用户亲属列表
+	SAASAddUserAddress          = 9150;		//添加用户服务地址
+	SAASDelUserAddress          = 9151;		//删除用户服务地址
+	SAASListUserAddress         = 9152;		//获取用户服务地址列表
+	SAASGetEvalKinsList			= 9153;		// 获取评估点下的评估对象列表
+	SAASGetAssessKinsList		= 9154;		// 获取我的（评估员）评估对象
+	SAASCreateDiffnoUser		= 9155;		// 生成异号用户
+	
+	SAASGetMyWorkbench			= 9160;		// 获取工作台信息
+	
+	SAASCheckLoginState			= 9170;			// SAAS轮询检查登录状态
+	
+	SAASGetWXMenuList = 9171;		// 获取微信菜单列表
+	SAASAddOrUpdateWXMenu = 9172;	// 保存或更新微信菜单
+	SAASDelWXMenu = 9173;			// 删除微信菜单
+	SAASUpdateMenuToWX = 9174;		// 更新菜单到微信
+	
+	SAASGetWithdrawList = 9180;	// 获取提现记录
+	SAASGetUserOrderPay = 9181;	// 获取用户支付记录
+	SAASWithdraw		= 9182;	// 提现处理
+	
+	SAASGetOrderList 		= 9200;		// 获取订单列表
+	SAASGetOrderDetailInfo 	= 9201;		// 获取订单详情
+	SAASGetServeHGList 		= 9202;		// 获取分配护工列表
+	SAASAllotHG 			= 9203;		// 分配护工
+	SAASSaveOrUpdateOrder 	= 9204;		// 修改订单信息
+	SAASGetOrderItemList  	= 9205;		// 获取每月消费信息
+	SAASGetOrderInfo 		= 9206;		// 获取订单详情
+	SAASCreateInsureOrder	= 9207;		// 创建长护险order订单
+	SAASCreateOrder			= 9208;		// 创建居家/机构订单
+	SAASGetOrderTime		= 9209;		// 获取订单时间信息
+	SAASAddOrderAssessResult = 9210;	// 添加居家订单评估结果
+	SAASSkipAssessOrder		= 9211;		// 居家订单跳过评估
+	SAASGetOrgAndBranch 	= 9212;		// 获取机构与科室列表
+	SAASGetRoomAndBed		= 9213;		// 获取房间与床位列表
+	SAASGetOrderAssessResult = 9214;	// 获取居家订单评估结果
+	SAASSettlPayDetail		= 9215;		// 获取订单中间支付详情
+	SAASPrePayAmountDetail	= 9216;		// 获取支付预交金详情
+	SAASAPPGetOrderItemInvertList = 9217;//附加服务调整明细
+	SAASSearchOrder			= 9218;		// 收银台搜索订单
+	SAASAddOrderPriceItemRevise = 9219;	// 修改订单校正服务并关闭服务
+	SAASConfirmOrderFinish	= 9220;		// 确认订单完成
+	SAASGetOrderPriceInvert = 9221;		// 获取附加项列表（普通附加）及反显数据
+	SAASClearOrderPrePayAmount = 9222;	// 清空订单预交金
+	SAASPrint				= 9223;		// 打印
+	SAASUpdateOrderByField = 9224;		// 修改订单的某个字段
+	SAASAdditionalOrder = 9225;			// 补录订单
+	SAASRechargePrepayFee = 9226;		// 充值预付款
+
+	SAASGetRoleList = 9300;	// 获取角色列表
+	SAASGetRole 	= 9301;	// 获取角色
+	SAASSaveOrUpdateRole = 9302;	// 新增_修改角色
+	SAASDelRole = 9303;	// 删除角色
+	
+	
+	SAASGetRightConfig 	= 9304;			// 获取权限配置
+	SAASGetRightConfigList 	= 9305;		// 获取权限配置列表
+	SAASSaveOrUpdateRightConfig = 9306;	// 新增_修改权限
+	SAASDelRightConfig = 9307;			// 删除权限配置
+	SAASGetRightList = 9308; 			// 获取权限列表
+	SAASGetHGListByRoleId = 9309;		// 通过角色获取人员列表
+	SAASSaveHGRole = 9310;				// 保存角色人员
+	SAASDelHGRole = 9311;				// 删除护工角色
+	SAASGetHGListNotInRoleId = 9312;	// 获取不在角色的人员列表
+	SAASGetHGRoleList = 9313;			// 通过角色公司获取人员列表
+	
+	SAASGetUserInfoAll = 9350;			// 获取用户信息 用于用户详细信息页面
+	SAASUpdateUserByField = 9351;		// 更新用户信息的某个字段, 用于用户详细信息页面	
+	SAASUpdateKinsfolkByField = 9352;	// 更新亲属信息的某个字段, 用于用户详细信息页面
+	SAASRechargeforUser = 9353;			// 为用户充值	
+	SAASCheckUserExist = 9354;			// 根据手机号判断用户是否存在
+	
+	SAASGetFeedback	= 9380;		// 获取反馈信息详情 
+	SAASGetFeedbackList	= 9381;	// 获取反馈信息列表 
+	SAASReplyFeedback	= 9382;	// 回复反馈 
+	
+	SAASGetInsureList = 9400;			// 获取长护险申请列表
+	SAASGetInsureDetail = 9405;			// 获取长护险申请单详情
+	SAASInsureAssess = 9406;			// 审核长护险申请单
+	SAASGetInsureHushiList = 9407;		// 获取长护险护士列表
+	SAASGuideStaff = 9408;				// 指派人员
+	SAASAddInsure = 9409;				// 添加长护险申请
+	SAASInsureADLAssess = 9410;			// ADL评估
+	SAASGetInsureADL = 9411;			// 获取ADL评估结果
+	SAASSaveOrUpdateAssessMmse=9412;	// MMSE评估
+	SAASGetInsureMMSE = 9413;			// 获取MMSE评估结果
+	SAASAddInsureMedical = 9414;		// 保存病史记录
+	SAASGetInsureSubsidyList = 9415;	// 获取长护险补贴列表
+	SAASSaveOrUpdateInsureSubsidy = 9416; // 添加长护险补贴
+	SAASGetKFContactRecord = 9417;		//获取客服联系
+	SAASGetInsurePerformanceList = 9418;// 获取健康经理业绩列表
+	
+	SAASAddInsureAssessResult = 9500;		// 创建评估报告
+	SAASAddInsureAssessAbilityADL = 9501;	// 能力报告-生活能力
+	SAASAddInsureAssessAbilityMind = 9502;	// 能力报告-精神状态
+	SAASAddInsureAssessAbilityComm = 9503;	// 能力报告-感知觉与沟通
+	SAASAddInsureAssessAbilitySocial = 9504;// 能力报告-社会参与
+	SAASAddInsureAssessNurse = 9505;		// 医疗照护评估
+	SAASAddInsureAssessIll = 9506;			// 疾病状况评估
+	SAASAddInsureAssessSSRS = 9507;			// 社会支持评定量
+	SAASAddInsureAssessTend = 9508;			// 养老意愿评估
+	SAASSubmitInsureAssess = 9509;			// 提交评估报告（1，特殊情况建议2，服务建议3，签名4，更新状态）
+	SAASGetInsureAssessResult = 9510;		// 获取评估报告
+	SAASGetInsureAssessResultList = 9511;	// 获取历史评估记录
+	SAASGetKinsInsureAssessList = 9512;		// 获取评估对象的评估记录
+	SAASUpdateInsureAssessKinsInfoByField = 9513;	// 完善评估对象的某个信息
+	SAASUpdateInsureAssessKinsInfo = 9514;	// 完善评估对象信息
+	SAASGetInsureAgainAssess = 9515;		// 获取病史护理指导
+	SAASGetInsureAssessAbilityAdl = 9516;	// 获取老年人能力评估表-生活能力
+	SAASGetInsureAssessAbilityComm = 9517;	// 获取老年人能力评估表-感知觉与沟通
+	SAASGetInsureAssessAbilityMind = 9518;	// 获取老年人能力评估表-精神状态
+	SAASGetInsureAssessAbilitySocial = 9519;// 获取老年人能力评估表-社会参与
+	SAASGetInsureAssessIll = 9520;			// 获取疾病状况评估
+	SAASGetInsureAssessNurse = 9521;		// 获取医疗照护评估
+	SAASGetInsureAssessSSRS = 9522;			// 获取社会支持评定量表-SSRS
+	SAASGetInsureAssessTend = 9523;			// 获取养老意愿评估
+	
+	SAASAddKins = 9550;				// 新增评估对象
+	SAASSearchKins = 9551;			// 搜索评估对象
+	SAASUpdateKins = 9552;			// 编辑评估对象
+	SAASUpdateKinsByField = 9553;	// 修改评估对象的某个信息
+	SAASGetKins = 9554;				// 获取评估对象
+	
+	SAASAddEvaluation = 9570;		// 新增评估点
+	SAASUpdateEvaluation = 9571;	// 编辑评估点
+	SAASGetEvaluationList = 9572;	// 获取评估点列表
+	SAASGetEvaluation = 9573;		// 获取评估点
+	SAASDelEvaluation = 9574;		// 删除评估点
+
+	SAASAddInformation = 9580;				//添加资讯信息
+	SAASGetInformationList = 9581;			//获取资讯列表
+	SAASUpdateInformation = 9582;			//编辑资讯
+	SAASDelInformation = 9583;				//删除资讯
+	
+    SAASGetMPQRCode		= 9590;			// 公众号渠道二维码
+    SAASGetAllMPQRCode	= 9591;			// 获取所有公众号二维码
+    
+    //------统计
+    SAASTJHGChannel		= 9600;			// 统计员工推广数据查询
+    
+    SAASCheckStaffApply = 9650;		// 审核自照申请单
+    SAASGetStaffApplyList = 9651;	// 获取自照申请单列表
+    SAASGetStaffApplyDetail = 9652;	// 获取自照申请详情
+    
+    SAASCheckSAASPayResult = 9660;	// 轮询扫码支付状态
+    
+    SAASGetOrderPrintData = 9670;	// 打印订单支付记录
+    
+    SAASGetIndexServiceList = 9680;	// 获取居家服务类型列表
+    SAASGetIndexServiceInfo = 9681;	// 获取居家服务类型详情
+    SAASUpdateIndexService = 9682;	// 修改居家服务类型信息
+    
+    SAASAddOrderOrgExtra = 9690;	// 办理门禁卡
+    SAASUpdateOrderOrgExtra = 9691;	// 退还、挂失或解挂门禁卡
+    SAASTjOrgExtra = 9692;			// 门禁卡统计
+    
+    
+    SAASGetFinanceRecordList	= 9720;	// 财务管理列表
+    SAASSaveOrUpdateFinanceRecord = 9721;// 操作财务信息
+    
+    SAASGetFormRecordList 			= 9730;		// 获取报表记录
+    SAASGetFormRecordDownload 		= 9731;		// 生成报表报表
+    
+};
