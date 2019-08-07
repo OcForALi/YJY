@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="YJYShareView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NT8-xY-dNS" userLabel="bgView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YcW-kw-I5g">
+                            <rect key="frame" x="0.0" y="407" width="375" height="260"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nvv-vD-SOg" userLabel="1">
+                                    <rect key="frame" x="46" y="25" width="53" height="53"/>
+                                    <state key="normal" image="share_moment_icon">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="shareAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="vqd-Rv-9RZ"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8S-qc-oko" userLabel="2">
+                                    <rect key="frame" x="161" y="25" width="53" height="53"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="53" id="Eyy-Z2-gdY"/>
+                                        <constraint firstAttribute="width" constant="53" id="nGG-6X-p5a"/>
+                                    </constraints>
+                                    <state key="normal" image="share_qq_icon">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="shareAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="h4V-s6-VYq"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LPl-1t-KuW" userLabel="3">
+                                    <rect key="frame" x="276" y="25" width="53" height="53"/>
+                                    <state key="normal" image="share_wechat_icon">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="shareAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="TrA-Z5-FVW"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8h-e2-OXG" userLabel="close">
+                                    <rect key="frame" x="170.5" y="144" width="34" height="34"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="34" id="OLF-Xq-iZc"/>
+                                        <constraint firstAttribute="height" constant="34" id="wsB-Jt-COX"/>
+                                    </constraints>
+                                    <state key="normal" image="share_close_icon">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="shareAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="XfR-4m-iSV"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="Y8h-e2-OXG" firstAttribute="top" secondItem="o8S-qc-oko" secondAttribute="bottom" constant="66" id="3jA-f3-wC9"/>
+                                <constraint firstItem="LPl-1t-KuW" firstAttribute="bottom" secondItem="Nvv-vD-SOg" secondAttribute="bottom" id="EWj-Rq-zkU"/>
+                                <constraint firstItem="LPl-1t-KuW" firstAttribute="width" secondItem="Nvv-vD-SOg" secondAttribute="width" id="Kqz-Jc-jDu"/>
+                                <constraint firstAttribute="trailing" secondItem="LPl-1t-KuW" secondAttribute="trailing" constant="46" id="LjL-FL-caN"/>
+                                <constraint firstAttribute="height" constant="260" id="P7D-6H-lxF"/>
+                                <constraint firstItem="o8S-qc-oko" firstAttribute="top" secondItem="YcW-kw-I5g" secondAttribute="top" constant="25" id="SiI-oB-M2p"/>
+                                <constraint firstItem="LPl-1t-KuW" firstAttribute="top" secondItem="Nvv-vD-SOg" secondAttribute="top" id="UR5-U1-HBN"/>
+                                <constraint firstItem="o8S-qc-oko" firstAttribute="width" secondItem="Nvv-vD-SOg" secondAttribute="width" id="h6n-hl-Qas"/>
+                                <constraint firstItem="o8S-qc-oko" firstAttribute="bottom" secondItem="Nvv-vD-SOg" secondAttribute="bottom" id="iH5-Yh-Yu7"/>
+                                <constraint firstItem="o8S-qc-oko" firstAttribute="centerX" secondItem="YcW-kw-I5g" secondAttribute="centerX" id="j8C-Wl-W2S"/>
+                                <constraint firstItem="Nvv-vD-SOg" firstAttribute="leading" secondItem="YcW-kw-I5g" secondAttribute="leading" constant="46" id="jdB-pQ-uyl"/>
+                                <constraint firstItem="o8S-qc-oko" firstAttribute="top" secondItem="Nvv-vD-SOg" secondAttribute="top" id="oEf-ev-9Og"/>
+                                <constraint firstItem="Y8h-e2-OXG" firstAttribute="centerX" secondItem="YcW-kw-I5g" secondAttribute="centerX" id="vmB-hb-Nbv"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="YcW-kw-I5g" secondAttribute="trailing" id="9VI-hn-xGM"/>
+                        <constraint firstItem="YcW-kw-I5g" firstAttribute="leading" secondItem="NT8-xY-dNS" secondAttribute="leading" id="ITQ-kw-w0s"/>
+                        <constraint firstAttribute="bottom" secondItem="YcW-kw-I5g" secondAttribute="bottom" id="dPP-7u-7O4"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="BBJ-dx-JNu" appends="YES" id="USD-DI-NRo"/>
+                    </connections>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="NT8-xY-dNS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3ZF-On-nYP"/>
+                <constraint firstAttribute="trailing" secondItem="NT8-xY-dNS" secondAttribute="trailing" id="Dus-m1-7Ja"/>
+                <constraint firstItem="NT8-xY-dNS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="vPU-vH-WkA"/>
+                <constraint firstAttribute="bottom" secondItem="NT8-xY-dNS" secondAttribute="bottom" id="ybH-YC-2wb"/>
+            </constraints>
+            <connections>
+                <outlet property="actionView" destination="YcW-kw-I5g" id="wEa-vT-jPJ"/>
+            </connections>
+            <point key="canvasLocation" x="-77" y="11"/>
+        </view>
+        <tapGestureRecognizer id="BBJ-dx-JNu">
+            <connections>
+                <action selector="tapAction:" destination="iN0-l3-epB" id="H1J-34-15r"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="share_close_icon" width="34" height="34"/>
+        <image name="share_moment_icon" width="53" height="53"/>
+        <image name="share_qq_icon" width="53" height="53"/>
+        <image name="share_wechat_icon" width="53" height="53"/>
+    </resources>
+</document>

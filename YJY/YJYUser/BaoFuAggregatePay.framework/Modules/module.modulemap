@@ -1,0 +1,6 @@
+framework module BaoFuAggregatePay {
+  umbrella header "BaoFuAggregatePay.h"
+
+  export *
+  module * { export * }
+}

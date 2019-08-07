@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--我的银行卡-->
+        <scene sceneID="vdf-13-Uhl">
+            <objects>
+                <viewController storyboardIdentifier="YJYBankManageController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cBr-CO-Qfe" customClass="YJYBankManageController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sLR-Tr-BLv"/>
+                        <viewControllerLayoutGuide type="bottom" id="VuL-OI-716"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SkD-A1-s9L">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bank_unbind_icon" translatesAutoresizingMaskIntoConstraints="NO" id="crG-4m-enU">
+                                <rect key="frame" x="145.5" y="164" width="84" height="84"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="84" id="Sg1-I2-wgs"/>
+                                    <constraint firstAttribute="width" constant="84" id="UvO-nY-EwD"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="还未绑定银行卡" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PVY-FK-obn">
+                                <rect key="frame" x="116" y="278" width="143" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="143" id="Hfq-F0-Kyz"/>
+                                    <constraint firstAttribute="height" constant="20" id="uhT-kn-ddo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                                <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="0.50408976510000003" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ra-2V-5JD">
+                                <rect key="frame" x="37" y="448" width="300" height="45"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="kMc-c4-XrF"/>
+                                    <constraint firstAttribute="height" constant="45" id="sdD-di-ENp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="添加银行卡">
+                                    <color key="titleColor" red="0.37742298839999999" green="0.84268701079999997" blue="0.74010258910000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addModifyBankAction:" destination="cBr-CO-Qfe" eventType="touchUpInside" id="EBy-Os-Zx7"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TYY-bI-Twk" userLabel="card">
+                                <rect key="frame" x="37.5" y="164" width="300" height="165"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bank_green_bg" translatesAutoresizingMaskIntoConstraints="NO" id="WXK-ek-Zk7">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="165"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8888    8888    8888    8888   " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9wv-eX-gYf">
+                                        <rect key="frame" x="36" y="103" width="228" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="0SY-OU-9Ig"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中国建设银行" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Skx-z1-0nA">
+                                        <rect key="frame" x="36" y="35" width="110.5" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="iSe-Se-M7s"/>
+                                            <constraint firstAttribute="height" constant="21" id="zV3-du-bMK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="储蓄卡" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tcj-K0-FRZ">
+                                        <rect key="frame" x="208.5" y="35" width="55.5" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="eR5-qB-GNv"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="WXK-ek-Zk7" secondAttribute="trailing" id="6bU-qH-FPp"/>
+                                    <constraint firstItem="Skx-z1-0nA" firstAttribute="top" secondItem="TYY-bI-Twk" secondAttribute="top" constant="35" id="6m5-7T-Gdp"/>
+                                    <constraint firstAttribute="height" constant="165" id="8uW-HJ-FNL"/>
+                                    <constraint firstItem="WXK-ek-Zk7" firstAttribute="top" secondItem="TYY-bI-Twk" secondAttribute="top" id="Blv-JP-g58"/>
+                                    <constraint firstItem="WXK-ek-Zk7" firstAttribute="leading" secondItem="TYY-bI-Twk" secondAttribute="leading" id="Cbx-6i-tLW"/>
+                                    <constraint firstItem="Skx-z1-0nA" firstAttribute="leading" secondItem="TYY-bI-Twk" secondAttribute="leading" constant="36" id="CkM-1r-fdx"/>
+                                    <constraint firstAttribute="bottom" secondItem="9wv-eX-gYf" secondAttribute="bottom" constant="41" id="Fam-JO-6lS"/>
+                                    <constraint firstItem="9wv-eX-gYf" firstAttribute="leading" secondItem="TYY-bI-Twk" secondAttribute="leading" constant="36" id="RG3-Tu-6ns"/>
+                                    <constraint firstAttribute="bottom" secondItem="WXK-ek-Zk7" secondAttribute="bottom" id="TDr-lJ-CxX"/>
+                                    <constraint firstItem="Tcj-K0-FRZ" firstAttribute="bottom" secondItem="Skx-z1-0nA" secondAttribute="bottom" id="aLN-iM-Izf"/>
+                                    <constraint firstAttribute="trailing" secondItem="9wv-eX-gYf" secondAttribute="trailing" constant="36" id="bel-9Y-oon"/>
+                                    <constraint firstAttribute="width" constant="300" id="uLM-Bl-6Xn"/>
+                                    <constraint firstAttribute="trailing" secondItem="Tcj-K0-FRZ" secondAttribute="trailing" constant="36" id="vsV-zC-aS6"/>
+                                    <constraint firstItem="Tcj-K0-FRZ" firstAttribute="top" secondItem="Skx-z1-0nA" secondAttribute="top" id="yGm-tF-dNx"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4Ra-2V-5JD" firstAttribute="top" secondItem="PVY-FK-obn" secondAttribute="bottom" constant="150" id="9JN-wM-z3p"/>
+                            <constraint firstItem="PVY-FK-obn" firstAttribute="centerX" secondItem="SkD-A1-s9L" secondAttribute="centerX" id="Fsl-cF-Mgg"/>
+                            <constraint firstItem="crG-4m-enU" firstAttribute="top" secondItem="sLR-Tr-BLv" secondAttribute="bottom" constant="100" id="Qdu-K4-i9K"/>
+                            <constraint firstItem="crG-4m-enU" firstAttribute="centerX" secondItem="SkD-A1-s9L" secondAttribute="centerX" id="dyi-4W-W3N"/>
+                            <constraint firstItem="PVY-FK-obn" firstAttribute="top" secondItem="crG-4m-enU" secondAttribute="bottom" constant="30" id="eX5-Ni-HU3"/>
+                            <constraint firstItem="TYY-bI-Twk" firstAttribute="centerX" secondItem="SkD-A1-s9L" secondAttribute="centerX" id="hgB-dA-7sB"/>
+                            <constraint firstItem="4Ra-2V-5JD" firstAttribute="centerX" secondItem="SkD-A1-s9L" secondAttribute="centerX" id="pEX-cJ-lYt"/>
+                            <constraint firstItem="TYY-bI-Twk" firstAttribute="top" secondItem="sLR-Tr-BLv" secondAttribute="bottom" constant="100" id="zMN-IW-3sT"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="我的银行卡" id="1mt-VC-eyx"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="cardActionButton" destination="4Ra-2V-5JD" id="8Ff-AC-F3E"/>
+                        <outlet property="cardNumberLabel" destination="9wv-eX-gYf" id="N1o-So-4Ax"/>
+                        <outlet property="cardTypeLabel" destination="Tcj-K0-FRZ" id="qKy-FQ-3WW"/>
+                        <outlet property="cardView" destination="TYY-bI-Twk" id="hsj-iR-y1O"/>
+                        <outlet property="cardnameLabel" destination="Skx-z1-0nA" id="dcB-RD-BSE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2ku-DY-rgU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="30" y="45"/>
+        </scene>
+        <!--修改银行卡-->
+        <scene sceneID="WJc-e5-6M4">
+            <objects>
+                <tableViewController storyboardIdentifier="YJYBankModifyController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wDH-1F-yQR" customClass="YJYBankModifyController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="57" sectionHeaderHeight="28" sectionFooterHeight="28" id="bK2-0l-SRd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="2Ff-kI-sqt">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请确认信息准确无误，否则将导致提现失败" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOU-mP-EXp">
+                                    <rect key="frame" x="22.5" y="12" width="330" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="330" id="I78-z5-7br"/>
+                                        <constraint firstAttribute="height" constant="21" id="pH2-xW-CeP"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <color key="textColor" red="0.92274349929999999" green="0.071162840140000003" blue="0.27757760879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="iOU-mP-EXp" firstAttribute="centerY" secondItem="2Ff-kI-sqt" secondAttribute="centerY" id="7WO-MB-g0n"/>
+                                <constraint firstItem="iOU-mP-EXp" firstAttribute="centerX" secondItem="2Ff-kI-sqt" secondAttribute="centerX" id="gY7-FC-VRu"/>
+                            </constraints>
+                        </view>
+                        <sections>
+                            <tableViewSection id="fJf-3V-jHZ">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="57" id="JRO-tc-v61">
+                                        <rect key="frame" x="0.0" y="44" width="375" height="57"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JRO-tc-v61" id="6Kw-gk-W54">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="56.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="持卡人姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VtG-6E-QzM">
+                                                    <rect key="frame" x="17" y="18" width="83" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="83" id="0xy-MO-pUJ"/>
+                                                        <constraint firstAttribute="height" constant="21" id="d4Y-f3-mEU"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入持卡人姓名" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Xfo-jq-BPg">
+                                                    <rect key="frame" x="100" y="13" width="230" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="o1O-vh-xoD"/>
+                                                    </constraints>
+                                                    <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book_edit_icon" translatesAutoresizingMaskIntoConstraints="NO" id="NET-It-iDP">
+                                                    <rect key="frame" x="340" y="19.5" width="18" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="18" id="H7l-Sq-Gpi"/>
+                                                        <constraint firstAttribute="height" constant="18" id="oEi-Mc-wSL"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="NET-It-iDP" firstAttribute="centerY" secondItem="6Kw-gk-W54" secondAttribute="centerY" id="41f-ex-GFF"/>
+                                                <constraint firstItem="NET-It-iDP" firstAttribute="leading" secondItem="Xfo-jq-BPg" secondAttribute="trailing" constant="10" id="5Ut-kc-iOk"/>
+                                                <constraint firstItem="Xfo-jq-BPg" firstAttribute="centerY" secondItem="6Kw-gk-W54" secondAttribute="centerY" id="6q9-G5-uyx"/>
+                                                <constraint firstItem="VtG-6E-QzM" firstAttribute="centerY" secondItem="6Kw-gk-W54" secondAttribute="centerY" id="Sdc-WV-TRw"/>
+                                                <constraint firstItem="VtG-6E-QzM" firstAttribute="leading" secondItem="6Kw-gk-W54" secondAttribute="leading" constant="17" id="XDz-s4-9h2"/>
+                                                <constraint firstItem="Xfo-jq-BPg" firstAttribute="leading" secondItem="6Kw-gk-W54" secondAttribute="leading" constant="100" id="szx-dC-urx"/>
+                                                <constraint firstAttribute="trailing" secondItem="NET-It-iDP" secondAttribute="trailing" constant="17" id="whX-9O-b9t"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="57" id="Jae-45-xch">
+                                        <rect key="frame" x="0.0" y="101" width="375" height="57"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jae-45-xch" id="if8-ko-2EY">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="56.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="银行卡号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PHU-0D-gmp">
+                                                    <rect key="frame" x="17" y="18" width="83" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="83" id="VCx-97-Zyt"/>
+                                                        <constraint firstAttribute="height" constant="21" id="kHc-Pw-22R"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="仅限本人储蓄卡" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="md9-4e-USP">
+                                                    <rect key="frame" x="100" y="13" width="230" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="T0Z-tq-O1r"/>
+                                                    </constraints>
+                                                    <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book_edit_icon" translatesAutoresizingMaskIntoConstraints="NO" id="vpP-gK-Bqh">
+                                                    <rect key="frame" x="340" y="19.5" width="18" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="18" id="2gp-Uc-ayW"/>
+                                                        <constraint firstAttribute="height" constant="18" id="fJ8-h3-sOa"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="md9-4e-USP" firstAttribute="centerY" secondItem="if8-ko-2EY" secondAttribute="centerY" id="6fR-94-jvW"/>
+                                                <constraint firstAttribute="trailing" secondItem="vpP-gK-Bqh" secondAttribute="trailing" constant="17" id="AEt-yS-2Md"/>
+                                                <constraint firstItem="PHU-0D-gmp" firstAttribute="centerY" secondItem="if8-ko-2EY" secondAttribute="centerY" id="GRB-Ag-TjW"/>
+                                                <constraint firstItem="vpP-gK-Bqh" firstAttribute="centerY" secondItem="if8-ko-2EY" secondAttribute="centerY" id="S9Z-sW-GSp"/>
+                                                <constraint firstItem="vpP-gK-Bqh" firstAttribute="leading" secondItem="md9-4e-USP" secondAttribute="trailing" constant="10" id="XMN-Hg-d43"/>
+                                                <constraint firstItem="md9-4e-USP" firstAttribute="leading" secondItem="if8-ko-2EY" secondAttribute="leading" constant="100" id="ani-WS-Eqg"/>
+                                                <constraint firstItem="PHU-0D-gmp" firstAttribute="leading" secondItem="if8-ko-2EY" secondAttribute="leading" constant="17" id="gKP-Ji-fXJ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="57" id="LcT-Ak-lin">
+                                        <rect key="frame" x="0.0" y="158" width="375" height="57"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LcT-Ak-lin" id="ZLX-Ni-c9Y">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="56.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开户支行" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRl-MH-UaI">
+                                                    <rect key="frame" x="17" y="18" width="83" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="83" id="3aE-eK-Jmm"/>
+                                                        <constraint firstAttribute="height" constant="21" id="w2B-LN-b7P"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入开户支行" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5qg-Jo-fT0">
+                                                    <rect key="frame" x="100" y="13" width="230" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="ukF-p3-Hi9"/>
+                                                    </constraints>
+                                                    <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="book_edit_icon" translatesAutoresizingMaskIntoConstraints="NO" id="77w-UT-SfB">
+                                                    <rect key="frame" x="340" y="19.5" width="18" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="18" id="6Ct-lP-9Ga"/>
+                                                        <constraint firstAttribute="height" constant="18" id="87l-1c-GhY"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="77w-UT-SfB" firstAttribute="leading" secondItem="5qg-Jo-fT0" secondAttribute="trailing" constant="10" id="9ha-TR-Tuf"/>
+                                                <constraint firstItem="5qg-Jo-fT0" firstAttribute="centerY" secondItem="ZLX-Ni-c9Y" secondAttribute="centerY" id="ADC-jc-wHd"/>
+                                                <constraint firstItem="qRl-MH-UaI" firstAttribute="centerY" secondItem="ZLX-Ni-c9Y" secondAttribute="centerY" id="Oht-0S-rok"/>
+                                                <constraint firstItem="77w-UT-SfB" firstAttribute="centerY" secondItem="ZLX-Ni-c9Y" secondAttribute="centerY" id="TZK-q0-q7Y"/>
+                                                <constraint firstItem="5qg-Jo-fT0" firstAttribute="leading" secondItem="ZLX-Ni-c9Y" secondAttribute="leading" constant="100" id="aHh-gZ-YJy"/>
+                                                <constraint firstAttribute="trailing" secondItem="77w-UT-SfB" secondAttribute="trailing" constant="17" id="bxq-No-wlp"/>
+                                                <constraint firstItem="qRl-MH-UaI" firstAttribute="leading" secondItem="ZLX-Ni-c9Y" secondAttribute="leading" constant="17" id="y3E-UU-MB6"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="200" id="by4-Z9-Yh0">
+                                        <rect key="frame" x="0.0" y="215" width="375" height="200"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="by4-Z9-Yh0" id="PBH-9u-HK9">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="199.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="开户支行格如&quot;中国银行深圳公明支行&quot;" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="on9-cn-E6a">
+                                                    <rect key="frame" x="5" y="10" width="353" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="Two-3C-ZcU"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2p8-4N-hzP">
+                                                    <rect key="frame" x="37" y="144.5" width="300" height="45"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="300" id="FNf-2l-Q6K"/>
+                                                        <constraint firstAttribute="height" constant="45" id="wV6-jx-Zor"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <state key="normal" title="确认修改">
+                                                        <color key="titleColor" red="0.37742298839999999" green="0.84268701079999997" blue="0.74010258910000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="done:" destination="wDH-1F-yQR" eventType="touchUpInside" id="07u-bQ-Yh0"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="2p8-4N-hzP" secondAttribute="bottom" constant="10" id="Phu-S3-bbJ"/>
+                                                <constraint firstItem="on9-cn-E6a" firstAttribute="top" secondItem="PBH-9u-HK9" secondAttribute="top" constant="10" id="Rg8-He-mGC"/>
+                                                <constraint firstItem="on9-cn-E6a" firstAttribute="leading" secondItem="PBH-9u-HK9" secondAttribute="leading" constant="5" id="cEW-Ag-aV4"/>
+                                                <constraint firstItem="2p8-4N-hzP" firstAttribute="centerX" secondItem="PBH-9u-HK9" secondAttribute="centerX" id="gtJ-RN-BIG"/>
+                                                <constraint firstAttribute="trailing" secondItem="on9-cn-E6a" secondAttribute="trailing" constant="17" id="yjz-em-9W3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="wDH-1F-yQR" id="qbN-Is-4XX"/>
+                            <outlet property="delegate" destination="wDH-1F-yQR" id="Y5h-qP-mkv"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="修改银行卡" id="tfp-qK-jCx"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="cardBankTextField" destination="5qg-Jo-fT0" id="nf5-tK-vZJ"/>
+                        <outlet property="cardNumTextField" destination="md9-4e-USP" id="Bak-ua-Fhe"/>
+                        <outlet property="doneButton" destination="2p8-4N-hzP" id="rh2-MV-hBG"/>
+                        <outlet property="nameTextField" destination="Xfo-jq-BPg" id="X65-Yd-QNx"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xdN-Rd-ZwN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="716" y="45"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="bank_green_bg" width="320" height="185"/>
+        <image name="bank_unbind_icon" width="106" height="84"/>
+        <image name="book_edit_icon" width="15" height="16"/>
+    </resources>
+</document>

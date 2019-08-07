@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Order Pay Off Done Controller-->
+        <scene sceneID="qUz-MQ-iEk">
+            <objects>
+                <viewController storyboardIdentifier="YJYOrderPayOffDoneController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="agS-5Q-8lw" customClass="YJYOrderPayOffDoneController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NlI-jM-Lfp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insure_done_icon" translatesAutoresizingMaskIntoConstraints="NO" id="iVO-cR-bep">
+                                <rect key="frame" x="167.5" y="69" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="6dV-fI-hkx"/>
+                                    <constraint firstAttribute="height" constant="40" id="qKa-Qv-wyi"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bq8-FF-a8s">
+                                <rect key="frame" x="108" y="119" width="159" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="3OJ-7C-jVb"/>
+                                    <constraint firstAttribute="width" constant="159" id="ijs-5i-uQh"/>
+                                </constraints>
+                                <string key="text">结算完成
+</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C2U-zP-gUh">
+                                <rect key="frame" x="17" y="503" width="341" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="0Vt-6e-5Ju"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="去提现">
+                                    <color key="titleColor" red="0.16862745100000001" green="0.83921568629999999" blue="0.74117647060000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="toUpCash:" destination="agS-5Q-8lw" eventType="touchUpInside" id="mRm-xr-IGQ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pzf-Bd-PEF">
+                                <rect key="frame" x="35" y="201" width="305" height="61"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="h8P-oU-RYT"/>
+                                </constraints>
+                                <string key="text">65.00元已退至您的账户余额。
+您可以到【个人中心】的【我的钱包】中申请提现。</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sjx-zP-hjL">
+                                <rect key="frame" x="17" y="575" width="341" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="y8g-uR-Z2e"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal">
+                                    <string key="title">返回订单详情
+</string>
+                                    <color key="titleColor" red="0.16862745100000001" green="0.83921568629999999" blue="0.74117647060000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="toOrderDetail:" destination="agS-5Q-8lw" eventType="touchUpInside" id="5Jd-uu-exS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8sC-sn-TYJ" firstAttribute="bottom" secondItem="sjx-zP-hjL" secondAttribute="bottom" constant="40" id="0f8-gU-pYd"/>
+                            <constraint firstItem="sjx-zP-hjL" firstAttribute="leading" secondItem="8sC-sn-TYJ" secondAttribute="leading" constant="17" id="3EG-wq-qZY"/>
+                            <constraint firstItem="8sC-sn-TYJ" firstAttribute="trailing" secondItem="pzf-Bd-PEF" secondAttribute="trailing" constant="35" id="9Lk-fJ-7o8"/>
+                            <constraint firstItem="sjx-zP-hjL" firstAttribute="top" secondItem="C2U-zP-gUh" secondAttribute="bottom" constant="20" id="EW3-nJ-DzX"/>
+                            <constraint firstItem="Bq8-FF-a8s" firstAttribute="top" secondItem="iVO-cR-bep" secondAttribute="bottom" constant="10" id="IYK-ZP-tTv"/>
+                            <constraint firstItem="C2U-zP-gUh" firstAttribute="leading" secondItem="8sC-sn-TYJ" secondAttribute="leading" constant="17" id="T5J-Cl-l4Q"/>
+                            <constraint firstItem="iVO-cR-bep" firstAttribute="top" secondItem="8sC-sn-TYJ" secondAttribute="top" constant="49" id="ViC-CB-ZOh"/>
+                            <constraint firstItem="iVO-cR-bep" firstAttribute="centerX" secondItem="NlI-jM-Lfp" secondAttribute="centerX" id="YM6-0H-Ezt"/>
+                            <constraint firstItem="8sC-sn-TYJ" firstAttribute="trailing" secondItem="sjx-zP-hjL" secondAttribute="trailing" constant="17" id="YoR-Ch-CF2"/>
+                            <constraint firstItem="pzf-Bd-PEF" firstAttribute="leading" secondItem="8sC-sn-TYJ" secondAttribute="leading" constant="35" id="ZoD-3L-y59"/>
+                            <constraint firstItem="Bq8-FF-a8s" firstAttribute="centerX" secondItem="NlI-jM-Lfp" secondAttribute="centerX" id="rZf-Jp-aqd"/>
+                            <constraint firstItem="pzf-Bd-PEF" firstAttribute="top" secondItem="Bq8-FF-a8s" secondAttribute="bottom" constant="50" id="rvG-Zk-1nt"/>
+                            <constraint firstItem="8sC-sn-TYJ" firstAttribute="trailing" secondItem="C2U-zP-gUh" secondAttribute="trailing" constant="17" id="zyN-Yj-DcA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8sC-sn-TYJ"/>
+                    </view>
+                    <connections>
+                        <outlet property="desLabel" destination="pzf-Bd-PEF" id="Cfv-Bv-Ylj"/>
+                        <outlet property="orderDetailButton" destination="sjx-zP-hjL" id="7f4-uq-sz0"/>
+                        <outlet property="upCashButton" destination="C2U-zP-gUh" id="3os-hE-16c"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E9e-jd-9KZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="829.60000000000002" y="264.91754122938534"/>
+        </scene>
+        <!--Order Pay Off Cash Return Controller-->
+        <scene sceneID="5J8-EZ-GNn">
+            <objects>
+                <viewController storyboardIdentifier="YJYOrderPayOffCashReturnController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="50H-mc-DMl" customClass="YJYOrderPayOffCashReturnController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YG4-d8-4ng">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insure_done_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Yhi-Jl-yXk">
+                                <rect key="frame" x="167.5" y="69" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="aZE-ah-Z7p"/>
+                                    <constraint firstAttribute="width" constant="40" id="ijh-Wk-e5q"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1e-dj-CGZ">
+                                <rect key="frame" x="43" y="119" width="290" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="159" id="Ee3-8l-2a4"/>
+                                    <constraint firstAttribute="height" constant="32" id="lcR-mC-fpd"/>
+                                </constraints>
+                                <string key="text">请到一楼收费处结算订单
+</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOr-sl-14c">
+                                <rect key="frame" x="35" y="171" width="305" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="lvd-i1-IAl"/>
+                                </constraints>
+                                <string key="text">（预计排队耗时10-20分钟）
+</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mqj-3N-a9b">
+                                <rect key="frame" x="17" y="575" width="341" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="q9C-xT-K5z"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal">
+                                    <string key="title">返回订单详情
+</string>
+                                    <color key="titleColor" red="0.16862745100000001" green="0.83921568629999999" blue="0.74117647060000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="toOrderDetail:" destination="50H-mc-DMl" eventType="touchUpInside" id="zLX-nc-Hsj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Yhi-Jl-yXk" firstAttribute="top" secondItem="GSP-DW-QeD" secondAttribute="top" constant="49" id="4V7-2u-8nX"/>
+                            <constraint firstItem="jOr-sl-14c" firstAttribute="leading" secondItem="GSP-DW-QeD" secondAttribute="leading" constant="35" id="6UX-8Z-jSj"/>
+                            <constraint firstItem="GSP-DW-QeD" firstAttribute="trailing" secondItem="jOr-sl-14c" secondAttribute="trailing" constant="35" id="LxS-Bi-hVC"/>
+                            <constraint firstItem="jOr-sl-14c" firstAttribute="top" secondItem="i1e-dj-CGZ" secondAttribute="bottom" constant="20" id="OzX-F8-WpD"/>
+                            <constraint firstItem="GSP-DW-QeD" firstAttribute="bottom" secondItem="Mqj-3N-a9b" secondAttribute="bottom" constant="40" id="Ri9-n5-weq"/>
+                            <constraint firstItem="Yhi-Jl-yXk" firstAttribute="centerX" secondItem="YG4-d8-4ng" secondAttribute="centerX" id="Thh-DE-1VD"/>
+                            <constraint firstItem="i1e-dj-CGZ" firstAttribute="centerX" secondItem="YG4-d8-4ng" secondAttribute="centerX" id="bcq-Bv-uXp"/>
+                            <constraint firstItem="i1e-dj-CGZ" firstAttribute="top" secondItem="Yhi-Jl-yXk" secondAttribute="bottom" constant="10" id="my0-Pd-ph0"/>
+                            <constraint firstItem="Mqj-3N-a9b" firstAttribute="leading" secondItem="GSP-DW-QeD" secondAttribute="leading" constant="17" id="whA-hD-9bi"/>
+                            <constraint firstItem="GSP-DW-QeD" firstAttribute="trailing" secondItem="Mqj-3N-a9b" secondAttribute="trailing" constant="17" id="ysN-QA-18R"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GSP-DW-QeD"/>
+                    </view>
+                    <connections>
+                        <outlet property="orderDetailButton" destination="Mqj-3N-a9b" id="I9M-nY-aPc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4vZ-UC-5D0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1730" y="278"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="insure_done_icon" width="20" height="20"/>
+    </resources>
+</document>

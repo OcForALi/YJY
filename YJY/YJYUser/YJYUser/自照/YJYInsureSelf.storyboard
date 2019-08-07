@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--护理易-->
+        <scene sceneID="pBo-GG-hoQ">
+            <objects>
+                <viewController storyboardIdentifier="YJYInsureSelfIntroController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tfl-ju-Vdf" customClass="YJYInsureSelfIntroController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kaM-mX-ld8"/>
+                        <viewControllerLayoutGuide type="bottom" id="fHG-uw-7uv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Dy2-tQ-sEG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s09-ll-WEU">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="gmu-wQ-htZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="立即预约" backgroundImage="app_big_green_bg"/>
+                                <state key="disabled" backgroundImage="app_big_green_bg"/>
+                                <connections>
+                                    <action selector="done:" destination="tfl-ju-Vdf" eventType="touchUpInside" id="QEx-7g-Xfa"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="s09-ll-WEU" firstAttribute="leading" secondItem="Dy2-tQ-sEG" secondAttribute="leading" id="BTX-AQ-Ny9"/>
+                            <constraint firstAttribute="trailing" secondItem="s09-ll-WEU" secondAttribute="trailing" id="Kb5-3h-4ZF"/>
+                            <constraint firstAttribute="bottom" secondItem="s09-ll-WEU" secondAttribute="bottom" id="rt1-Mq-axM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Faa-YQ-kOV"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="护理易" id="BjD-4U-aps"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0pR-2A-MLU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-857" y="107"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="app_big_green_bg" width="375" height="49"/>
+    </resources>
+</document>

@@ -1,0 +1,7 @@
+platform :ios, '7.0'
+
+target 'YJYUser' do
+pod 'LBXScan'
+pod 'XLPhotoBrowser+CoderXL'
+
+end

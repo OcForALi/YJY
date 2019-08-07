@@ -1,0 +1,77 @@
+//
+//  YJYPublic.pch
+//  Scaffold
+//
+//  Created by wusonghe on 2017/2/23.
+//  Copyright © 2017年 samwuu. All rights reserved.
+//
+
+#ifndef YJYPublic_pch
+#define YJYPublic_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* YJYPublic_pch */
+
+#define LBXScan_Define_Native  //下载了native模块
+#define LBXScan_Define_ZXing   //下载了ZXing模块
+#define LBXScan_Define_ZBar   //下载了ZBar模块
+#define LBXScan_Define_UI     //下载了界面模块
+
+//model
+#import "Interface.pbobjc.h"
+#import "Model.pbobjc.h"
+
+#import "SaasModel.pbobjc.h"
+#import "OrderModel.pbobjc.h"
+#import "CommonData.pbobjc.h"
+#import "AppInterface.pbobjc.h"
+#import "YJYPublic.h"
+
+#import "YJYExtension.h"
+//base
+#import "YJYNavigationController.h"
+#import "YJYTabController.h"
+#import "YJYTableViewController.h"
+#import "YJYViewController.h"
+#import "YJYTableView.h"
+//view
+
+#import "YJYShareView.h"
+#import "MJRefresh.h"
+#import "SYProgressHUD.h"
+#import "YJYRefreshHeader.h"
+#import "OpenShareHeader.h"
+#import "MDHTMLLabel.h"
+
+//manager
+
+#import "YJYNetworkManager.h"
+#import "YJYSettingManager.h"
+#import "YJYProtocolManager.h"
+#import "YJYLoginManager.h"
+#import "YJYPaymentManager.h"
+#import "YJYInterceptManager.h"
+
+
+//lib
+#import "IQKeyboardManager.h"
+#import "AFNetworking.h"
+#import "UIKit+AFNetworking.h"
+#import "IQActionSheetPickerView.h"
+#import <UMMobClick/MobClick.h>
+
+#import <AMapFoundationKit/AMapFoundationKit.h>
+#import <AMapLocationKit/AMapLocationKit.h>
+#import <AMapSearchKit/AMapSearchKit.h>
+#import <BaoFuAggregatePay/BaoFuAggregatePay.h>
+
+#import "YJYLoginController.h"
+#import "KeychainManager.h"
+#import "SSPhotoPickerManager.h"
+#import "YJYWebController.h"
+#import "YJYChargeSuccessController.h"
+#import "YJYInsurePaidController.h"
+
+

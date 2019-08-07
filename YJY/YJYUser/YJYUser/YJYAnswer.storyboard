@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZMV-V3-UDe">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--问诊-->
+        <scene sceneID="4Yx-RD-zCw">
+            <objects>
+                <viewController storyboardIdentifier="YJYAnswerController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZMV-V3-UDe" customClass="YJYAnswerController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1uA-zC-9z5"/>
+                        <viewControllerLayoutGuide type="bottom" id="BwY-Tu-NK8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ye0-hw-JyI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="answer_bg" translatesAutoresizingMaskIntoConstraints="NO" id="4a3-Pr-bUR">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4a3-Pr-bUR" firstAttribute="top" secondItem="Ye0-hw-JyI" secondAttribute="top" id="13Z-xu-bdQ"/>
+                            <constraint firstItem="4a3-Pr-bUR" firstAttribute="leading" secondItem="Ye0-hw-JyI" secondAttribute="leading" id="BPi-6D-9Fe"/>
+                            <constraint firstItem="BwY-Tu-NK8" firstAttribute="top" secondItem="4a3-Pr-bUR" secondAttribute="bottom" id="Hg4-jy-ih3"/>
+                            <constraint firstAttribute="trailing" secondItem="4a3-Pr-bUR" secondAttribute="trailing" id="zOh-36-X7I"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="问诊" id="cz5-73-w8W"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="STW-dy-9Nq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="54" y="289"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="answer_bg" width="375" height="554"/>
+    </resources>
+</document>

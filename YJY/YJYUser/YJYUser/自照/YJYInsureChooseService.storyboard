@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--选择服务类型-->
+        <scene sceneID="9k0-oQ-vKl">
+            <objects>
+                <tableViewController storyboardIdentifier="YJYInsureChooseServiceController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xu9-lV-k5b" customClass="YJYInsureChooseServiceController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="EUH-ew-if2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="OFF-rY-aqq">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="根据您的评估情况，为您推荐以下服务" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yi-XX-YXq">
+                                    <rect key="frame" x="17" y="11" width="243" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="3J4-Jw-Kxt"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="XVK-Yl-YHC"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="0.50408976510000003" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="9yi-XX-YXq" firstAttribute="leading" secondItem="OFF-rY-aqq" secondAttribute="leading" constant="17" id="KfZ-B8-FeX"/>
+                                <constraint firstItem="9yi-XX-YXq" firstAttribute="centerY" secondItem="OFF-rY-aqq" secondAttribute="centerY" id="xHX-n9-VfP"/>
+                            </constraints>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="YJYInsureChooseServiceCell" rowHeight="134" id="1EU-Rd-Wcr" customClass="YJYInsureChooseServiceCell">
+                                <rect key="frame" x="0.0" y="72" width="375" height="134"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1EU-Rd-Wcr" id="X1L-wt-ehO">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="133.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="中度失能基础护理" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EcE-g0-tDT">
+                                            <rect key="frame" x="17" y="10" width="139" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="5ii-YE-eOy"/>
+                                                <constraint firstAttribute="height" constant="21" id="S1I-mn-1q8"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="适合生活基本自理老人适合生活基本自理老人适合生活基本自理老人" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdB-Ns-o5Z">
+                                            <rect key="frame" x="17" y="41" width="341" height="41"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="clB-0D-b76"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="0.50408976510000003" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6900.00元/月" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQb-A0-Djs">
+                                            <rect key="frame" x="17" y="92" width="105.5" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="24w-64-vlP"/>
+                                                <constraint firstAttribute="height" constant="21" id="3lT-bl-UHr"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.98823529409999999" green="0.6705882353" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="hdB-Ns-o5Z" firstAttribute="leading" secondItem="X1L-wt-ehO" secondAttribute="leading" constant="17" id="Oa6-bo-7Zc"/>
+                                        <constraint firstItem="GQb-A0-Djs" firstAttribute="leading" secondItem="X1L-wt-ehO" secondAttribute="leading" constant="17" id="R9Y-Eq-lmV"/>
+                                        <constraint firstItem="EcE-g0-tDT" firstAttribute="top" secondItem="X1L-wt-ehO" secondAttribute="top" constant="10" id="YoQ-xD-GNl"/>
+                                        <constraint firstAttribute="trailing" secondItem="hdB-Ns-o5Z" secondAttribute="trailing" constant="17" id="def-ZW-xqG"/>
+                                        <constraint firstItem="GQb-A0-Djs" firstAttribute="top" secondItem="hdB-Ns-o5Z" secondAttribute="bottom" constant="10" id="elW-8G-akY"/>
+                                        <constraint firstItem="hdB-Ns-o5Z" firstAttribute="top" secondItem="EcE-g0-tDT" secondAttribute="bottom" constant="10" id="gNX-VO-dru"/>
+                                        <constraint firstItem="EcE-g0-tDT" firstAttribute="leading" secondItem="X1L-wt-ehO" secondAttribute="leading" constant="17" id="twp-kI-f5B"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="desLabel" destination="hdB-Ns-o5Z" id="8Ev-hi-hCe"/>
+                                    <outlet property="priceLabel" destination="GQb-A0-Djs" id="Wd1-jo-Vcb"/>
+                                    <outlet property="titleLabel" destination="EcE-g0-tDT" id="SZN-Xs-Xkr"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="xu9-lV-k5b" id="eu5-YQ-8it"/>
+                            <outlet property="delegate" destination="xu9-lV-k5b" id="9sB-5r-Fg7"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="选择服务类型" id="9Kc-GQ-Sc9"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HM8-Fl-cAe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-719.20000000000005" y="-51.724137931034484"/>
+        </scene>
+    </scenes>
+</document>
