@@ -1,0 +1,66 @@
+//
+//  YJYPublic.pch
+//  Scaffold
+//
+//  Created by wusonghe on 2017/2/23.
+//  No Comment © 2017年 samwuu. All rights reserved.
+//
+
+#ifndef YJYPublic_pch
+#define YJYPublic_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* YJYPublic_pch */
+
+
+//model
+#import "Interface.pbobjc.h"
+#import "Model.pbobjc.h"
+#import "AppInterface.pbobjc.h"
+#import "SaasModel.pbobjc.h"
+#import "OrderModel.pbobjc.h"
+#import "Insure.pbobjc.h"
+
+#import "YJYPublic.h"
+
+#import "YJYExtension.h"
+//base
+#import "YJYNavigationController.h"
+#import "YJYTabController.h"
+#import "YJYTableViewController.h"
+#import "YJYViewController.h"
+#import "YJYTableView.h"
+//view
+
+#import "MJRefresh.h"
+#import "SYProgressHUD.h"
+#import "YJYRefreshHeader.h"
+#import "OpenShareHeader.h"
+#import "MDHTMLLabel.h"
+#import "YJYActionSheet.h"
+
+//manager
+
+#import "YJYRoleManager.h"
+#import "YJYNetworkManager.h"
+#import "YJYSettingManager.h"
+#import "YJYLoginManager.h"
+#import "YJYInterceptManager.h"
+
+
+#import <AFNetworking.h>
+#import <AFNetworking/UIButton+AFNetworking.h>
+#import <AMapLocationKit/AMapLocationKit.h>
+
+#import "IQActionSheetPickerView.h"
+
+#import "YJYLoginController.h"
+#import "KeychainManager.h"
+#import "SSPhotoPickerManager.h"
+#import "YJYWebController.h"
+#import "IQActionSheetPickerView.h"
+#import "YJYInsureOrderNurseListController.h"
+#import "LSLDecimalNumberTool.h"
+

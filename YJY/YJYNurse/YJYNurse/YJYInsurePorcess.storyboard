@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--病史列表-->
+        <scene sceneID="1od-JX-8Fz">
+            <objects>
+                <tableViewController storyboardIdentifier="YJYInsurePorcessController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xFb-9Q-1k3" customClass="YJYInsurePorcessController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="LNE-Kb-cA5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="0.074509803920000006" green="0.1058823529" blue="0.20000000000000001" alpha="0.050283137579999998" colorSpace="custom" customColorSpace="sRGB"/>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="3AQ-qf-1uY">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="申请进度" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eGs-Mc-Dda">
+                                    <rect key="frame" x="36" y="19.5" width="100" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="ASB-6c-Jiu"/>
+                                        <constraint firstAttribute="width" constant="100" id="giq-hf-5cV"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="0.50408976510000003" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="eGs-Mc-Dda" firstAttribute="centerY" secondItem="3AQ-qf-1uY" secondAttribute="centerY" id="Ys4-rl-unH"/>
+                                <constraint firstItem="eGs-Mc-Dda" firstAttribute="leading" secondItem="3AQ-qf-1uY" secondAttribute="leading" constant="36" id="nH8-mU-6lc"/>
+                            </constraints>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="YJYInsurePorcessCell" rowHeight="65" id="lNp-Ab-wK5" customClass="YJYInsurePorcessCell">
+                                <rect key="frame" x="0.0" y="88" width="375" height="65"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lNp-Ab-wK5" id="6b7-tJ-aJ0">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-04-25" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mfo-V3-hnK">
+                                            <rect key="frame" x="36" y="10" width="200" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="edf-o4-8zn"/>
+                                                <constraint firstAttribute="height" constant="17" id="rap-iD-exg"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="0.50408976510000003" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="护士评估不通过" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGh-g4-YHQ" customClass="MDHTMLLabel">
+                                            <rect key="frame" x="36" y="33" width="322" height="19.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="z7Y-4T-hAt"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Mfo-V3-hnK" firstAttribute="top" secondItem="6b7-tJ-aJ0" secondAttribute="top" constant="10" id="KMo-Gh-zCt"/>
+                                        <constraint firstItem="Mfo-V3-hnK" firstAttribute="leading" secondItem="6b7-tJ-aJ0" secondAttribute="leading" constant="36" id="Z70-5h-9I6"/>
+                                        <constraint firstItem="EGh-g4-YHQ" firstAttribute="leading" secondItem="6b7-tJ-aJ0" secondAttribute="leading" constant="36" id="ecl-Xb-a4g"/>
+                                        <constraint firstItem="EGh-g4-YHQ" firstAttribute="top" secondItem="Mfo-V3-hnK" secondAttribute="bottom" constant="6" id="myG-6k-KB6"/>
+                                        <constraint firstAttribute="trailing" secondItem="EGh-g4-YHQ" secondAttribute="trailing" constant="17" id="qO7-Tk-NZR"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="desLabel" destination="EGh-g4-YHQ" id="I3O-2b-M8f"/>
+                                    <outlet property="titleLabel" destination="Mfo-V3-hnK" id="Z4J-Yb-SNd"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="xFb-9Q-1k3" id="dN9-kf-Zed"/>
+                            <outlet property="delegate" destination="xFb-9Q-1k3" id="Atm-Zg-pg1"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="病史列表" id="Ejc-O5-wjA"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lDZ-KL-Eko" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1260" y="-309"/>
+        </scene>
+    </scenes>
+</document>

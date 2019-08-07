@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14835.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14790.5"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--新增照护计划-->
+        <scene sceneID="6X6-7U-pjg">
+            <objects>
+                <tableViewController id="2fi-gG-ZcJ" customClass="YJYInsureCardPlanManualAddContentController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="682-Xf-1FT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="543"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="ywG-P5-lDQ">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="日常护理" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z1r-Ql-Nb9">
+                                    <rect key="frame" x="21" y="19.5" width="82" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="dTD-Rv-zJw"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="kPd-r6-rQH"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                    <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2U7-sf-fr5">
+                                    <rect key="frame" x="315" y="8" width="60" height="44"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="KLA-ex-z1m"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <state key="normal" image="insure_add_orange_icon">
+                                        <color key="titleColor" red="0.16862745100000001" green="0.83921568629999999" blue="0.74117647060000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="addDetail:" destination="2fi-gG-ZcJ" eventType="touchUpInside" id="qbk-qI-WG6"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="z1r-Ql-Nb9" firstAttribute="centerY" secondItem="ywG-P5-lDQ" secondAttribute="centerY" id="2nf-M3-oQr"/>
+                                <constraint firstAttribute="trailing" secondItem="2U7-sf-fr5" secondAttribute="trailing" id="8iI-oh-isu"/>
+                                <constraint firstItem="2U7-sf-fr5" firstAttribute="centerY" secondItem="ywG-P5-lDQ" secondAttribute="centerY" id="isZ-Fq-RrI"/>
+                                <constraint firstItem="z1r-Ql-Nb9" firstAttribute="leading" secondItem="ywG-P5-lDQ" secondAttribute="leading" constant="21" id="m5J-SJ-2qv"/>
+                                <constraint firstItem="2U7-sf-fr5" firstAttribute="top" secondItem="ywG-P5-lDQ" secondAttribute="top" constant="8" id="vm9-E1-TXv"/>
+                            </constraints>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="YJYInsureCardPlanManualAddCell" rowHeight="165" id="zgK-rD-znq" customClass="YJYInsureCardPlanManualAddCell">
+                                <rect key="frame" x="0.0" y="88" width="375" height="165"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zgK-rD-znq" id="YWB-B0-eSm">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="164.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O64-3U-vkt">
+                                            <rect key="frame" x="17" y="15" width="341" height="100"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="w0y-YX-MOC">
+                                                    <rect key="frame" x="10" y="10" width="321" height="80"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="无"/>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                            <color key="value" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="0.50408976510000003" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </textView>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="w0y-YX-MOC" firstAttribute="top" secondItem="O64-3U-vkt" secondAttribute="top" constant="10" id="7CF-rc-L7V"/>
+                                                <constraint firstItem="w0y-YX-MOC" firstAttribute="leading" secondItem="O64-3U-vkt" secondAttribute="leading" constant="10" id="DVQ-w8-T2L"/>
+                                                <constraint firstAttribute="trailing" secondItem="w0y-YX-MOC" secondAttribute="trailing" constant="10" id="IdD-Yt-8ZQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="w0y-YX-MOC" secondAttribute="bottom" constant="10" id="UJP-fu-lpx"/>
+                                                <constraint firstAttribute="height" constant="100" id="yOP-3E-JAd"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z4U-nP-lTW">
+                                            <rect key="frame" x="315" y="125" width="60" height="29.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="czT-Dg-7i7"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <state key="normal" image="insure_delete_icon">
+                                                <color key="titleColor" red="0.16862745100000001" green="0.83921568629999999" blue="0.74117647060000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="toDelete:" destination="zgK-rD-znq" eventType="touchUpInside" id="Nz8-bJ-TkJ"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="Z4U-nP-lTW" secondAttribute="trailing" id="9hf-gi-I3q"/>
+                                        <constraint firstItem="O64-3U-vkt" firstAttribute="top" secondItem="YWB-B0-eSm" secondAttribute="top" constant="15" id="Dhu-Bx-Av4"/>
+                                        <constraint firstAttribute="bottom" secondItem="Z4U-nP-lTW" secondAttribute="bottom" constant="10" id="RJO-OC-3Qh"/>
+                                        <constraint firstAttribute="trailing" secondItem="O64-3U-vkt" secondAttribute="trailing" constant="17" id="UPf-dn-fwQ"/>
+                                        <constraint firstItem="Z4U-nP-lTW" firstAttribute="top" secondItem="O64-3U-vkt" secondAttribute="bottom" constant="10" id="gCT-o1-py5"/>
+                                        <constraint firstItem="O64-3U-vkt" firstAttribute="leading" secondItem="YWB-B0-eSm" secondAttribute="leading" constant="17" id="wRa-ah-hP5"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="contentTextView" destination="w0y-YX-MOC" id="23m-qQ-w1k"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="2fi-gG-ZcJ" id="Woe-hj-oJz"/>
+                            <outlet property="delegate" destination="2fi-gG-ZcJ" id="MHj-1u-a4I"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="新增照护计划" id="Ctr-Qo-TKB"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="titleLabel" destination="z1r-Ql-Nb9" id="TQc-bc-MmY"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5sF-dG-nS4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4902" y="-90"/>
+        </scene>
+        <!--日常护理 -->
+        <scene sceneID="YDx-SX-mOW">
+            <objects>
+                <viewController storyboardIdentifier="YJYInsureCardPlanManualAddController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="du9-Ze-dMe" customClass="YJYInsureCardPlanManualAddController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Z0q-UT-3cK"/>
+                        <viewControllerLayoutGuide type="bottom" id="znX-nT-tZo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="n7P-mt-WCf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fw9-7u-1Lc">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jxR-nq-5aP">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="确定" backgroundImage="app_big_green_bg">
+                                            <color key="titleColor" red="0.94509803920000002" green="0.94901960780000005" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="done:" destination="du9-Ze-dMe" eventType="touchUpInside" id="l8S-ad-IHG"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="93p-X1-Lg9"/>
+                                    <constraint firstAttribute="trailing" secondItem="jxR-nq-5aP" secondAttribute="trailing" id="S6O-Pn-dTX"/>
+                                    <constraint firstAttribute="bottom" secondItem="jxR-nq-5aP" secondAttribute="bottom" id="llO-u1-NqW"/>
+                                    <constraint firstItem="jxR-nq-5aP" firstAttribute="leading" secondItem="fw9-7u-1Lc" secondAttribute="leading" id="lnO-Da-AZg"/>
+                                    <constraint firstItem="jxR-nq-5aP" firstAttribute="top" secondItem="fw9-7u-1Lc" secondAttribute="top" id="mGs-Oa-SKZ"/>
+                                </constraints>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j18-y3-VUq">
+                                <rect key="frame" x="0.0" y="44" width="375" height="563"/>
+                                <connections>
+                                    <segue destination="2fi-gG-ZcJ" kind="embed" identifier="YJYInsureCardPlanManualAddContentController" id="cfO-bS-H7a"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="fw9-7u-1Lc" secondAttribute="trailing" id="4GG-8e-6zc"/>
+                            <constraint firstItem="fw9-7u-1Lc" firstAttribute="top" secondItem="j18-y3-VUq" secondAttribute="bottom" id="Oc3-3b-FnB"/>
+                            <constraint firstItem="fw9-7u-1Lc" firstAttribute="leading" secondItem="n7P-mt-WCf" secondAttribute="leading" id="UcY-XI-Es7"/>
+                            <constraint firstItem="j18-y3-VUq" firstAttribute="leading" secondItem="n7P-mt-WCf" secondAttribute="leading" id="ank-4a-7iX"/>
+                            <constraint firstItem="j18-y3-VUq" firstAttribute="top" secondItem="Z0q-UT-3cK" secondAttribute="bottom" id="bIK-mn-UZT"/>
+                            <constraint firstAttribute="trailing" secondItem="j18-y3-VUq" secondAttribute="trailing" id="iYs-0N-bOS"/>
+                            <constraint firstAttribute="bottom" secondItem="fw9-7u-1Lc" secondAttribute="bottom" id="j36-eE-NIQ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KZv-hD-Wsg"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="rC5-1e-E0f">
+                        <string key="title">日常护理
+</string>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qOn-a5-gZE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4177" y="-34"/>
+        </scene>
+        <!--模板添加-->
+        <scene sceneID="qTf-LP-tGU">
+            <objects>
+                <tableViewController id="Hfv-47-1oi" customClass="YJYInsureCardPlanModeAddContentController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xs5-oh-gfd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="543"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="YJYInsureCardPlanModeAddCell" rowHeight="70" id="J5z-2U-Sqi" customClass="YJYInsureCardPlanModeAddCell">
+                                <rect key="frame" x="0.0" y="28" width="375" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J5z-2U-Sqi" id="C7q-gP-N9r">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_select_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Ygl-YV-esJ">
+                                            <rect key="frame" x="33" y="25" width="20" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="G3f-HU-eWd"/>
+                                                <constraint firstAttribute="height" constant="20" id="tNy-fL-q2j"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A服务" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZ3-8K-mcN">
+                                            <rect key="frame" x="73" y="25.5" width="285" height="19.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="x6s-7z-HHE"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Ygl-YV-esJ" firstAttribute="centerY" secondItem="C7q-gP-N9r" secondAttribute="centerY" id="2uF-6p-RWn"/>
+                                        <constraint firstAttribute="trailing" secondItem="gZ3-8K-mcN" secondAttribute="trailing" constant="17" id="F0c-0w-oaw"/>
+                                        <constraint firstItem="Ygl-YV-esJ" firstAttribute="centerY" secondItem="gZ3-8K-mcN" secondAttribute="centerY" id="JAV-6Y-LvP"/>
+                                        <constraint firstItem="gZ3-8K-mcN" firstAttribute="leading" secondItem="Ygl-YV-esJ" secondAttribute="trailing" constant="20" id="nyv-XZ-6tb"/>
+                                        <constraint firstItem="Ygl-YV-esJ" firstAttribute="leading" secondItem="C7q-gP-N9r" secondAttribute="leadingMargin" constant="17" id="pTj-Co-Qgf"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="selectedImageView" destination="Ygl-YV-esJ" id="AJq-YC-BSQ"/>
+                                    <outlet property="titleLabel" destination="gZ3-8K-mcN" id="fvn-WT-Meu"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="Hfv-47-1oi" id="PsZ-yN-FlR"/>
+                            <outlet property="delegate" destination="Hfv-47-1oi" id="nlR-IF-Wld"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="模板添加" id="RKN-bm-zm8"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ras-gS-CHK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6521" y="-70"/>
+        </scene>
+        <!--模板添加-->
+        <scene sceneID="hNq-RA-6zW">
+            <objects>
+                <viewController storyboardIdentifier="YJYInsureCardPlanModeAddController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="6F1-U8-s1A" customClass="YJYInsureCardPlanModeAddController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VXP-Yh-pOO"/>
+                        <viewControllerLayoutGuide type="bottom" id="ru5-as-TlW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mgO-L3-ypO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iMO-gN-Sbt">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="unK-Q5-Meh">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="确定添加" backgroundImage="app_big_green_bg">
+                                            <color key="titleColor" red="0.94509803920000002" green="0.94901960780000005" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="done:" destination="6F1-U8-s1A" eventType="touchUpInside" id="rK1-Zv-VhG"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="unK-Q5-Meh" firstAttribute="leading" secondItem="iMO-gN-Sbt" secondAttribute="leading" id="2JU-Yb-QhT"/>
+                                    <constraint firstItem="unK-Q5-Meh" firstAttribute="top" secondItem="iMO-gN-Sbt" secondAttribute="top" id="7S1-Bb-xJN"/>
+                                    <constraint firstAttribute="bottom" secondItem="unK-Q5-Meh" secondAttribute="bottom" id="M8t-D3-4H4"/>
+                                    <constraint firstAttribute="height" constant="60" id="iJU-xB-b2b"/>
+                                    <constraint firstAttribute="trailing" secondItem="unK-Q5-Meh" secondAttribute="trailing" id="jR5-2r-v3i"/>
+                                </constraints>
+                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oQu-HA-lWk">
+                                <rect key="frame" x="0.0" y="44" width="375" height="563"/>
+                                <connections>
+                                    <segue destination="Hfv-47-1oi" kind="embed" identifier="YJYInsureCardPlanModeAddContentController" id="mLf-Ez-st0"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="oQu-HA-lWk" firstAttribute="top" secondItem="VXP-Yh-pOO" secondAttribute="bottom" id="4q8-T7-vpQ"/>
+                            <constraint firstAttribute="bottom" secondItem="iMO-gN-Sbt" secondAttribute="bottom" id="8Dl-gT-g7e"/>
+                            <constraint firstItem="iMO-gN-Sbt" firstAttribute="top" secondItem="oQu-HA-lWk" secondAttribute="bottom" id="Esi-tm-Wnc"/>
+                            <constraint firstAttribute="trailing" secondItem="iMO-gN-Sbt" secondAttribute="trailing" id="T9h-jV-wCR"/>
+                            <constraint firstItem="iMO-gN-Sbt" firstAttribute="leading" secondItem="mgO-L3-ypO" secondAttribute="leading" id="W7h-pq-zIn"/>
+                            <constraint firstItem="oQu-HA-lWk" firstAttribute="leading" secondItem="mgO-L3-ypO" secondAttribute="leading" id="jTS-am-jpi"/>
+                            <constraint firstAttribute="trailing" secondItem="oQu-HA-lWk" secondAttribute="trailing" id="zLE-WP-GA9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9F2-9u-7cD"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="模板添加" id="l3d-7s-CjL">
+                        <barButtonItem key="rightBarButtonItem" title="筛选病症" id="wFP-mS-rtO">
+                            <color key="tintColor" red="0.16862745100000001" green="0.83921568629999999" blue="0.74117647060000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="toFilterAction:" destination="6F1-U8-s1A" id="HMW-d2-JLU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mBf-TL-EsK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5774" y="-63"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="app_big_green_bg" width="375" height="49"/>
+        <image name="app_select_icon" width="20" height="20"/>
+        <image name="insure_add_orange_icon" width="20" height="20"/>
+        <image name="insure_delete_icon" width="16" height="18"/>
+    </resources>
+</document>

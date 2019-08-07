@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Launch Screen Controller-->
+        <scene sceneID="j6Z-0i-olR">
+            <objects>
+                <viewController storyboardIdentifier="YJYLaunchScreenController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3To-wK-DGe" customClass="YJYLaunchScreenController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aRv-gB-5X4"/>
+                        <viewControllerLayoutGuide type="bottom" id="GN7-RD-6jy"/>
+                    </layoutGuides>
+                    <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="gEW-Gy-df3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_launch" translatesAutoresizingMaskIntoConstraints="NO" id="Xmy-Ka-r1n">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Xmy-Ka-r1n" firstAttribute="leading" secondItem="gEW-Gy-df3" secondAttribute="leading" id="bJM-Xg-aVZ"/>
+                            <constraint firstItem="GN7-RD-6jy" firstAttribute="top" secondItem="Xmy-Ka-r1n" secondAttribute="bottom" id="par-Tq-FFx"/>
+                            <constraint firstAttribute="trailing" secondItem="Xmy-Ka-r1n" secondAttribute="trailing" id="sea-s8-Pb0"/>
+                            <constraint firstItem="Xmy-Ka-r1n" firstAttribute="top" secondItem="gEW-Gy-df3" secondAttribute="top" id="zyq-Wf-g4D"/>
+                        </constraints>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="imageView" destination="Xmy-Ka-r1n" id="Bte-xg-thP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IWO-bl-7te" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-166" y="239"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="app_launch" width="375" height="667"/>
+    </resources>
+</document>

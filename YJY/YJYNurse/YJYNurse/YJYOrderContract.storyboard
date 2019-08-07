@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14835.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14790.5"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--合同-->
+        <scene sceneID="pOE-af-hnQ">
+            <objects>
+                <viewController storyboardIdentifier="YJYOrderContractController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2Ob-Ff-Gu6" customClass="YJYOrderContractController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1hb-MJ-ixn"/>
+                        <viewControllerLayoutGuide type="bottom" id="fkO-nO-pnr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="u0a-wQ-rP4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qr1-LI-riZ">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z3P-N5-eS6">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="签名" backgroundImage="app_big_green_bg">
+                                            <color key="titleColor" red="0.94509803920000002" green="0.94901960780000005" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="signatureAction:" destination="2Ob-Ff-Gu6" eventType="touchUpInside" id="n37-7L-kfe"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="z3P-N5-eS6" firstAttribute="leading" secondItem="qr1-LI-riZ" secondAttribute="leading" id="1dR-gH-PG2"/>
+                                    <constraint firstItem="z3P-N5-eS6" firstAttribute="top" secondItem="qr1-LI-riZ" secondAttribute="top" id="2ej-I0-umG"/>
+                                    <constraint firstAttribute="trailing" secondItem="z3P-N5-eS6" secondAttribute="trailing" id="Mpj-pv-u5m"/>
+                                    <constraint firstAttribute="bottom" secondItem="z3P-N5-eS6" secondAttribute="bottom" id="MqM-7L-w07"/>
+                                    <constraint firstAttribute="height" constant="60" id="ZQX-7v-m0G"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qr1-LI-riZ" firstAttribute="leading" secondItem="u0a-wQ-rP4" secondAttribute="leading" id="0ry-bp-NrP"/>
+                            <constraint firstAttribute="bottom" secondItem="qr1-LI-riZ" secondAttribute="bottom" id="xy6-4U-X0W"/>
+                            <constraint firstAttribute="trailing" secondItem="qr1-LI-riZ" secondAttribute="trailing" id="yPv-e4-psY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="合同" id="pla-bl-byP">
+                        <barButtonItem key="rightBarButtonItem" title="跳过" id="NaD-Is-YbW">
+                            <connections>
+                                <action selector="toSkip:" destination="2Ob-Ff-Gu6" id="NBZ-Kh-fyp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wit-ho-lAe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1113" y="1"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="app_big_green_bg" width="375" height="49"/>
+    </resources>
+</document>

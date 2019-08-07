@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--用户知情书-->
+        <scene sceneID="9II-p9-6Ni">
+            <objects>
+                <viewController storyboardIdentifier="YJYInsureCreateUserKowningController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uPa-1o-9nP" customClass="YJYInsureCreateUserKowningController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oEW-YH-baa"/>
+                        <viewControllerLayoutGuide type="bottom" id="Z0K-AW-XJ4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iAR-UA-2PR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6LW-po-Iw5">
+                                <rect key="frame" x="0.0" y="64" width="375" height="543"/>
+                                <connections>
+                                    <segue destination="txB-3Q-vpl" kind="embed" identifier="YJYInsureCreateUserKowningControllerContent" id="BGO-ov-1X3"/>
+                                </connections>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fPd-Iy-8hn">
+                                <rect key="frame" x="0.0" y="607" width="375" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DEv-Yk-aH2">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                        <state key="normal" title="委托人签名" backgroundImage="app_big_green_bg"/>
+                                        <connections>
+                                            <action selector="done:" destination="uPa-1o-9nP" eventType="touchUpInside" id="MCA-RM-F69"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="DEv-Yk-aH2" secondAttribute="trailing" id="4gX-nb-ZzF"/>
+                                    <constraint firstAttribute="height" constant="60" id="MpO-l2-xHs"/>
+                                    <constraint firstItem="DEv-Yk-aH2" firstAttribute="leading" secondItem="fPd-Iy-8hn" secondAttribute="leading" id="aaE-Hx-kjo"/>
+                                    <constraint firstAttribute="bottom" secondItem="DEv-Yk-aH2" secondAttribute="bottom" id="kIU-Se-M0a"/>
+                                    <constraint firstItem="DEv-Yk-aH2" firstAttribute="top" secondItem="fPd-Iy-8hn" secondAttribute="top" id="sBX-hO-7sh"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6LW-po-Iw5" firstAttribute="top" secondItem="oEW-YH-baa" secondAttribute="bottom" id="DUG-p8-BlM"/>
+                            <constraint firstAttribute="bottom" secondItem="6LW-po-Iw5" secondAttribute="bottom" constant="60" id="Kkp-IA-aKc"/>
+                            <constraint firstAttribute="trailing" secondItem="fPd-Iy-8hn" secondAttribute="trailing" id="Km0-9C-MAC"/>
+                            <constraint firstItem="fPd-Iy-8hn" firstAttribute="leading" secondItem="iAR-UA-2PR" secondAttribute="leading" id="MmY-gU-GVX"/>
+                            <constraint firstItem="6LW-po-Iw5" firstAttribute="leading" secondItem="iAR-UA-2PR" secondAttribute="leading" id="ZC9-Ee-msy"/>
+                            <constraint firstItem="Z0K-AW-XJ4" firstAttribute="top" secondItem="fPd-Iy-8hn" secondAttribute="bottom" id="nvg-JR-axq"/>
+                            <constraint firstAttribute="trailing" secondItem="6LW-po-Iw5" secondAttribute="trailing" id="t4r-Vs-YCZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aYv-36-8Id"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="用户知情书" id="we5-1w-CHX"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T4G-36-kSM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3564" y="-561.76911544227892"/>
+        </scene>
+        <!--Web Controller-->
+        <scene sceneID="4Hg-LY-ExM">
+            <objects>
+                <viewController id="txB-3Q-vpl" customClass="YJYWebController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VGS-Ar-ubc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="543"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="KVs-15-RhP"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Eq-8z-Umx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2857" y="-562"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="app_big_green_bg" width="375" height="49"/>
+    </resources>
+</document>

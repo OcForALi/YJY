@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--编辑-->
+        <scene sceneID="pK2-s9-eIZ">
+            <objects>
+                <tableViewController storyboardIdentifier="YJYEditController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="nKc-HF-q7e" customClass="YJYEditController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="7Qb-1o-gSm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93585592510000004" green="0.93519121409999995" blue="0.95603185889999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <sections>
+                            <tableViewSection id="zFE-h6-y33">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="hqs-Em-xhg">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hqs-Em-xhg" id="yal-Mp-CFo">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W43-Rl-IlY">
+                                                    <rect key="frame" x="0.0" y="15" width="375" height="55"/>
+                                                    <subviews>
+                                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Zvo-sH-UBg">
+                                                            <rect key="frame" x="10" y="10" width="355" height="35"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="tintColor" red="0.16862745100000001" green="0.83921568629999999" blue="0.74117647060000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="textColor"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                        </textField>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="Zvo-sH-UBg" firstAttribute="top" secondItem="W43-Rl-IlY" secondAttribute="top" constant="10" id="2Zq-38-Ukz"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Zvo-sH-UBg" secondAttribute="bottom" constant="10" id="N0r-Vf-Gjl"/>
+                                                        <constraint firstItem="Zvo-sH-UBg" firstAttribute="leading" secondItem="W43-Rl-IlY" secondAttribute="leading" constant="10" id="dNo-eu-PT3"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Zvo-sH-UBg" secondAttribute="trailing" constant="10" id="eDK-PY-wyJ"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="W43-Rl-IlY" secondAttribute="trailing" id="9vs-Ro-yYV"/>
+                                                <constraint firstItem="W43-Rl-IlY" firstAttribute="top" secondItem="yal-Mp-CFo" secondAttribute="top" constant="15" id="KIj-Ti-V2M"/>
+                                                <constraint firstItem="W43-Rl-IlY" firstAttribute="leading" secondItem="yal-Mp-CFo" secondAttribute="leading" id="ftI-vG-c4N"/>
+                                                <constraint firstAttribute="bottom" secondItem="W43-Rl-IlY" secondAttribute="bottom" id="n2B-0T-9Bj"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.9358559250831604" green="0.93519121408462524" blue="0.95603185892105103" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="nKc-HF-q7e" id="PsT-gU-3ef"/>
+                            <outlet property="delegate" destination="nKc-HF-q7e" id="2Iq-Mb-rEx"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="编辑" id="zeM-aI-7P3">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="7wc-tN-Cr8">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PgO-sz-izP">
+                                <rect key="frame" x="276" y="5" width="83" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="完成">
+                                    <color key="titleColor" red="0.16862745100000001" green="0.83921568629999999" blue="0.74117647060000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneAction:" destination="nKc-HF-q7e" eventType="touchUpInside" id="eMn-HB-t4P"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="textField" destination="Zvo-sH-UBg" id="Cpx-Vs-GNb"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yAa-Re-Ox3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-671" y="230"/>
+        </scene>
+    </scenes>
+</document>

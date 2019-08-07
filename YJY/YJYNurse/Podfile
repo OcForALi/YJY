@@ -1,0 +1,18 @@
+inhibit_all_warnings!
+
+abstract_target 'BasePods' do
+
+    pod 'AFNetworking', '~> 3.1.0’
+    pod 'MJExtension', '~> 3.0.10'
+    pod 'MBProgressHUD', '~> 0.9.2’
+    pod 'JPush'
+    pod 'LBXScan'
+    pod 'OpenShare', '~> 0.0'
+    pod 'IQKeyboardManager'
+    pod 'FSCalendar' 
+    pod 'Masonry'
+    pod 'TZImagePickerController'
+    pod 'XLPhotoBrowser+CoderXL'
+    # Specify your actual targets
+    target 'YJYNurse'
+end

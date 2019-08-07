@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--每日服务确认-->
+        <scene sceneID="5mV-cW-P88">
+            <objects>
+                <tableViewController storyboardIdentifier="YJYInsureDailyComfireController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ezS-Wz-rVb" customClass="YJYInsureDailyComfireController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="PbT-GX-5af">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="separatorColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="yMT-js-JuS" userLabel="header">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="insure_down_bg" translatesAutoresizingMaskIntoConstraints="NO" id="UAV-h0-ALE">
+                                    <rect key="frame" x="0.0" y="-120" width="375" height="260"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="260" id="67g-Qn-f6B"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日是2018-04-02" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKO-Ij-gKu">
+                                    <rect key="frame" x="67" y="69.5" width="241" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="133" id="5w0-al-ttP"/>
+                                        <constraint firstAttribute="height" constant="21" id="6p9-oc-skQ"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今日休假" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2K-Ur-iRY">
+                                    <rect key="frame" x="152.5" y="170" width="70" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="70" id="FIE-XP-1F9"/>
+                                        <constraint firstAttribute="height" constant="21" id="bff-IB-cAI"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="0.50408976510000003" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="bKO-Ij-gKu" firstAttribute="centerY" secondItem="yMT-js-JuS" secondAttribute="centerY" constant="-20" id="5EH-F9-yK0"/>
+                                <constraint firstItem="UAV-h0-ALE" firstAttribute="top" secondItem="yMT-js-JuS" secondAttribute="top" constant="-120" id="7n2-hc-7AN"/>
+                                <constraint firstItem="f2K-Ur-iRY" firstAttribute="top" secondItem="UAV-h0-ALE" secondAttribute="bottom" constant="30" id="8hb-mx-uKc"/>
+                                <constraint firstItem="UAV-h0-ALE" firstAttribute="leading" secondItem="yMT-js-JuS" secondAttribute="leading" id="Tds-6j-J5N"/>
+                                <constraint firstItem="f2K-Ur-iRY" firstAttribute="centerX" secondItem="yMT-js-JuS" secondAttribute="centerX" id="eBX-Qy-0nr"/>
+                                <constraint firstItem="bKO-Ij-gKu" firstAttribute="centerX" secondItem="yMT-js-JuS" secondAttribute="centerX" id="frr-BC-xii"/>
+                                <constraint firstAttribute="trailing" secondItem="UAV-h0-ALE" secondAttribute="trailing" id="uoa-4a-Ojs"/>
+                            </constraints>
+                        </view>
+                        <sections>
+                            <tableViewSection id="lyW-um-55y">
+                                <cells/>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="ezS-Wz-rVb" id="28q-Dz-5Wh"/>
+                            <outlet property="delegate" destination="ezS-Wz-rVb" id="4gN-mU-NGS"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="每日服务确认" id="Mfu-sy-8Cx"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <connections>
+                        <outlet property="todayLabel" destination="bKO-Ij-gKu" id="Mdy-bu-V9r"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vQd-1s-LZV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5087" y="-219"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="insure_down_bg" width="375" height="179"/>
+    </resources>
+</document>

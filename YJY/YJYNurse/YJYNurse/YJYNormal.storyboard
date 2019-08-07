@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--病史列表-->
+        <scene sceneID="kfR-Eu-tfu">
+            <objects>
+                <tableViewController id="UT7-uq-3aX" customClass="YJYLanguagesContentController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="C8Z-tm-UVc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" red="0.074509803920000006" green="0.1058823529" blue="0.20000000000000001" alpha="0.050283137579999998" colorSpace="custom" customColorSpace="sRGB"/>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="YJYLanguagesCell" id="pYF-4x-M5a" customClass="YJYLanguagesCell">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pYF-4x-M5a" id="9HY-hS-VnZ">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="普通话" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1bq-Mb-BMa">
+                                            <rect key="frame" x="36" y="13" width="200" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="HeW-ux-5kF"/>
+                                                <constraint firstAttribute="height" constant="17" id="usm-kw-bdt"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.1137254902" green="0.1137254902" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="review_sick_select_icon" translatesAutoresizingMaskIntoConstraints="NO" id="ec4-cm-B3P">
+                                            <rect key="frame" x="313" y="12" width="27" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="27" id="Ksx-eS-yd9"/>
+                                                <constraint firstAttribute="height" constant="20" id="sDd-Ys-b55"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="1bq-Mb-BMa" firstAttribute="leading" secondItem="9HY-hS-VnZ" secondAttribute="leading" constant="36" id="Hr3-ir-NME"/>
+                                        <constraint firstItem="ec4-cm-B3P" firstAttribute="centerY" secondItem="9HY-hS-VnZ" secondAttribute="centerY" id="dB7-Oa-s0B"/>
+                                        <constraint firstAttribute="trailing" secondItem="ec4-cm-B3P" secondAttribute="trailing" constant="35" id="e3O-Ye-qpP"/>
+                                        <constraint firstItem="1bq-Mb-BMa" firstAttribute="centerY" secondItem="9HY-hS-VnZ" secondAttribute="centerY" id="iHe-uM-5nY"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="checkImageView" destination="ec4-cm-B3P" id="Z0k-YU-nG3"/>
+                                    <outlet property="titleLabel" destination="1bq-Mb-BMa" id="Ww6-Cs-Z9Z"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="UT7-uq-3aX" id="mv2-Eo-6TZ"/>
+                            <outlet property="delegate" destination="UT7-uq-3aX" id="0qH-xE-FJ7"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="病史列表" id="Vlh-gG-RZd"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WSb-3x-PEH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1089" y="892"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="review_sick_select_icon" width="25" height="18"/>
+    </resources>
+</document>
