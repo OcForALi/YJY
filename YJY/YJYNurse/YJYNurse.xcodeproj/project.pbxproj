@@ -3197,7 +3197,7 @@
 					"$(PROJECT_DIR)/YJYNurse/vendor/UMMobClick",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/mac/Downloads/YJY/YJYNurse/YJYNurse/YJYPublic.pch;
+				GCC_PREFIX_HEADER = /Users/mac/Documents/GitHub/YJY/YJY/YJYNurse/YJYNurse/YJYPublic.pch;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -3250,7 +3250,7 @@
 					"$(PROJECT_DIR)/YJYNurse/vendor/UMMobClick",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = /Users/mac/Downloads/YJY/YJYNurse/YJYNurse/YJYPublic.pch;
+				GCC_PREFIX_HEADER = /Users/mac/Documents/GitHub/YJY/YJY/YJYNurse/YJYNurse/YJYPublic.pch;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
